@@ -1,0 +1,125 @@
+/**
+ * 参考 邓俊辉教授所著的《数据结构》
+ * 
+ * Vector  线型数组的抽象和泛化
+ * 在物理地址上连续存储 _elem[r] = _elem + r
+ * 
+ * 以下所有涉及区间的均为左闭右开  [lo, hi)
+ * */
+typedef int Rank; //可为负，例如-1代表失败
+#define DEFAULT_CAPACITY 3
+
+namespace hang
+{
+
+    template <typename T>
+    class Vector
+    {
+    protected:
+        Rank _size;
+        unsigned int _capacity;
+        T *_elem;
+
+        void copyFrom(T *A, Rank lo, Rank hi);
+        void expand();                 //扩容
+        void shrink();                 //缩容
+        bool bobble(Rank lo, Rank hi); //扫描交换
+        void bubbleSort(Rank lo, Rank hi);
+        Rank max(Rank lo, Rank hi);
+        void selectionSort(Rank lo, Rank hi);
+        void merge(Rank lo, Rank mi, Rank hi);
+        void mergeSort(Rank lo, Rank hi);
+        void partition(Rank lo, Rank hi); //轴点构造算法
+        void quickSort(Rank lo, Rank hi);
+        void heapSort(Rank lo, Rank hi);
+
+    public:
+        Vector(unsigned int c = DEFAULT_CAPACITY, unsigned int s = 0, T v = 0)
+        {
+            _elem = new T[_capacity = c];
+            for (int i = 0; i < s; _elem[i++] = v)
+            {
+            }
+        }
+        Vector(T const *A, Rank n)
+        {
+            copyFrom(A, 0, n);
+        }
+        Vector(T const *A, Rank lo, Rank hi)
+        {
+            copyFrom(A, lo, hi);
+        }
+        Vector(Vector<T> const &A)
+        {
+            copyFrom(A._elem, 0, A._size);
+        }
+        Vector(Vector<T> const &A, Rank lo, Rank hi)
+        {
+            copyFrom(A._elem, lo, hi);
+        }
+
+        ~Vector()
+        {
+            delete _elem;
+        }
+
+        Rank size() const
+        {
+            return _size;
+        }
+        bool empty() const
+        {
+            return !_size;
+        }
+        int disordered() const;
+
+        //无需向量查找
+        Rank find(T const &e, Rank lo, Rank hi) const;
+        Rank find(T const &e) const
+        {
+            find(e, 0, _size);
+        }
+
+        //有序向量查找
+        Rank search(T const &e, Rank lo, Rank hi) const;
+        Rank search(T const &e) const
+        {
+            return search(e, 0, _size);
+        }
+
+        T &operator[](Rank i) const;
+        Vector<T> &operator=(Vector<T> const &);
+
+        T remove(Rank r);
+        unsigned int remove(Rank lo, Rank hi);
+
+        Rank insert(Rank i, T const &e);
+        Rank insert(T const &e)
+        {
+            insert(_size, e);
+        }
+
+        void sort(Rank lo, Rank hi);
+        void sort()
+        {
+            sort(0, _size);
+        }
+
+        void unsort(Rank lo, Rank hi);
+        void unsort()
+        {
+            unsort(0, _size);
+        }
+
+        int deduplicate();
+        int uniquify();
+
+        //遍历 使用函数指针， 只读或者局部性修改
+        void traverse(void (*)(T &));
+
+        //遍历 使用函数对象引用， 可全局修改
+        template <template VST>
+        void traverse(VST &);
+    };
+
+} // namespace hang
