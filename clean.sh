@@ -1,12 +1,12 @@
 #!/bin/sh
-if [ -e *.out ];then
+#if [ -e *.out ];then
 rm ./*.out;
 echo "clean out  complete";
-else
+#else
 echo "cleaned";
-fi
+#fi
 
-if [ -e *.dSYM ];then
+#if [ -e *.dSYM ];then
 rm -r ./*.dSYM;
 echo "clean dSYM complete";
-fi
+#fi
