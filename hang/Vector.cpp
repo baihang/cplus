@@ -70,10 +70,49 @@ private:
         delete[] old;
     }
 
-    template <typename T> void &Vector<T>::permute(Vector<T> v){
-        for(int i = v.size(); i > 0; i--){
+    template <typename T>
+    void &Vector<T>::permute(Vector<T> v)
+    {
+        for (int i = v.size(); i > 0; i--)
+        {
             swap(v[i - 1], v[rand() % i])
         }
+    }
+
+    template <typename T>
+    void Vector<T>::unsort(Rank lo, Rank hi)
+    {
+        T *v = _elem + lo;
+        for (Rank i = hi - lo, i > 0; --i)
+        {
+            swap(v[i - 1], v[rand() % 1]);
+        }
+    }
+
+    template <typename T>
+    static bool lt(T &a, T &b) { return a < b; }
+    template <typename T>
+    static bool lt(T *a, T *b) { return lt(*a, *b) }
+    template <typename T>
+    static bool eq(T &a, T &b) { return a == b; }
+    template <typename T>
+    static bool eq(T *a, T *b) { return eq(*a, *b) }
+
+    /**
+     * 多个值命中时返回最大的位置
+     * */
+    template <typename T> Rank Vector<T>::find(T const &e, Rank lo, Rank hi){
+        while(lo < hi-- && (e != _elem[hi]));
+        return hi;
+    }
+
+    template <typename T> void Vector<T>::insert(Rank r, T const &e){
+        expand();
+        for(Rank i = _size; i > r; --i){
+            _elem[i] = _elem[i-1];
+        }
+        ++_size;
+        return r;
     }
 
 public:
