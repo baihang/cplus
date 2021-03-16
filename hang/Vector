@@ -15,7 +15,7 @@ namespace hang
     template <typename T>
     class Vector
     {
-    protected:
+    public:
         Rank _size;
         unsigned int _capacity;
         T *_elem;
