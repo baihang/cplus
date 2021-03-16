@@ -16,6 +16,7 @@
 #include <vector>
 #include <utility>
 #include <stack>
+#include <iterator>
 
 using namespace std;
 
@@ -174,6 +175,34 @@ void toString(vector<vector<int> > result, string s, string p)
     }
 }
 
+bool match_recursion(string s, string p)
+{
+    if (s.length() == 0 || p.length() == 0)
+    {
+        return s.length() == 0 && p.length() == 0;
+    }
+    string::iterator pbegin = p.begin(), pend = p.end();
+    auto sbegin = s.begin(), send = s.end();
+
+    while (sbegin != send || pbegin != pend)
+    {
+        if (*pbegin == '*')
+        {
+            return match_recursion(string(sbegin, send), string(--pbegin, pend));
+        }
+        else if (compare(*pbegin, *sbegin))
+        {
+            pbegin++;
+            sbegin++;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    return sbegin != send && pbegin != pend;
+}
+
 bool match_iteration(string s, string p)
 {
     cout << s << endl
@@ -194,6 +223,7 @@ bool match_iteration(string s, string p)
     }
     cout << "compare iterator" << endl;
     toString(result, s, p);
+    match_recursion(s, p);
     return false;
 }
 
