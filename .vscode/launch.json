@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch CustomProxyClient",
+            "request": "launch",
+            "mainClass": "design.ProxyPattern.CustomProxyClient",
+            "projectName": "cplus_bdde0089"
+        },
+        {
+            "type": "java",
             "name": "Launch CompareSlppeWait",
             "request": "launch",
             "mainClass": "hang_java.CompareSlppeWait",
