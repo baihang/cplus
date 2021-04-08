@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch Generics$IteratorFibonacci",
+            "request": "launch",
+            "mainClass": "hang_java.Generics$IteratorFibonacci",
+            "projectName": "cplus_cf6b62c6"
+        },
+        {
+            "type": "java",
+            "name": "Launch Generics$Fibonacci",
+            "request": "launch",
+            "mainClass": "hang_java.Generics$Fibonacci",
+            "projectName": "cplus_cf6b62c6"
+        },
+        {
+            "type": "java",
             "name": "Launch CustomProxyClient",
             "request": "launch",
             "mainClass": "design.ProxyPattern.CustomProxyClient",
