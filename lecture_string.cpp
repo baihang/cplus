@@ -10,11 +10,15 @@ int main()
     std::cout << "Enter a series of numbers , Hit Enter when finish" << std::endl;
 
     string result;
-    string::size_type index = 0;  //使用size_type 定义 index
+    string::size_type index = 0; //使用size_type 定义 index
     // decltype(result.size()) index = 0; //使用size_type 定义 index 2
 
-    while(std::cin >> index){
-        if(index < hexdigits.size()){
+    //linux mac 使用 ctrl + D 结束流
+
+    while (std::cin >> index)
+    {
+        if (index < hexdigits.size())
+        {
             result += hexdigits[index];
         }
     }

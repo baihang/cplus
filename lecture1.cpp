@@ -1,10 +1,31 @@
 #include <iostream>
+#include "stand/1/Sales_item.h"
+
+//书店程序, 获取每本书的销售数据
+void bookSale(){
+    Sales_item total;
+    if(std::cin >> total){
+        Sales_item current;
+        while(std::cin >> current){
+            if(current.isbn() == total.isbn()){
+                total += current;
+            }else{
+                std::cout << total <<std::endl;
+                total = current;
+            }
+        }
+        std::cout << total <<std::endl;
+    }else{
+        std::cout << "error input" << std::endl;
+    }
+    return;
+}
 
 int main(){
     int val = 0;
 
-    std::cin >> val;
-    std::cout << val << std::endl;
+    // std::cin >> val;
+    // std::cout << val << std::endl;
 
     int i = 42;
     int &r = i; // 引用,引用本身不是对象，必须初始化
@@ -23,6 +44,8 @@ int main(){
     //declarator  声明符
     //declatype  类型说明符
     //header guard  头文件保护符
+
+    bookSale();
 
     return 0;
 

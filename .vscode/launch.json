@@ -5,6 +5,27 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "java",
+            "name": "Launch CustomProxyClient",
+            "request": "launch",
+            "mainClass": "design.ProxyPattern.CustomProxyClient",
+            "projectName": "cplus_bdde0089"
+        },
+        {
+            "type": "java",
+            "name": "Launch CompareSlppeWait",
+            "request": "launch",
+            "mainClass": "hang_java.CompareSlppeWait",
+            "projectName": "cplus_bdde0089"
+        },
+        {
+            "type": "java",
+            "name": "Launch CompareSlppeWait",
+            "request": "launch",
+            "mainClass": "java.CompareSlppeWait",
+            "projectName": "cplus_bdde0089"
+        },
+        {
             "name": "(lldb) 启动",
             "type": "cppdbg",
             "request": "launch",
@@ -15,7 +36,7 @@
             "environment": [],
             "externalConsole": false,
             "preLaunchTask": "C/C++: clang++ build active file",
-            "MIMode": "lldb",
+            "MIMode": "lldb"
         }
     ]
 }
