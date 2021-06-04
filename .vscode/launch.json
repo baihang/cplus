@@ -6,6 +6,41 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch OutOfMemoryTest",
+            "request": "launch",
+            "mainClass": "OutOfMemoryTest",
+            "projectName": "cplus_bdde0089"
+        },
+        {
+            "type": "java",
+            "name": "Launch CompareSlppeWait",
+            "request": "launch",
+            "mainClass": "CompareSlppeWait",
+            "projectName": "cplus_bdde0089"
+        },
+        {
+            "type": "java",
+            "name": "Launch TestJs",
+            "request": "launch",
+            "mainClass": "hang_java.TestJs",
+            "projectName": "cplus_bdde0089"
+        },
+        {
+            "type": "java",
+            "name": "Launch PrototypeClient",
+            "request": "launch",
+            "mainClass": "design.PrototypePattern.PrototypeClient",
+            "projectName": "cplus_bdde0089"
+        },
+        {
+            "type": "java",
+            "name": "Launch Client",
+            "request": "launch",
+            "mainClass": "design.PrototypePattern.Client",
+            "projectName": "cplus_bdde0089"
+        },
+        {
+            "type": "java",
             "name": "Launch CustomProxyClient",
             "request": "launch",
             "mainClass": "design.ProxyPattern.CustomProxyClient",

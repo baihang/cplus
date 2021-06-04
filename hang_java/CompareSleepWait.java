@@ -1,4 +1,3 @@
-package hang_java;
 
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
@@ -14,15 +13,24 @@ import java.util.concurrent.locks.ReentrantLock;
 class CompareSlppeWait {
 
     public static void main(String[] args) {
-        SleepThread sleepThread = new SleepThread();
+
+        LockException exThread = new LockException("ex");
+        exThread.start();
+
+        SleepThread sleepThread = new SleepThread("sleep");
         sleepThread.start();
-        WaitThread waitThread = new WaitThread();
+        WaitThread waitThread = new WaitThread("wait");
         waitThread.start();
-        ReentrainThread reentrainThread = new ReentrainThread();
+        ReentrainThread reentrainThread = new ReentrainThread("reentrain");
         reentrainThread.start();
     }
 
     private static class SleepThread extends Thread {
+
+        public SleepThread(String name) {
+            super(name);
+        }
+
         @Override
         public void run() {
             System.out.println("sleep thread run");
@@ -55,6 +63,11 @@ class CompareSlppeWait {
     }
 
     private static class WaitThread extends Thread {
+
+        public WaitThread(String name) {
+            super(name);
+        }
+
         @Override
         public void run() {
             System.out.println("wait therad run");
@@ -88,6 +101,11 @@ class CompareSlppeWait {
     private static Condition conditionC = lock.newCondition();
 
     private static class ReentrainThread extends Thread {
+
+        public ReentrainThread(String name) {
+            super(name);
+        }
+
         @Override
         public void run() {
             lock.lock();
@@ -102,6 +120,41 @@ class CompareSlppeWait {
                 e.printStackTrace();
             }
             lock.unlock();
+        }
+    }
+
+    /**
+     * 测试同步块内出现异常，是否会释放锁
+     */
+    private static class LockException extends Thread {
+
+        public LockException(String name) {
+            super(name);
+        }
+
+        @Override
+        public void run() {
+            System.out.println("lock exception start");
+            try {
+                lock.lock();
+                int i = 10 / 0;
+                lock.unlock();
+            } catch (Exception e) {
+                System.out.println("exception");
+            } finally {
+                //异常时锁不会默认被虚拟机释放，需要手动释放
+                lock.unlock();
+            }
+
+            try {
+                synchronized(CompareSlppeWait.class){
+                    //异常时锁自动释放
+                    int i = 10 / 0;
+                }
+            } catch (Exception e) {
+                System.out.println("sync exception");
+            }
+
         }
     }
 
