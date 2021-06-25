@@ -7,19 +7,19 @@
  ******************************************************************************************/
 
 /*
- * Ë«¶Ë¶ÓÁĞ½Ó¿Ú
+ * åŒç«¯é˜Ÿåˆ—æ¥å£
  */
 
 package dsa;
 
 public interface Deque {
-   public int getSize();//·µ»Ø¶ÓÁĞÖĞÔªËØÊıÄ¿
-   public boolean isEmpty();//ÅĞ¶Ï¶ÓÁĞÊÇ·ñÎª¿Õ
-   public Object first() throws ExceptionQueueEmpty;//È¡Ê×ÔªËØ£¨µ«²»É¾³ı£©
-   public Object last() throws ExceptionQueueEmpty;//È¡Ä©ÔªËØ£¨µ«²»É¾³ı£©
-   public void insertFirst(Object obj);//½«ĞÂÔªËØ×÷ÎªÊ×ÔªËØ²åÈë
-   public void insertLast(Object obj);//½«ĞÂÔªËØ×÷ÎªÄ©ÔªËØ²åÈë
-   public Object removeFirst() throws ExceptionQueueEmpty;//É¾³ıÊ×ÔªËØ
-   public Object removeLast() throws ExceptionQueueEmpty;//É¾³ıÄ©ÔªËØ
-   public void Traversal();//±éÀú
+   public int getSize();//è¿”å›é˜Ÿåˆ—ä¸­å…ƒç´ æ•°ç›®
+   public boolean isEmpty();//åˆ¤æ–­é˜Ÿåˆ—æ˜¯å¦ä¸ºç©º
+   public Object first() throws ExceptionQueueEmpty;//å–é¦–å…ƒç´ ï¼ˆä½†ä¸åˆ é™¤ï¼‰
+   public Object last() throws ExceptionQueueEmpty;//å–æœ«å…ƒç´ ï¼ˆä½†ä¸åˆ é™¤ï¼‰
+   public void insertFirst(Object obj);//å°†æ–°å…ƒç´ ä½œä¸ºé¦–å…ƒç´ æ’å…¥
+   public void insertLast(Object obj);//å°†æ–°å…ƒç´ ä½œä¸ºæœ«å…ƒç´ æ’å…¥
+   public Object removeFirst() throws ExceptionQueueEmpty;//åˆ é™¤é¦–å…ƒç´ 
+   public Object removeLast() throws ExceptionQueueEmpty;//åˆ é™¤æœ«å…ƒç´ 
+   public void Traversal();//éå†
 }

@@ -4,14 +4,14 @@
 # Example of Python dictionary (hashtable)
 #
 beauty = dict({	# declare and initialize a dictionary object
-	"³ÁÓã":"Î÷Ê©",
-	"ÂäÑã":"ÕÑ¾ı",
-	"±ÕÔÂ":"õõ²õ",
-	"Ğß»¨":"Óñ»·"
+	"æ²‰é±¼":"è¥¿æ–½",
+	"è½é›":"æ˜­å›",
+	"é—­æœˆ":"è²‚è‰",
+	"ç¾èŠ±":"ç‰ç¯"
 })
 print u'\n'.join(u' * ( %s : %s )' % (alias.decode('gbk').strip(), name.decode('gbk').strip()) for (alias, name) in beauty.items())
 
-beauty["ºìÑÕ"] = "Ô²Ô²"
+beauty["çº¢é¢œ"] = "åœ†åœ†"
 print u'\n'.join(u' | ( %s : %s )' % (alias.decode('gbk').strip(), name.decode('gbk').strip()) for (alias, name) in beauty.items())
 
 for (alias, name) in beauty.items():

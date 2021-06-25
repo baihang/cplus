@@ -7,51 +7,51 @@
  ******************************************************************************************/
 
 /*
- * £¨ÓĞÏò£©Í¼µÄ¶¥µã½á¹¹½Ó¿Ú
- * ÎŞÏòÍ¼Ò²¿ÉÒÔ¿´³ÉÊÇÓĞÏòÍ¼£¬Îª´Ë£¬Ö»Ğè½«Ã¿ÌõÎŞÏò±ßÌæ»»Îª¶Ô³ÆµÄÒ»¶ÔÓĞÏò±ß
+ * ï¼ˆæœ‰å‘ï¼‰å›¾çš„é¡¶ç‚¹ç»“æ„æ¥å£
+ * æ— å‘å›¾ä¹Ÿå¯ä»¥çœ‹æˆæ˜¯æœ‰å‘å›¾ï¼Œä¸ºæ­¤ï¼Œåªéœ€å°†æ¯æ¡æ— å‘è¾¹æ›¿æ¢ä¸ºå¯¹ç§°çš„ä¸€å¯¹æœ‰å‘è¾¹
  */
 
 package  dsa;
 
 public interface Vertex {
-   //³£Á¿
-   final static int UNDISCOVERED = 0;//ÉĞÎ´±»·¢ÏÖµÄ¶¥µã
-   final static int DISCOVERED = 1;//ÒÑ±»·¢ÏÖµÄ¶¥µã
-   final static int VISITED = 2;//ÒÑ·ÃÎÊ¹ıµÄ¶¥µã
+   //å¸¸é‡
+   final static int UNDISCOVERED = 0;//å°šæœªè¢«å‘ç°çš„é¡¶ç‚¹
+   final static int DISCOVERED = 1;//å·²è¢«å‘ç°çš„é¡¶ç‚¹
+   final static int VISITED = 2;//å·²è®¿é—®è¿‡çš„é¡¶ç‚¹
 
-   //·µ»Øµ±Ç°¶¥µãµÄĞÅÏ¢
+   //è¿”å›å½“å‰é¡¶ç‚¹çš„ä¿¡æ¯
    public Object getInfo();
-   //½«µ±Ç°¶¥µãµÄĞÅÏ¢¸üĞÂÎªx£¬²¢·µ»ØÔ­ÏÈµÄĞÅÏ¢
+   //å°†å½“å‰é¡¶ç‚¹çš„ä¿¡æ¯æ›´æ–°ä¸ºxï¼Œå¹¶è¿”å›åŸå…ˆçš„ä¿¡æ¯
    public Object setInfo(Object x);
 
-   //·µ»Øµ±Ç°¶¥µãµÄ³ö¡¢Èë¶È
+   //è¿”å›å½“å‰é¡¶ç‚¹çš„å‡ºã€å…¥åº¦
    public int outDeg();
    public int inDeg();
 
-   //·µ»Øµ±Ç°¶¥µãËùÓĞ¹ØÁª±ß¡¢¹ØÁª±ßÎ»ÖÃµÄµü´úÆ÷
+   //è¿”å›å½“å‰é¡¶ç‚¹æ‰€æœ‰å…³è”è¾¹ã€å…³è”è¾¹ä½ç½®çš„è¿­ä»£å™¨
    public Iterator inEdges();
    public Iterator inEdgePositions();
    public Iterator outEdges();
    public Iterator outEdgePositions();
 
-   //È¡µ±Ç°¶¥µãÔÚËùÊôµÄÍ¼µÄ¶¥µã¼¯VÖĞµÄÎ»ÖÃ
+   //å–å½“å‰é¡¶ç‚¹åœ¨æ‰€å±çš„å›¾çš„é¡¶ç‚¹é›†Vä¸­çš„ä½ç½®
    public Position getVPosInV();
 
-   //¶ÁÈ¡¡¢ÉèÖÃ¶¥µãµÄ×´Ì¬£¨DFS + BFS£©
+   //è¯»å–ã€è®¾ç½®é¡¶ç‚¹çš„çŠ¶æ€ï¼ˆDFS + BFSï¼‰
    public int getStatus();
    public int setStatus(int s);
 
-   //¶ÁÈ¡¡¢ÉèÖÃ¶¥µãµÄÊ±¼ä±êÇ©£¨DFS£©
+   //è¯»å–ã€è®¾ç½®é¡¶ç‚¹çš„æ—¶é—´æ ‡ç­¾ï¼ˆDFSï¼‰
    public int getDStamp();
    public int setDStamp(int s);
    public int getFStamp();
    public int setFStamp(int s);
 
-   //¶ÁÈ¡¡¢ÉèÖÃ¶¥µãÖÁÆğµãµÄ×î¶Ì¾àÀë£¨BFS»òBestFS£©
+   //è¯»å–ã€è®¾ç½®é¡¶ç‚¹è‡³èµ·ç‚¹çš„æœ€çŸ­è·ç¦»ï¼ˆBFSæˆ–BestFSï¼‰
    public int getDistance();
    public int setDistance(int s);
 
-   //¶ÁÈ¡¡¢ÉèÖÃ¶¥µãÔÚµÄDFS¡¢BFS¡¢BestFS»òMSTÊ÷ÖĞµÄ¸¸Ç×
+   //è¯»å–ã€è®¾ç½®é¡¶ç‚¹åœ¨çš„DFSã€BFSã€BestFSæˆ–MSTæ ‘ä¸­çš„çˆ¶äº²
    public Vertex getBFSParent();
    public Vertex setBFSParent(Vertex s);
 }

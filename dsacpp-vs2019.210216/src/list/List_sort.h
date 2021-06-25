@@ -8,12 +8,12 @@
 
 #pragma once
 
-template <typename T> void List<T>::sort ( ListNodePosi<T> p, int n ) { //ÁĞ±íÇø¼äÅÅĞò
+template <typename T> void List<T>::sort ( ListNodePosi<T> p, int n ) { //åˆ—è¡¨åŒºé—´æ’åº
    //*DSA*/ switch ( 3 ) {
-   switch ( rand() % 4 ) { //Ëæ»úÑ¡È¡ÅÅĞòËã·¨¡£¿É¸ù¾İ¾ßÌåÎÊÌâµÄÌØµãÁé»îÑ¡È¡»òÀ©³ä
-      case 1:  insertionSort ( p, n ); break; //²åÈëÅÅĞò
-      case 2:  selectionSort ( p, n ); break; //Ñ¡ÔñÅÅĞò
-      case 3:  mergeSort ( p, n ); break; //¹é²¢ÅÅĞò
-      default: radixSort ( p, n ); break; //»ùÊıÅÅĞò
+   switch ( rand() % 4 ) { //éšæœºé€‰å–æ’åºç®—æ³•ã€‚å¯æ ¹æ®å…·ä½“é—®é¢˜çš„ç‰¹ç‚¹çµæ´»é€‰å–æˆ–æ‰©å……
+      case 1:  insertionSort ( p, n ); break; //æ’å…¥æ’åº
+      case 2:  selectionSort ( p, n ); break; //é€‰æ‹©æ’åº
+      case 3:  mergeSort ( p, n ); break; //å½’å¹¶æ’åº
+      default: radixSort ( p, n ); break; //åŸºæ•°æ’åº
    }
 }

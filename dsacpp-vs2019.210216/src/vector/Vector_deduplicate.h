@@ -8,13 +8,13 @@
 
 #pragma once
 
-template <typename T> int Vector<T>::deduplicate() { //É¾³ıÎŞĞòÏòÁ¿ÖĞÖØ¸´ÔªËØ£¨¸ßĞ§°æ£©
-   int oldSize = _size; //¼ÇÂ¼Ô­¹æÄ£
-   Rank i = 1; //´Ó_elem[1]¿ªÊ¼
-   while (i < _size) //×ÔÇ°ÏòºóÖğÒ»¿¼²é¸÷ÔªËØ_elem[i]
-      if (find(_elem[i], 0, i) < 0) //ÔÚÇ°×º[0,i)ÖĞÑ°ÕÒÓëÖ®À×Í¬Õß£¨ÖÁ¶àÒ»¸ö£©
-         i++; //ÈôÎŞÀ×Í¬Ôò¼ÌĞø¿¼²éÆäºó¼Ì
+template <typename T> int Vector<T>::deduplicate() { //åˆ é™¤æ— åºå‘é‡ä¸­é‡å¤å…ƒç´ ï¼ˆé«˜æ•ˆç‰ˆï¼‰
+   int oldSize = _size; //è®°å½•åŸè§„æ¨¡
+   Rank i = 1; //ä»_elem[1]å¼€å§‹
+   while (i < _size) //è‡ªå‰å‘åé€ä¸€è€ƒæŸ¥å„å…ƒç´ _elem[i]
+      if (find(_elem[i], 0, i) < 0) //åœ¨å‰ç¼€[0,i)ä¸­å¯»æ‰¾ä¸ä¹‹é›·åŒè€…ï¼ˆè‡³å¤šä¸€ä¸ªï¼‰
+         i++; //è‹¥æ— é›·åŒåˆ™ç»§ç»­è€ƒæŸ¥å…¶åç»§
       else
-         remove(i); //·ñÔòÉ¾³ıµ±Ç°ÔªËØ
-   return oldSize - _size; //±»É¾³ıÔªËØ×ÜÊı
+         remove(i); //å¦åˆ™åˆ é™¤å½“å‰å…ƒç´ 
+   return oldSize - _size; //è¢«åˆ é™¤å…ƒç´ æ€»æ•°
 }

@@ -7,9 +7,9 @@
  ******************************************************************************************/
 
 /*
- * ¹é²¢ÅÅĞòËã·¨
- * Õë¶ÔÏòÁ¿ºÍÁĞ±íÁ½ÖÖÇé¿ö£¬merge()·½·¨µÄ¾ßÌåÊµÏÖ²»Í¬
- * ÕâÀïÖ»Õë¶Ô»ùÓÚÁĞ±íµÄĞòÁĞ£¬¸ø³öËã·¨ÊµÏÖ
+ * å½’å¹¶æ’åºç®—æ³•
+ * é’ˆå¯¹å‘é‡å’Œåˆ—è¡¨ä¸¤ç§æƒ…å†µï¼Œmerge()æ–¹æ³•çš„å…·ä½“å®ç°ä¸åŒ
+ * è¿™é‡Œåªé’ˆå¯¹åŸºäºåˆ—è¡¨çš„åºåˆ—ï¼Œç»™å‡ºç®—æ³•å®ç°
  */
 
 package dsa;
@@ -25,10 +25,10 @@ public class Sorter_Mergesort implements Sorter {
 
    public void sort(Sequence S) {//Mergesort
       int n = S.getSize();
-      if (1 >= n)   return; //µİ¹é»ù
+      if (1 >= n)   return; //é€’å½’åŸº
       Sequence S1 = new Sequence_DLNode();
       Sequence S2 = new Sequence_DLNode();
-      while (!S.isEmpty()) {//½«S¾ùÔÈµØ·Ö³ÉÁ½¸ö×ÓĞòÁĞS1ºÍS2
+      while (!S.isEmpty()) {//å°†Så‡åŒ€åœ°åˆ†æˆä¸¤ä¸ªå­åºåˆ—S1å’ŒS2
          S1.insertLast(S.remove(S.first()));
          if (!S.isEmpty()) S2.insertLast(S.remove(S.first()));
       }
@@ -36,10 +36,10 @@ public class Sorter_Mergesort implements Sorter {
       merge(S, S1, S2);
    }
 
-   public void merge(Sequence S, Sequence S1, Sequence S2) {//ÓĞĞòÁĞ±íµÄ¹é²¢Ëã·¨
+   public void merge(Sequence S, Sequence S1, Sequence S2) {//æœ‰åºåˆ—è¡¨çš„å½’å¹¶ç®—æ³•
       while (!S1.isEmpty() || !S2.isEmpty()) {
          Object e;
-         //ÔÚÁ½¸ö×ÓÁĞ±í±äÎª¿ÕÖ®Ç°£¬²»¶ÏµØÕª³öÁ½¸öÊ×ÔªËØÖĞµÄĞ¡Õße
+         //åœ¨ä¸¤ä¸ªå­åˆ—è¡¨å˜ä¸ºç©ºä¹‹å‰ï¼Œä¸æ–­åœ°æ‘˜å‡ºä¸¤ä¸ªé¦–å…ƒç´ ä¸­çš„å°è€…e
          if (S1.isEmpty())
             e = S2.remove(S2.first());
          else if (S2.isEmpty())
@@ -48,7 +48,7 @@ public class Sorter_Mergesort implements Sorter {
             e = S2.remove(S2.first());
          else
             e = S1.remove(S1.first());
-         //½«¸ÃÔªËØ²åÖÁSµÄÎ²²¿
+         //å°†è¯¥å…ƒç´ æ’è‡³Sçš„å°¾éƒ¨
          S.insertLast(e);
       }//while
    }

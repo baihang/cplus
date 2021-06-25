@@ -8,16 +8,16 @@
 
 #pragma once
 
-/*DSA*/template <typename T> //¶þ²æÊ÷×ÓÊ÷½ÓÈëËã·¨£º½«Sµ±×÷½ÚµãxµÄ×ó×ÓÊ÷½ÓÈë£¬S±¾ÉíÖÃ¿Õ
+/*DSA*/template <typename T> //äºŒå‰æ ‘å­æ ‘æŽ¥å…¥ç®—æ³•ï¼šå°†Så½“ä½œèŠ‚ç‚¹xçš„å·¦å­æ ‘æŽ¥å…¥ï¼ŒSæœ¬èº«ç½®ç©º
 /*DSA*/BinNodePosi<T> BinTree<T>::attachAsLC ( BinNodePosi<T> x, BinTree<T>* &S ) { //x->lc == NULL
-/*DSA*/   if ( x->lc = S->_root ) x->lc->parent = x; //½ÓÈë
-/*DSA*/   _size += S->_size; updateHeightAbove ( x ); //¸üÐÂÈ«Ê÷¹æÄ£ÓëxËùÓÐ×æÏÈµÄ¸ß¶È
-/*DSA*/   S->_root = NULL; S->_size = 0; release ( S ); S = NULL; return x; //ÊÍ·ÅÔ­Ê÷£¬·µ»Ø½ÓÈëÎ»ÖÃ
+/*DSA*/   if ( x->lc = S->_root ) x->lc->parent = x; //æŽ¥å…¥
+/*DSA*/   _size += S->_size; updateHeightAbove ( x ); //æ›´æ–°å…¨æ ‘è§„æ¨¡ä¸Žxæ‰€æœ‰ç¥–å…ˆçš„é«˜åº¦
+/*DSA*/   S->_root = NULL; S->_size = 0; release ( S ); S = NULL; return x; //é‡Šæ”¾åŽŸæ ‘ï¼Œè¿”å›žæŽ¥å…¥ä½ç½®
 /*DSA*/}
 /*DSA*/
-template <typename T> //¶þ²æÊ÷×ÓÊ÷½ÓÈëËã·¨£º½«Sµ±×÷½ÚµãxµÄÓÒ×ÓÊ÷½ÓÈë£¬S±¾ÉíÖÃ¿Õ
+template <typename T> //äºŒå‰æ ‘å­æ ‘æŽ¥å…¥ç®—æ³•ï¼šå°†Så½“ä½œèŠ‚ç‚¹xçš„å³å­æ ‘æŽ¥å…¥ï¼ŒSæœ¬èº«ç½®ç©º
 BinNodePosi<T> BinTree<T>::attachAsRC ( BinNodePosi<T> x, BinTree<T>* &S ) { //x->rc == NULL
-   if ( x->rc = S->_root ) x->rc->parent = x; //½ÓÈë
-   _size += S->_size; updateHeightAbove ( x ); //¸üÐÂÈ«Ê÷¹æÄ£ÓëxËùÓÐ×æÏÈµÄ¸ß¶È
-   S->_root = NULL; S->_size = 0; release ( S ); S = NULL; return x; //ÊÍ·ÅÔ­Ê÷£¬·µ»Ø½ÓÈëÎ»ÖÃ
-} //attachAsLC()ÍêÈ«¶Ô³Æ£¬ÔÚ´ËÊ¡ÂÔ£»release()¸ºÔðÊÍ·Å¸´ÔÓ½á¹¹£¬ÓëËã·¨ÎÞÖ±½Ó¹ØÏµ£¬¾ßÌåÊµÏÖÏê¼û´úÂë°ü
+   if ( x->rc = S->_root ) x->rc->parent = x; //æŽ¥å…¥
+   _size += S->_size; updateHeightAbove ( x ); //æ›´æ–°å…¨æ ‘è§„æ¨¡ä¸Žxæ‰€æœ‰ç¥–å…ˆçš„é«˜åº¦
+   S->_root = NULL; S->_size = 0; release ( S ); S = NULL; return x; //é‡Šæ”¾åŽŸæ ‘ï¼Œè¿”å›žæŽ¥å…¥ä½ç½®
+} //attachAsLC()å®Œå…¨å¯¹ç§°ï¼Œåœ¨æ­¤çœç•¥ï¼›release()è´Ÿè´£é‡Šæ”¾å¤æ‚ç»“æž„ï¼Œä¸Žç®—æ³•æ— ç›´æŽ¥å…³ç³»ï¼Œå…·ä½“å®žçŽ°è¯¦è§ä»£ç åŒ…

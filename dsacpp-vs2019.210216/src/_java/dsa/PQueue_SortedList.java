@@ -7,7 +7,7 @@
  ******************************************************************************************/
 
 /*
- * »ùÓÚÓĞĞò£¨·ÇÉı£©ÁĞ±íÊµÏÖµÄÓÅÏÈ¶ÓÁĞ
+ * åŸºäºæœ‰åºï¼ˆéå‡ï¼‰åˆ—è¡¨å®ç°çš„ä¼˜å…ˆé˜Ÿåˆ—
  */
 
 package dsa;
@@ -16,19 +16,19 @@ public class PQueue_SortedList implements PQueue {
    private List L;
    private Comparator C;
 
-   //¹¹Ôì·½·¨£¨Ê¹ÓÃÄ¬ÈÏ±È½ÏÆ÷£©
+   //æ„é€ æ–¹æ³•ï¼ˆä½¿ç”¨é»˜è®¤æ¯”è¾ƒå™¨ï¼‰
    public PQueue_SortedList()
    { this(new ComparatorDefault(), null); }
 
-   //¹¹Ôì·½·¨£¨Ê¹ÓÃÖ¸¶¨±È½ÏÆ÷£©
+   //æ„é€ æ–¹æ³•ï¼ˆä½¿ç”¨æŒ‡å®šæ¯”è¾ƒå™¨ï¼‰
    public PQueue_SortedList(Comparator c)
    { this(c, null); }
 
-   //¹¹Ôì·½·¨£¨Ê¹ÓÃÖ¸¶¨³õÊ¼ÔªËØ£©
+   //æ„é€ æ–¹æ³•ï¼ˆä½¿ç”¨æŒ‡å®šåˆå§‹å…ƒç´ ï¼‰
    public PQueue_SortedList(Sequence s)
    { this(new ComparatorDefault(), s); }
 
-   //¹¹Ôì·½·¨£¨Ê¹ÓÃÖ¸¶¨±È½ÏÆ÷ºÍ³õÊ¼ÔªËØ£©
+   //æ„é€ æ–¹æ³•ï¼ˆä½¿ç”¨æŒ‡å®šæ¯”è¾ƒå™¨å’Œåˆå§‹å…ƒç´ ï¼‰
    public PQueue_SortedList(Comparator c, Sequence s) {
       L = new List_DLNode();
       C = c;
@@ -39,41 +39,41 @@ public class PQueue_SortedList implements PQueue {
          }
    }
 
-   //Í³¼ÆÓÅÏÈ¶ÓÁĞµÄ¹æÄ£
+   //ç»Ÿè®¡ä¼˜å…ˆé˜Ÿåˆ—çš„è§„æ¨¡
    public int getSize()
    { return L.getSize(); }
 
-   //ÅĞ¶ÏÓÅÏÈ¶ÓÁĞÊÇ·ñÎª¿Õ
+   //åˆ¤æ–­ä¼˜å…ˆé˜Ÿåˆ—æ˜¯å¦ä¸ºç©º
    public boolean isEmpty()
    { return L.isEmpty(); }
 
-   //ÈôQ·Ç¿Õ£¬Ôò·µ»ØÆäÖĞµÄ×îĞ¡ÌõÄ¿£¨²¢²»É¾³ı£©;·ñÔò£¬±¨´í
+   //è‹¥Qéç©ºï¼Œåˆ™è¿”å›å…¶ä¸­çš„æœ€å°æ¡ç›®ï¼ˆå¹¶ä¸åˆ é™¤ï¼‰;å¦åˆ™ï¼ŒæŠ¥é”™
    public Entry getMin() throws ExceptionPQueueEmpty {
       if (L.isEmpty())
-         throw new ExceptionPQueueEmpty("ÒâÍâ£ºÓÅÏÈ¶ÓÁĞ¿Õ");
+         throw new ExceptionPQueueEmpty("æ„å¤–ï¼šä¼˜å…ˆé˜Ÿåˆ—ç©º");
       return (Entry) L.last();
    }
 
-   //½«¶ÔÏóobjÓë¹Ø¼üÂëkºÏ³ÉÒ»¸öÌõÄ¿£¬½«Æä²åÈëQÖĞ£¬²¢·µ»Ø¸ÃÌõÄ¿
+   //å°†å¯¹è±¡objä¸å…³é”®ç kåˆæˆä¸€ä¸ªæ¡ç›®ï¼Œå°†å…¶æ’å…¥Qä¸­ï¼Œå¹¶è¿”å›è¯¥æ¡ç›®
    public Entry insert(Object key, Object obj) throws ExceptionKeyInvalid {
-      Entry entry = new EntryDefault(key, obj);//´´½¨Ò»¸öĞÂÌõÄ¿
-      if (L.isEmpty()//ÈôÓÅÏÈ¶ÓÁĞÎª¿Õ
+      Entry entry = new EntryDefault(key, obj);//åˆ›å»ºä¸€ä¸ªæ–°æ¡ç›®
+      if (L.isEmpty()//è‹¥ä¼˜å…ˆé˜Ÿåˆ—ä¸ºç©º
       || (0 > C.compare(((Entry) (L.first().getElem())).getKey(), entry.getKey())))
-         //»òĞÂÌõÄ¿ÊÇµ±Ç°×î´óÕß
-         L.insertFirst(entry);//ÔòÖ±½Ó²åÈëÖÁ±íÍ·
-      else {//·ñÔò
-         Position curPos = L.last();//´ÓÎ²ÌõÄ¿¿ªÊ¼
+         //æˆ–æ–°æ¡ç›®æ˜¯å½“å‰æœ€å¤§è€…
+         L.insertFirst(entry);//åˆ™ç›´æ¥æ’å…¥è‡³è¡¨å¤´
+      else {//å¦åˆ™
+         Position curPos = L.last();//ä»å°¾æ¡ç›®å¼€å§‹
          while (0 > C.compare(((Entry)(curPos.getElem())).getKey(), entry.getKey()))
-            curPos = L.getPrev(curPos);//²»¶ÏÇ°ÒÆ£¬Ö±µ½µÚÒ»¸ö²»Ğ¡ÓÚentryµÄÌõÄ¿
-         L.insertAfter(curPos, entry);//½ô½Ó¸ÃÌõÄ¿Ö®ºó²åÈëentry
+            curPos = L.getPrev(curPos);//ä¸æ–­å‰ç§»ï¼Œç›´åˆ°ç¬¬ä¸€ä¸ªä¸å°äºentryçš„æ¡ç›®
+         L.insertAfter(curPos, entry);//ç´§æ¥è¯¥æ¡ç›®ä¹‹åæ’å…¥entry
       }
       return(entry);
    }
 
-   //ÈôQ·Ç¿Õ£¬Ôò´ÓÆäÖĞÕª³ı¹Ø¼üÂë×îĞ¡µÄÌõÄ¿£¬²¢·µ»Ø¸ÃÌõÄ¿£»·ñÔò£¬±¨´í
+   //è‹¥Qéç©ºï¼Œåˆ™ä»å…¶ä¸­æ‘˜é™¤å…³é”®ç æœ€å°çš„æ¡ç›®ï¼Œå¹¶è¿”å›è¯¥æ¡ç›®ï¼›å¦åˆ™ï¼ŒæŠ¥é”™
    public Entry delMin() throws ExceptionPQueueEmpty {
       if (L.isEmpty())
-         throw new ExceptionPQueueEmpty("ÒâÍâ£ºÓÅÏÈ¶ÓÁĞ¿Õ");
+         throw new ExceptionPQueueEmpty("æ„å¤–ï¼šä¼˜å…ˆé˜Ÿåˆ—ç©º");
       return (Entry) L.remove(L.last());
    }
 }

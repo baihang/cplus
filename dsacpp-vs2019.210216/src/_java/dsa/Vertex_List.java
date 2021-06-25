@@ -7,68 +7,68 @@
  ******************************************************************************************/
 
 /*
- * »ùÓÚÁÚ½Ó±ß±íÊµÏÖÍ¼µÄ¶¥µã½á¹¹
+ * åŸºäºé‚»æ¥è¾¹è¡¨å®ç°å›¾çš„é¡¶ç‚¹ç»“æ„
  */
 
 package  dsa;
 
 public class Vertex_List implements Vertex {
-   //±äÁ¿
-   protected Object info;//µ±Ç°¶¥µãÖĞ´æ·ÅµÄÊı¾İÔªËØ
-   protected Position vPosInV;//µ±Ç°¶¥µãÔÚËùÊôµÄÍ¼µÄ¶¥µã±íVÖĞµÄÎ»ÖÃ
-   protected List outEdges;//¹ØÁª±ß±í£º´æ·ÅÒÔµ±Ç°¶¥µãÎªÎ²µÄËùÓĞ±ß£¨µÄÎ»ÖÃ£©
-   protected List inEdges;//¹ØÁª±ß±í£º´æ·ÅÒÔµ±Ç°¶¥µãÎªÍ·µÄËùÓĞ±ß£¨µÄÎ»ÖÃ£©
-   protected int status;//£¨ÔÚ±éÀúÍ¼µÈ²Ù×÷¹ı³ÌÖĞ£©¶¥µãµÄ×´Ì¬
-   protected int dStamp;//Ê±¼ä±êÇ©£ºDFS¹ı³ÌÖĞ¸Ã¶¥µã±»·¢ÏÖÊ±µÄÊ±¿Ì
-   protected int fStamp;//Ê±¼ä±êÇ©£ºDFS¹ı³ÌÖĞ¸Ã¶¥µã±»·ÃÎÊ½áÊøÊ±µÄÊ±¿Ì
-   protected int distance;//µ½Ö¸¶¨ÆğµãµÄ¾àÀë£ºBFS¡¢DijkstraµÈËã·¨ËùÈ·¶¨¸Ã¶¥µãµ½ÆğµãµÄ¾àÀë
-   protected Vertex bfsParent;//ÔÚ×î¶Ì¾àÀëÊ÷£¨BFS»òBestFS£©ÖĞµÄ¸¸Ç×
+   //å˜é‡
+   protected Object info;//å½“å‰é¡¶ç‚¹ä¸­å­˜æ”¾çš„æ•°æ®å…ƒç´ 
+   protected Position vPosInV;//å½“å‰é¡¶ç‚¹åœ¨æ‰€å±çš„å›¾çš„é¡¶ç‚¹è¡¨Vä¸­çš„ä½ç½®
+   protected List outEdges;//å…³è”è¾¹è¡¨ï¼šå­˜æ”¾ä»¥å½“å‰é¡¶ç‚¹ä¸ºå°¾çš„æ‰€æœ‰è¾¹ï¼ˆçš„ä½ç½®ï¼‰
+   protected List inEdges;//å…³è”è¾¹è¡¨ï¼šå­˜æ”¾ä»¥å½“å‰é¡¶ç‚¹ä¸ºå¤´çš„æ‰€æœ‰è¾¹ï¼ˆçš„ä½ç½®ï¼‰
+   protected int status;//ï¼ˆåœ¨éå†å›¾ç­‰æ“ä½œè¿‡ç¨‹ä¸­ï¼‰é¡¶ç‚¹çš„çŠ¶æ€
+   protected int dStamp;//æ—¶é—´æ ‡ç­¾ï¼šDFSè¿‡ç¨‹ä¸­è¯¥é¡¶ç‚¹è¢«å‘ç°æ—¶çš„æ—¶åˆ»
+   protected int fStamp;//æ—¶é—´æ ‡ç­¾ï¼šDFSè¿‡ç¨‹ä¸­è¯¥é¡¶ç‚¹è¢«è®¿é—®ç»“æŸæ—¶çš„æ—¶åˆ»
+   protected int distance;//åˆ°æŒ‡å®šèµ·ç‚¹çš„è·ç¦»ï¼šBFSã€Dijkstraç­‰ç®—æ³•æ‰€ç¡®å®šè¯¥é¡¶ç‚¹åˆ°èµ·ç‚¹çš„è·ç¦»
+   protected Vertex bfsParent;//åœ¨æœ€çŸ­è·ç¦»æ ‘ï¼ˆBFSæˆ–BestFSï¼‰ä¸­çš„çˆ¶äº²
 
-   //¹¹Ôì·½·¨£ºÔÚÍ¼GÖĞÒıÈëÒ»¸öÊôĞÔÎªxµÄĞÂ¶¥µã
+   //æ„é€ æ–¹æ³•ï¼šåœ¨å›¾Gä¸­å¼•å…¥ä¸€ä¸ªå±æ€§ä¸ºxçš„æ–°é¡¶ç‚¹
    public Vertex_List(Graph G, Object x) {
-      info = x;//Êı¾İÔªËØ
-      vPosInV = G.insert(this);//µ±Ç°¶¥µãÔÚËùÊôµÄÍ¼µÄ¶¥µã±íVÖĞµÄÎ»ÖÃ
-      outEdges = new List_DLNode();//³ö±ß±í
-      inEdges = new List_DLNode();//Èë±ß±í
+      info = x;//æ•°æ®å…ƒç´ 
+      vPosInV = G.insert(this);//å½“å‰é¡¶ç‚¹åœ¨æ‰€å±çš„å›¾çš„é¡¶ç‚¹è¡¨Vä¸­çš„ä½ç½®
+      outEdges = new List_DLNode();//å‡ºè¾¹è¡¨
+      inEdges = new List_DLNode();//å…¥è¾¹è¡¨
       status = UNDISCOVERED;
       dStamp = fStamp = Integer.MAX_VALUE;
       distance = Integer.MAX_VALUE;
       bfsParent = null;
    }
 
-   //·µ»Øµ±Ç°¶¥µãµÄĞÅÏ¢
+   //è¿”å›å½“å‰é¡¶ç‚¹çš„ä¿¡æ¯
    public Object getInfo() { return info; }
-   //½«µ±Ç°¶¥µãµÄĞÅÏ¢¸üĞÂÎªx£¬²¢·µ»ØÔ­ÏÈµÄĞÅÏ¢
+   //å°†å½“å‰é¡¶ç‚¹çš„ä¿¡æ¯æ›´æ–°ä¸ºxï¼Œå¹¶è¿”å›åŸå…ˆçš„ä¿¡æ¯
    public Object setInfo(Object x) { Object e = info; info = x; return e; }
 
-   //·µ»Øµ±Ç°¶¥µãµÄ³ö¡¢Èë¶È
+   //è¿”å›å½“å‰é¡¶ç‚¹çš„å‡ºã€å…¥åº¦
    public int outDeg() { return outEdges.getSize(); }
    public int inDeg() { return inEdges.getSize(); }
 
-   //·µ»Øµ±Ç°¶¥µãËùÓĞ¹ØÁª±ß¡¢¹ØÁª±ßÎ»ÖÃµÄµü´úÆ÷
+   //è¿”å›å½“å‰é¡¶ç‚¹æ‰€æœ‰å…³è”è¾¹ã€å…³è”è¾¹ä½ç½®çš„è¿­ä»£å™¨
    public Iterator inEdges() { return inEdges.elements(); }
    public Iterator inEdgePositions() { return inEdges.positions(); }
    public Iterator outEdges() { return outEdges.elements(); }
    public Iterator outEdgePositions() { return outEdges.positions(); }
 
-   //È¡µ±Ç°¶¥µãÔÚËùÊôµÄÍ¼µÄ¶¥µã¼¯VÖĞµÄÎ»ÖÃ
+   //å–å½“å‰é¡¶ç‚¹åœ¨æ‰€å±çš„å›¾çš„é¡¶ç‚¹é›†Vä¸­çš„ä½ç½®
    public Position getVPosInV() { return vPosInV; }
 
-   //¶ÁÈ¡¡¢ÉèÖÃ¶¥µãµÄ×´Ì¬£¨DFS + BFS£©
+   //è¯»å–ã€è®¾ç½®é¡¶ç‚¹çš„çŠ¶æ€ï¼ˆDFS + BFSï¼‰
    public int getStatus() { return status; }
    public int setStatus(int s) { int ss = status; status = s; return ss; }
 
-   //¶ÁÈ¡¡¢ÉèÖÃ¶¥µãµÄÊ±¼ä±êÇ©£¨DFS£©
+   //è¯»å–ã€è®¾ç½®é¡¶ç‚¹çš„æ—¶é—´æ ‡ç­¾ï¼ˆDFSï¼‰
    public int getDStamp() { return dStamp; }
    public int setDStamp(int s) { int ss = dStamp; dStamp = s; return ss; }
    public int getFStamp() { return fStamp; }
    public int setFStamp(int s) { int ss = fStamp; fStamp = s; return ss; }
 
-   //¶ÁÈ¡¡¢ÉèÖÃ¶¥µãÖÁÆğµãµÄ×î¶Ì¾àÀë£¨BFS£©
+   //è¯»å–ã€è®¾ç½®é¡¶ç‚¹è‡³èµ·ç‚¹çš„æœ€çŸ­è·ç¦»ï¼ˆBFSï¼‰
    public int getDistance() { return distance; }
    public int setDistance(int s) { int ss = distance; distance = s; return ss; }
 
-   //¶ÁÈ¡¡¢ÉèÖÃ¶¥µãÔÚµÄDFS¡¢BFS¡¢BestFS»òMSTÊ÷ÖĞµÄ¸¸Ç×
+   //è¯»å–ã€è®¾ç½®é¡¶ç‚¹åœ¨çš„DFSã€BFSã€BestFSæˆ–MSTæ ‘ä¸­çš„çˆ¶äº²
    public Vertex getBFSParent() { return bfsParent; }
    public Vertex setBFSParent(Vertex s) { Vertex ss = bfsParent; bfsParent = s; return ss; }
 }

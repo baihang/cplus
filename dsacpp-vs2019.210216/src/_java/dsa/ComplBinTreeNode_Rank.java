@@ -7,17 +7,17 @@
  ******************************************************************************************/
 
 /*
- * »ùÓÚÖÈÊµÏÖµÄÍêÈ«¶ş²æÊ÷½Úµã
+ * åŸºäºç§©å®ç°çš„å®Œå…¨äºŒå‰æ ‘èŠ‚ç‚¹
  */
 
 package dsa;
 
 public class ComplBinTreeNode_Rank extends BinTreeNode implements BinTreePosition {
-   private Vector T;//ËùÊôµÄÊ÷
-   private int rank;//ÔÚËùÊôÊ÷ÖĞµÄÖÈ
-   private Object element;//´æ·ÅµÄ¶ÔÏó
+   private Vector T;//æ‰€å±çš„æ ‘
+   private int rank;//åœ¨æ‰€å±æ ‘ä¸­çš„ç§©
+   private Object element;//å­˜æ”¾çš„å¯¹è±¡
 
-   //¹¹Ôìº¯Êı
+   //æ„é€ å‡½æ•°
    public ComplBinTreeNode_Rank (Vector t, Object obj) {
       element = obj;
       T = t;
@@ -25,35 +25,35 @@ public class ComplBinTreeNode_Rank extends BinTreeNode implements BinTreePositio
       T.insertAtRank(rank, this);
    }
 
-   //·µ»Øµ±Ç°½ÚµãÖĞ´æ·ÅµÄ¶ÔÏó
+   //è¿”å›å½“å‰èŠ‚ç‚¹ä¸­å­˜æ”¾çš„å¯¹è±¡
    public Object getElem()
    { return element; }
-   //½«¶ÔÏóobj´æÈëµ±Ç°½Úµã£¬²¢·µ»Ø´ËÇ°µÄÄÚÈİ
+   //å°†å¯¹è±¡objå­˜å…¥å½“å‰èŠ‚ç‚¹ï¼Œå¹¶è¿”å›æ­¤å‰çš„å†…å®¹
    public Object setElem(Object obj)
    { Object bak = element;  element = obj;  return bak; }
 
-   //ÅĞ¶ÏÊÇ·ñÓĞ¸¸Ç×£¨ÎªÊ¹´úÂëÃèÊö¼ò½à£©
+   //åˆ¤æ–­æ˜¯å¦æœ‰çˆ¶äº²ï¼ˆä¸ºä½¿ä»£ç æè¿°ç®€æ´ï¼‰
    public boolean hasParent()
    { return (0 != rank) ? true : false; }
-   //·µ»Øµ±Ç°½ÚµãµÄ¸¸½Úµã
+   //è¿”å›å½“å‰èŠ‚ç‚¹çš„çˆ¶èŠ‚ç‚¹
    public BinTreePosition getParent()
    { return hasParent() ? (BinTreePosition) T.getAtRank((rank - 1) / 2) : null; }
 
-   //ÅĞ¶ÏÊÇ·ñÓĞ×óº¢×Ó£¨ÎªÊ¹´úÂëÃèÊö¼ò½à£©
+   //åˆ¤æ–­æ˜¯å¦æœ‰å·¦å­©å­ï¼ˆä¸ºä½¿ä»£ç æè¿°ç®€æ´ï¼‰
    public boolean hasLChild()
    { return (1 + rank * 2 < T.getSize()) ? true : false; }
-   //·µ»Øµ±Ç°½ÚµãµÄ×óº¢×Ó
+   //è¿”å›å½“å‰èŠ‚ç‚¹çš„å·¦å­©å­
    public BinTreePosition getLChild()
    { return hasLChild() ? (BinTreePosition) (T.getAtRank(1 + rank * 2)) : null; }
 
-   //ÅĞ¶ÏÊÇ·ñÓĞÓÒº¢×Ó£¨ÎªÊ¹´úÂëÃèÊö¼ò½à£©
+   //åˆ¤æ–­æ˜¯å¦æœ‰å³å­©å­ï¼ˆä¸ºä½¿ä»£ç æè¿°ç®€æ´ï¼‰
    public boolean hasRChild()
    { return (2 + rank * 2 < T.getSize()) ? true : false; }
-   //·µ»Øµ±Ç°½ÚµãµÄÓÒº¢×Ó
+   //è¿”å›å½“å‰èŠ‚ç‚¹çš„å³å­©å­
    public BinTreePosition getRChild()
    { return hasRChild() ? (BinTreePosition) (T.getAtRank(2 + rank * 2)) : null; }
 
-   //·µ»Øµ±Ç°½Úµãºó´úÔªËØµÄÊıÄ¿
+   //è¿”å›å½“å‰èŠ‚ç‚¹åä»£å…ƒç´ çš„æ•°ç›®
    public int getSize() {
       int   size = 1;
       if (hasLChild())  size += getLChild().getSize();
@@ -61,14 +61,14 @@ public class ComplBinTreeNode_Rank extends BinTreeNode implements BinTreePositio
       return size;
    }
 
-   //·µ»Øµ±Ç°½ÚµãµÄ¸ß¶È
+   //è¿”å›å½“å‰èŠ‚ç‚¹çš„é«˜åº¦
    public int getHeight()  {
       int hL = hasLChild() ? getLChild().getHeight() : -1;
       int hR = hasRChild() ? getRChild().getHeight() : -1;
       return 1 + Math.max(hL, hR);
    }
 
-   //·µ»Øµ±Ç°½ÚµãµÄÉî¶È
+   //è¿”å›å½“å‰èŠ‚ç‚¹çš„æ·±åº¦
    public int getDepth()   {
       return hasParent() ? 1 + getParent().getDepth() : 0;
    }

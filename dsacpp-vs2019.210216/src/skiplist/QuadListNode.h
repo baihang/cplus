@@ -10,16 +10,16 @@
 
 #include "Entry/Entry.h"
 template <typename T> struct QuadlistNode;
-template <typename T> using QListNodePosi = QuadlistNode<T>*; //Ìø×ª±í½ÚµãÎ»ÖÃ
-template <typename T> struct QuadlistNode { //QuadlistNodeÄ£°åÀà
-   T entry; //Ëù´æ´ÊÌõ
-   QListNodePosi<T> pred;  QListNodePosi<T> succ; //Ç°Çı¡¢ºó¼Ì
-   QListNodePosi<T> above; QListNodePosi<T> below; //ÉÏÁÚ¡¢ÏÂÁÚ
-   QuadlistNode //¹¹ÔìÆ÷
+template <typename T> using QListNodePosi = QuadlistNode<T>*; //è·³è½¬è¡¨èŠ‚ç‚¹ä½ç½®
+template <typename T> struct QuadlistNode { //QuadlistNodeæ¨¡æ¿ç±»
+   T entry; //æ‰€å­˜è¯æ¡
+   QListNodePosi<T> pred;  QListNodePosi<T> succ; //å‰é©±ã€åç»§
+   QListNodePosi<T> above; QListNodePosi<T> below; //ä¸Šé‚»ã€ä¸‹é‚»
+   QuadlistNode //æ„é€ å™¨
    ( T e = T(), QListNodePosi<T> p = NULL, QListNodePosi<T> s = NULL,
      QListNodePosi<T> a = NULL, QListNodePosi<T> b = NULL )
       : entry ( e ), pred ( p ), succ ( s ), above ( a ), below ( b ) {}
-   QListNodePosi<T> insertAsSuccAbove //²åÈëĞÂ½Úµã£¬ÒÔµ±Ç°½ÚµãÎªÇ°Çı£¬ÒÔ½ÚµãbÎªÏÂÁÚ
+   QListNodePosi<T> insertAsSuccAbove //æ’å…¥æ–°èŠ‚ç‚¹ï¼Œä»¥å½“å‰èŠ‚ç‚¹ä¸ºå‰é©±ï¼Œä»¥èŠ‚ç‚¹bä¸ºä¸‹é‚»
    ( T const& e, QListNodePosi<T> b = NULL );
 };
 

@@ -7,37 +7,37 @@
  ******************************************************************************************/
 
 /*
- * £¨ÓĞÏò£©Í¼µÄ¹ã¶ÈÓÅÏÈ±éÀúËã·¨Ä£°å
+ * ï¼ˆæœ‰å‘ï¼‰å›¾çš„å¹¿åº¦ä¼˜å…ˆéå†ç®—æ³•æ¨¡æ¿
  */
 
 package dsa;
 
 public abstract class BFS extends GraphTraverse {
-   //¹¹Ôì·½·¨
+   //æ„é€ æ–¹æ³•
    public BFS(Graph g) { super(g); }
 
-   //¹ã¶ÈÓÅÏÈ±éÀúËã·¨
-   protected Object traverse(Vertex s, Object info) {//´Ó¶¥µãs³ö·¢£¬×ö¹ã¶ÈÓÅÏÈ²éÕÒ
-      if (UNDISCOVERED != s.getStatus())  return null;//Ìø¹ıÒÑ·ÃÎÊ¹ıµÄ¶¥µã£¨Õë¶Ô·ÇÁ¬Í¨Í¼£©
-      Queue Q = new Queue_List();//½èÓÃÒ»¸ö¶ÓÁĞ
-      s.setStatus(DISCOVERED);//·¢ÏÖsºó
-      Q.enqueue(s);//Ëæ¼´ÁîÆäÈë¶Ó
-      visit(s, null);//²¢·ÃÎÊÖ®
-      while (!Q.isEmpty()) {//ÔÚ¶ÓÁĞ±ä¿ÕÖ®Ç°
-         Vertex v = (Vertex)Q.dequeue();//È¡³ö¶ÓÊ×¶¥µãv
-         for (Iterator it = v.outEdges(); it.hasNext();) {//¼ì²éÓë¶¥µãv
-            Edge e = (Edge)it.getNext();//Í¨¹ı±ße = (v, u)
-            Vertex u = (Vertex)e.getVPosInV(1).getElem();//ÏàÁªµÄÃ¿Ò»¶¥µãu
-            if (UNDISCOVERED == u.getStatus()) {//ÈôuÉĞÎ´±»·¢ÏÖ£¬Ôò
-               e.setType(TREE);//½«e¹éÀàÎªÊ÷±ß
-               u.setStatus(DISCOVERED);//·¢ÏÖuºó
-               Q.enqueue(u);//Ëæ¼´ÁîÆäÈë¶Ó
-               visit(u, v);//²¢·ÃÎÊÖ®
-            } else {//ÈôuÒÑ±»·¢ÏÖ£¬ÉõÖÁÒÑ·ÃÎÊÍê±Ï£¨ÓĞÏòÍ¼£©£¬Ôò
-               e.setType(CROSS);//½«e¹éÀàÎª¿ç±ß
+   //å¹¿åº¦ä¼˜å…ˆéå†ç®—æ³•
+   protected Object traverse(Vertex s, Object info) {//ä»é¡¶ç‚¹så‡ºå‘ï¼Œåšå¹¿åº¦ä¼˜å…ˆæŸ¥æ‰¾
+      if (UNDISCOVERED != s.getStatus())  return null;//è·³è¿‡å·²è®¿é—®è¿‡çš„é¡¶ç‚¹ï¼ˆé’ˆå¯¹éè¿é€šå›¾ï¼‰
+      Queue Q = new Queue_List();//å€Ÿç”¨ä¸€ä¸ªé˜Ÿåˆ—
+      s.setStatus(DISCOVERED);//å‘ç°så
+      Q.enqueue(s);//éšå³ä»¤å…¶å…¥é˜Ÿ
+      visit(s, null);//å¹¶è®¿é—®ä¹‹
+      while (!Q.isEmpty()) {//åœ¨é˜Ÿåˆ—å˜ç©ºä¹‹å‰
+         Vertex v = (Vertex)Q.dequeue();//å–å‡ºé˜Ÿé¦–é¡¶ç‚¹v
+         for (Iterator it = v.outEdges(); it.hasNext();) {//æ£€æŸ¥ä¸é¡¶ç‚¹v
+            Edge e = (Edge)it.getNext();//é€šè¿‡è¾¹e = (v, u)
+            Vertex u = (Vertex)e.getVPosInV(1).getElem();//ç›¸è”çš„æ¯ä¸€é¡¶ç‚¹u
+            if (UNDISCOVERED == u.getStatus()) {//è‹¥uå°šæœªè¢«å‘ç°ï¼Œåˆ™
+               e.setType(TREE);//å°†eå½’ç±»ä¸ºæ ‘è¾¹
+               u.setStatus(DISCOVERED);//å‘ç°uå
+               Q.enqueue(u);//éšå³ä»¤å…¶å…¥é˜Ÿ
+               visit(u, v);//å¹¶è®¿é—®ä¹‹
+            } else {//è‹¥uå·²è¢«å‘ç°ï¼Œç”šè‡³å·²è®¿é—®å®Œæ¯•ï¼ˆæœ‰å‘å›¾ï¼‰ï¼Œåˆ™
+               e.setType(CROSS);//å°†eå½’ç±»ä¸ºè·¨è¾¹
             }
-         }//ÖÁ´Ë£¬vµÄËùÓĞÁÚ¾Ó¶¼ÒÑ·ÃÎÊ½áÊø£¬¹Ê
-         v.setStatus(VISITED);//½«v±ê¼ÇÎªVISITED
+         }//è‡³æ­¤ï¼Œvçš„æ‰€æœ‰é‚»å±…éƒ½å·²è®¿é—®ç»“æŸï¼Œæ•…
+         v.setStatus(VISITED);//å°†væ ‡è®°ä¸ºVISITED
       }//while
       return null;
    }

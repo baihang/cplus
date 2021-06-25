@@ -7,78 +7,78 @@
  ******************************************************************************************/
 
 /*
- * »ùÓÚË«ÏòÁ´±íÊµÏÖÁĞ±í½á¹¹
+ * åŸºäºåŒå‘é“¾è¡¨å®ç°åˆ—è¡¨ç»“æ„
  */
 
 package dsa;
 
 public class List_DLNode implements List {
-   protected int numElem;//ÁĞ±íµÄÊµ¼Ê¹æÄ£
-   protected DLNode header, trailer;//ÉÚ±ø£ºÊ×½Úµã+Ä©½Úµã
+   protected int numElem;//åˆ—è¡¨çš„å®é™…è§„æ¨¡
+   protected DLNode header, trailer;//å“¨å…µï¼šé¦–èŠ‚ç‚¹+æœ«èŠ‚ç‚¹
 
-   //¹¹Ôìº¯Êı
+   //æ„é€ å‡½æ•°
    public List_DLNode() {
-      numElem = 0;//¿Õ±í
-      header = new DLNode(null, null, null);//Í·½Úµã
-      trailer = new DLNode(null, header, null);//Î²½Úµã
-      header.setNext(trailer);//Í·¡¢Î²½ÚµãÏà»¥Á´½Ó
+      numElem = 0;//ç©ºè¡¨
+      header = new DLNode(null, null, null);//å¤´èŠ‚ç‚¹
+      trailer = new DLNode(null, header, null);//å°¾èŠ‚ç‚¹
+      header.setNext(trailer);//å¤´ã€å°¾èŠ‚ç‚¹ç›¸äº’é“¾æ¥
    }
 
-   /**************************** ¸¨Öú·½·¨ ****************************/
-   //¼ì²é¸ø¶¨Î»ÖÃÔÚÁĞ±íÖĞÊÇ·ñºÏ·¨£¬ÈôÊÇ£¬Ôò½«Æä×ª»»Îª*DLNode
+   /**************************** è¾…åŠ©æ–¹æ³• ****************************/
+   //æ£€æŸ¥ç»™å®šä½ç½®åœ¨åˆ—è¡¨ä¸­æ˜¯å¦åˆæ³•ï¼Œè‹¥æ˜¯ï¼Œåˆ™å°†å…¶è½¬æ¢ä¸º*DLNode
    protected DLNode checkPosition(Position p) throws ExceptionPositionInvalid {
       if (null == p)
-         throw new ExceptionPositionInvalid("ÒâÍâ£º´«µİ¸øList_DLNodeµÄÎ»ÖÃÊÇnull");
+         throw new ExceptionPositionInvalid("æ„å¤–ï¼šä¼ é€’ç»™List_DLNodeçš„ä½ç½®æ˜¯null");
       if (header == p)
-         throw new ExceptionPositionInvalid("ÒâÍâ£ºÍ·½ÚµãÉÚ±øÎ»ÖÃ·Ç·¨");
+         throw new ExceptionPositionInvalid("æ„å¤–ï¼šå¤´èŠ‚ç‚¹å“¨å…µä½ç½®éæ³•");
       if (trailer == p)
-         throw new ExceptionPositionInvalid("ÒâÍâ£ºÎ²½áµãÉÚ±øÎ»ÖÃ·Ç·¨");
+         throw new ExceptionPositionInvalid("æ„å¤–ï¼šå°¾ç»“ç‚¹å“¨å…µä½ç½®éæ³•");
       DLNode temp = (DLNode)p;
       return temp;
    }
 
-   /**************************** ADT·½·¨ ****************************/
-   //²éÑ¯ÁĞ±íµ±Ç°µÄ¹æÄ£
+   /**************************** ADTæ–¹æ³• ****************************/
+   //æŸ¥è¯¢åˆ—è¡¨å½“å‰çš„è§„æ¨¡
    public int getSize() { return numElem; }
 
-   //ÅĞ¶ÏÁĞ±íÊÇ·ñÎª¿Õ
+   //åˆ¤æ–­åˆ—è¡¨æ˜¯å¦ä¸ºç©º
    public boolean isEmpty() { return (numElem == 0); }
 
-   //·µ»ØµÚÒ»¸öÔªËØ£¨µÄÎ»ÖÃ£©
+   //è¿”å›ç¬¬ä¸€ä¸ªå…ƒç´ ï¼ˆçš„ä½ç½®ï¼‰
    public Position first() throws ExceptionListEmpty {
       if (isEmpty())
-         throw new ExceptionListEmpty("ÒâÍâ£ºÁĞ±í¿Õ");
+         throw new ExceptionListEmpty("æ„å¤–ï¼šåˆ—è¡¨ç©º");
       return header.getNext();
    }
 
-   //·µ»Ø×îºóÒ»¸öÔªËØ£¨µÄÎ»ÖÃ£©
+   //è¿”å›æœ€åä¸€ä¸ªå…ƒç´ ï¼ˆçš„ä½ç½®ï¼‰
    public Position last()  throws ExceptionListEmpty {
       if (isEmpty())
-         throw new ExceptionListEmpty("ÒâÍâ£ºÁĞ±í¿Õ");
+         throw new ExceptionListEmpty("æ„å¤–ï¼šåˆ—è¡¨ç©º");
       return trailer.getPrev();
    }
 
-   //·µ»Ø½ô¿¿¸ø¶¨Î»ÖÃÖ®Ç°µÄÔªËØ£¨µÄÎ»ÖÃ£©
+   //è¿”å›ç´§é ç»™å®šä½ç½®ä¹‹å‰çš„å…ƒç´ ï¼ˆçš„ä½ç½®ï¼‰
    public Position getPrev(Position p)
    throws ExceptionPositionInvalid, ExceptionBoundaryViolation {
       DLNode v = checkPosition(p);
       DLNode prev = v.getPrev();
       if (prev == header)
-         throw new ExceptionBoundaryViolation("ÒâÍâ£ºÆóÍ¼Ô½¹ıÁĞ±íÇ°¶Ë");
+         throw new ExceptionBoundaryViolation("æ„å¤–ï¼šä¼å›¾è¶Šè¿‡åˆ—è¡¨å‰ç«¯");
       return prev;
    }
 
-   //·µ»Ø½ô½Ó¸ø¶¨Î»ÖÃÖ®ºóµÄÔªËØ£¨µÄÎ»ÖÃ£©
+   //è¿”å›ç´§æ¥ç»™å®šä½ç½®ä¹‹åçš„å…ƒç´ ï¼ˆçš„ä½ç½®ï¼‰
    public Position getNext(Position p)
    throws ExceptionPositionInvalid, ExceptionBoundaryViolation {
       DLNode v = checkPosition(p);
       DLNode next = v.getNext();
       if (next == trailer)
-         throw new ExceptionBoundaryViolation("ÒâÍâ£ºÆóÍ¼Ô½¹ıÁĞ±íºó¶Ë");
+         throw new ExceptionBoundaryViolation("æ„å¤–ï¼šä¼å›¾è¶Šè¿‡åˆ—è¡¨åç«¯");
       return next;
    }
 
-   //½«e²åÈëÖÁ½ô¿¿¸ø¶¨Î»ÖÃÖ®Ç°µÄÎ»ÖÃ
+   //å°†eæ’å…¥è‡³ç´§é ç»™å®šä½ç½®ä¹‹å‰çš„ä½ç½®
    public Position insertBefore(Position p, Object element)
    throws ExceptionPositionInvalid {
       DLNode v = checkPosition(p);
@@ -89,7 +89,7 @@ public class List_DLNode implements List {
       return newNode;
    }
 
-   //½«e²åÈëÖÁ½ô½Ó¸ø¶¨Î»ÖÃÖ®ºóµÄÎ»ÖÃ
+   //å°†eæ’å…¥è‡³ç´§æ¥ç»™å®šä½ç½®ä¹‹åçš„ä½ç½®
    public Position insertAfter(Position p, Object element)
    throws ExceptionPositionInvalid {
       DLNode v = checkPosition(p);
@@ -100,7 +100,7 @@ public class List_DLNode implements List {
       return newNode;
    }
 
-   //½«e×÷ÎªµÚÒ»¸öÔªËØ²åÈëÁĞ±í
+   //å°†eä½œä¸ºç¬¬ä¸€ä¸ªå…ƒç´ æ’å…¥åˆ—è¡¨
    public Position insertFirst(Object e) {
       numElem++;
       DLNode newNode = new DLNode(e, header, header.getNext());
@@ -109,7 +109,7 @@ public class List_DLNode implements List {
       return newNode;
    }
 
-   //½«e×÷Îª×îºóÒ»¸öÔªËØ²åÈëÁĞ±í
+   //å°†eä½œä¸ºæœ€åä¸€ä¸ªå…ƒç´ æ’å…¥åˆ—è¡¨
    public Position insertLast(Object e) {
       numElem++;
       DLNode newNode = new DLNode(e, trailer.getPrev(), trailer);
@@ -119,7 +119,7 @@ public class List_DLNode implements List {
       return newNode;
    }
 
-   //É¾³ı¸ø¶¨Î»ÖÃ´¦µÄÔªËØ£¬²¢·µ»ØÖ®
+   //åˆ é™¤ç»™å®šä½ç½®å¤„çš„å…ƒç´ ï¼Œå¹¶è¿”å›ä¹‹
    public Object remove(Position p)
    throws ExceptionPositionInvalid {
       DLNode v = checkPosition(p);
@@ -129,21 +129,21 @@ public class List_DLNode implements List {
       vPrev.setNext(vNext);
       vNext.setPrev(vPrev);
       Object vElem = v.getElem();
-      //½«¸ÃÎ»ÖÃ£¨½Úµã£©´ÓÁĞ±íÖĞÕª³ö£¬ÒÔ±ãÏµÍ³»ØÊÕÆäÕ¼ÓÃµÄ¿Õ¼ä
+      //å°†è¯¥ä½ç½®ï¼ˆèŠ‚ç‚¹ï¼‰ä»åˆ—è¡¨ä¸­æ‘˜å‡ºï¼Œä»¥ä¾¿ç³»ç»Ÿå›æ”¶å…¶å ç”¨çš„ç©ºé—´
       v.setNext(null);
       v.setPrev(null);
       return vElem;
    }
 
-   //É¾³ıÊ×ÔªËØ£¬²¢·µ»ØÖ®
+   //åˆ é™¤é¦–å…ƒç´ ï¼Œå¹¶è¿”å›ä¹‹
    public Object removeFirst()
    {  return remove(header.getNext()); }
 
-   //É¾³ıÄ©ÔªËØ£¬²¢·µ»ØÖ®
+   //åˆ é™¤æœ«å…ƒç´ ï¼Œå¹¶è¿”å›ä¹‹
    public Object removeLast()
    {  return remove(trailer.getPrev()); }
 
-   //½«´¦ÓÚ¸ø¶¨Î»ÖÃµÄÔªËØÌæ»»ÎªĞÂÔªËØ£¬²¢·µ»Ø±»Ìæ»»µÄÔªËØ
+   //å°†å¤„äºç»™å®šä½ç½®çš„å…ƒç´ æ›¿æ¢ä¸ºæ–°å…ƒç´ ï¼Œå¹¶è¿”å›è¢«æ›¿æ¢çš„å…ƒç´ 
    public Object replace(Position p, Object obj)
    throws ExceptionPositionInvalid {
       DLNode v = checkPosition(p);
@@ -152,11 +152,11 @@ public class List_DLNode implements List {
       return oldElem;
    }
 
-   //Î»ÖÃµü´úÆ÷
+   //ä½ç½®è¿­ä»£å™¨
    public Iterator positions()
    { return new IteratorPosition(this); }
 
-   //ÔªËØµü´úÆ÷
+   //å…ƒç´ è¿­ä»£å™¨
    public Iterator elements()
    { return new IteratorElement(this); }
 }

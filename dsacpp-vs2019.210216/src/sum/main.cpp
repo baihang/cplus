@@ -15,23 +15,23 @@ using namespace std;
 #include "sum/sum.h"
 
 /******************************************************************************************
- * ²âÊÔSUM
+ * æµ‹è¯•SUM
  ******************************************************************************************/
 int main ( int argc, char* argv[] ) {
    int n = ( 1 < argc ) ? atoi ( argv[1] ) : 7; //ToDo: validate n
    int* A = ( int* ) malloc ( n * sizeof ( int ) ); //ToDo: check NULL != A
    srand ( ( unsigned int ) time ( NULL ) );
-// Ë³Ðò
+// é¡ºåº
    for ( int i = 0; i < n; i++ ) A[i] = i; print ( A, n );
    printf ( "SumI  = %d\n", sumI ( A, n ) );
    printf ( "SumR1 = %d\n", sum ( A, n ) );
    printf ( "SumR2 = %d\n\n", sum ( A, 0, n ) );
-// Ëæ»úÖÃÂÒ
+// éšæœºç½®ä¹±
    shuffle ( A, n ); print ( A, n );
    printf ( "SumI  = %d\n", sumI ( A, n ) );
    printf ( "SumR1 = %d\n", sum ( A, n ) );
    printf ( "SumR2 = %d\n\n", sum ( A, 0, n ) );
-// Ç°ºóµßµ¹
+// å‰åŽé¢ å€’
    reverse ( A, n ); print ( A, n );
    printf ( "SumI  = %d\n", sumI ( A, n ) );
    printf ( "SumR1 = %d\n", sum ( A, n ) );

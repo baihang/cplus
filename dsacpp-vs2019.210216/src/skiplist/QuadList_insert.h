@@ -8,6 +8,6 @@
 
 #pragma once
 
-template <typename T> QListNodePosi<T> //½«e×÷ÎªpµÄºó¼Ì¡¢bµÄÉÏÁÚ²åÈëQuadlist
+template <typename T> QListNodePosi<T> //å°†eä½œä¸ºpçš„åç»§ã€bçš„ä¸Šé‚»æ’å…¥Quadlist
 Quadlist<T>::insertAfterAbove ( T const& e, QListNodePosi<T> p, QListNodePosi<T> b )
-{  _size++; return p->insertAsSuccAbove ( e, b );  } //·µ»ØĞÂ½ÚµãÎ»ÖÃ£¨below = NULL£©
+{  _size++; return p->insertAsSuccAbove ( e, b );  } //è¿”å›æ–°èŠ‚ç‚¹ä½ç½®ï¼ˆbelow = NULLï¼‰

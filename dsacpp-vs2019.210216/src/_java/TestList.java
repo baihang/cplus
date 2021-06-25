@@ -7,7 +7,7 @@
  ******************************************************************************************/
 
 /*
- * ²âÊÔÁĞ±í
+ * æµ‹è¯•åˆ—è¡¨
  */
 import dsa.*;
 import java.io.*;
@@ -26,7 +26,7 @@ public class TestList {
       }
    }
 
-   //Êä³öÁĞ±íÖĞµÄËùÓĞÔªËØ
+   //è¾“å‡ºåˆ—è¡¨ä¸­çš„æ‰€æœ‰å…ƒç´ 
    protected static void Print(List list) {
       Iterator it = list.elements();
       while (it.hasNext())

@@ -7,7 +7,7 @@
  ******************************************************************************************/
 
 /*
- * »ùÓÚÎŞĞòÁĞ±íÊµÏÖµÄÓÅÏÈ¶ÓÁĞ
+ * åŸºäºæ— åºåˆ—è¡¨å®ç°çš„ä¼˜å…ˆé˜Ÿåˆ—
  */
 
 package dsa;
@@ -16,19 +16,19 @@ public class PQueue_UnsortedList implements PQueue {
    private List L;
    private Comparator C;
 
-   //¹¹Ôì·½·¨£¨Ê¹ÓÃÄ¬ÈÏ±È½ÏÆ÷£©
+   //æ„é€ æ–¹æ³•ï¼ˆä½¿ç”¨é»˜è®¤æ¯”è¾ƒå™¨ï¼‰
    public PQueue_UnsortedList()
    { this(new ComparatorDefault(), null); }
 
-   //¹¹Ôì·½·¨£¨Ê¹ÓÃÖ¸¶¨±È½ÏÆ÷£©
+   //æ„é€ æ–¹æ³•ï¼ˆä½¿ç”¨æŒ‡å®šæ¯”è¾ƒå™¨ï¼‰
    public PQueue_UnsortedList(Comparator c)
    { this(c, null); }
 
-   //¹¹Ôì·½·¨£¨Ê¹ÓÃÖ¸¶¨³õÊ¼ÔªËØ£©
+   //æ„é€ æ–¹æ³•ï¼ˆä½¿ç”¨æŒ‡å®šåˆå§‹å…ƒç´ ï¼‰
    public PQueue_UnsortedList(Sequence s)
    { this(new ComparatorDefault(), s); }
 
-   //¹¹Ôì·½·¨£¨Ê¹ÓÃÖ¸¶¨±È½ÏÆ÷ºÍ³õÊ¼ÔªËØ£©
+   //æ„é€ æ–¹æ³•ï¼ˆä½¿ç”¨æŒ‡å®šæ¯”è¾ƒå™¨å’Œåˆå§‹å…ƒç´ ï¼‰
    public PQueue_UnsortedList(Comparator c, Sequence s) {
       L = new List_DLNode();
       C = c;
@@ -39,40 +39,40 @@ public class PQueue_UnsortedList implements PQueue {
          }
    }
 
-   //Í³¼ÆÓÅÏÈ¶ÓÁĞµÄ¹æÄ£
+   //ç»Ÿè®¡ä¼˜å…ˆé˜Ÿåˆ—çš„è§„æ¨¡
    public int getSize()
    { return L.getSize(); }
 
-   //ÅĞ¶ÏÓÅÏÈ¶ÓÁĞÊÇ·ñÎª¿Õ
+   //åˆ¤æ–­ä¼˜å…ˆé˜Ÿåˆ—æ˜¯å¦ä¸ºç©º
    public boolean isEmpty()
    { return L.isEmpty(); }
 
-   //ÈôQ·Ç¿Õ£¬Ôò·µ»ØÆäÖĞµÄ×îĞ¡ÌõÄ¿£¨²¢²»É¾³ı£©;·ñÔò£¬±¨´í
+   //è‹¥Qéç©ºï¼Œåˆ™è¿”å›å…¶ä¸­çš„æœ€å°æ¡ç›®ï¼ˆå¹¶ä¸åˆ é™¤ï¼‰;å¦åˆ™ï¼ŒæŠ¥é”™
    public Entry getMin() throws ExceptionPQueueEmpty {
       if (L.isEmpty())
-         throw new ExceptionPQueueEmpty("ÒâÍâ£ºÓÅÏÈ¶ÓÁĞ¿Õ");
+         throw new ExceptionPQueueEmpty("æ„å¤–ï¼šä¼˜å…ˆé˜Ÿåˆ—ç©º");
       Position minPos = L.first();
       Position curPos = L.getNext(minPos);
-      while (null != curPos)//ÒÀ´Î¼ì²éËùÓĞÎ»ÖÃ£¬ÕÒ³ö×îĞ¡ÌõÄ¿
+      while (null != curPos)//ä¾æ¬¡æ£€æŸ¥æ‰€æœ‰ä½ç½®ï¼Œæ‰¾å‡ºæœ€å°æ¡ç›®
          if (0 < C.compare(minPos.getElem(), curPos.getElem()))
             minPos = curPos;
       return (Entry) minPos.getElem();
    }
 
-   //½«¶ÔÏóobjÓë¹Ø¼üÂëkºÏ³ÉÒ»¸öÌõÄ¿£¬½«Æä²åÈëQÖĞ£¬²¢·µ»Ø¸ÃÌõÄ¿
+   //å°†å¯¹è±¡objä¸å…³é”®ç kåˆæˆä¸€ä¸ªæ¡ç›®ï¼Œå°†å…¶æ’å…¥Qä¸­ï¼Œå¹¶è¿”å›è¯¥æ¡ç›®
    public Entry insert(Object key, Object obj) throws ExceptionKeyInvalid {
-      Entry entry = new EntryDefault(key, obj);//´´½¨Ò»¸öĞÂÌõÄ¿
-      L.insertLast(entry);//½ÓÖÁÁĞ±íÄ©Î²
+      Entry entry = new EntryDefault(key, obj);//åˆ›å»ºä¸€ä¸ªæ–°æ¡ç›®
+      L.insertLast(entry);//æ¥è‡³åˆ—è¡¨æœ«å°¾
       return(entry);
    }
 
-   //ÈôQ·Ç¿Õ£¬Ôò´ÓÆäÖĞÕª³ı¹Ø¼üÂë×îĞ¡µÄÌõÄ¿£¬²¢·µ»Ø¸ÃÌõÄ¿£»·ñÔò£¬±¨´í
+   //è‹¥Qéç©ºï¼Œåˆ™ä»å…¶ä¸­æ‘˜é™¤å…³é”®ç æœ€å°çš„æ¡ç›®ï¼Œå¹¶è¿”å›è¯¥æ¡ç›®ï¼›å¦åˆ™ï¼ŒæŠ¥é”™
    public Entry delMin() throws ExceptionPQueueEmpty {
       if (L.isEmpty())
-         throw new ExceptionPQueueEmpty("ÒâÍâ£ºÓÅÏÈ¶ÓÁĞ¿Õ");
+         throw new ExceptionPQueueEmpty("æ„å¤–ï¼šä¼˜å…ˆé˜Ÿåˆ—ç©º");
       Position minPos = L.first();
       Iterator it = L.positions();
-      while (it.hasNext()) {//ÒÀ´Î¼ì²éËùÓĞÎ»ÖÃ£¬ÕÒ³ö×îĞ¡ÌõÄ¿
+      while (it.hasNext()) {//ä¾æ¬¡æ£€æŸ¥æ‰€æœ‰ä½ç½®ï¼Œæ‰¾å‡ºæœ€å°æ¡ç›®
          Position curPos = (Position) (it.getNext());
          //       System.out.println("\t" + ((Entry)(curPos.getElem())).getKey());
          if (0 <  C.compare(

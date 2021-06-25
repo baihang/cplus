@@ -7,17 +7,17 @@
  ******************************************************************************************/
 
 /*
- * ĞòÁĞ½Ó¿Ú
+ * åºåˆ—æ¥å£
  */
 
 package dsa;
 
 public interface Sequence extends Vector, List {
-   //Èô0 <= r < getSize()£¬Ôò·µ»ØÖÈÎªrµÄÔªËØËùÔÚµÄÎ»ÖÃ£»·ñÔò£¬±¨´í
+   //è‹¥0 <= r < getSize()ï¼Œåˆ™è¿”å›ç§©ä¸ºrçš„å…ƒç´ æ‰€åœ¨çš„ä½ç½®ï¼›å¦åˆ™ï¼ŒæŠ¥é”™
    public Position rank2Pos(int r)
    throws ExceptionBoundaryViolation;
 
-   //ÈôpÊÇĞòÁĞÖĞµÄºÏ·¨Î»ÖÃ£¬Ôò·µ»Ø´æ·ÅÓÚp´¦µÄÔªËØµÄÖÈ£»·ñÔò£¬±¨´í
+   //è‹¥pæ˜¯åºåˆ—ä¸­çš„åˆæ³•ä½ç½®ï¼Œåˆ™è¿”å›å­˜æ”¾äºpå¤„çš„å…ƒç´ çš„ç§©ï¼›å¦åˆ™ï¼ŒæŠ¥é”™
    public int pos2Rank(Position p)
    throws ExceptionPositionInvalid;
 }

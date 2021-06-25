@@ -7,46 +7,46 @@
  ******************************************************************************************/
 
 /*
- * AVLÊ÷
- * »ùÓÚBSTreeµÄÀ©³ä
+ * AVLæ ‘
+ * åŸºäºBSTreeçš„æ‰©å……
  */
 
 package dsa;
 
 public class AVLTree extends BSTree implements Dictionary {
-   /**************************** ¹¹Ôì·½·¨ ****************************/
+   /**************************** æ„é€ æ–¹æ³• ****************************/
    public AVLTree() { super(); }
    public AVLTree(BinTreePosition r) { super(r); }
    public AVLTree(BinTreePosition r, Comparator c) { super(r, c); }
 
-   /**************************** ´Êµä·½·¨£¨¸²¸Ç¸¸ÀàBSTree£© ****************************/
-   //²åÈëÌõÄ¿(key, value)£¬²¢·µ»Ø¸ÃÌõÄ¿
+   /**************************** è¯å…¸æ–¹æ³•ï¼ˆè¦†ç›–çˆ¶ç±»BSTreeï¼‰ ****************************/
+   //æ’å…¥æ¡ç›®(key, value)ï¼Œå¹¶è¿”å›è¯¥æ¡ç›®
    public Entry insert(Object key, Object value) {
-      Entry e = super.insert(key, value);//µ÷ÓÃ¸¸Àà·½·¨Íê³É²åÈë
-      root = rebalance(lastV.getParent(), root);//´Ó²åÈë½ÚµãµÄ¸¸Ç×¿ªÊ¼ÖØĞÂÆ½ºâ»¯
+      Entry e = super.insert(key, value);//è°ƒç”¨çˆ¶ç±»æ–¹æ³•å®Œæˆæ’å…¥
+      root = rebalance(lastV.getParent(), root);//ä»æ’å…¥èŠ‚ç‚¹çš„çˆ¶äº²å¼€å§‹é‡æ–°å¹³è¡¡åŒ–
       return e;
    }
 
-   //Èô´ÊµäÖĞ´æÔÚÒÔkeyÎª¹Ø¼üÂëµÄÌõÄ¿£¬Ôò½«Õª³ıÆäÖĞµÄÒ»¸ö²¢·µ»Ø£»·ñÔò£¬·µ»Ønull
+   //è‹¥è¯å…¸ä¸­å­˜åœ¨ä»¥keyä¸ºå…³é”®ç çš„æ¡ç›®ï¼Œåˆ™å°†æ‘˜é™¤å…¶ä¸­çš„ä¸€ä¸ªå¹¶è¿”å›ï¼›å¦åˆ™ï¼Œè¿”å›null
    public Entry remove(Object key) {
-      Entry e = super.remove(key);//µ÷ÓÃ¸¸Àà·½·¨Íê³ÉÉ¾³ı
-      if (null != e) root = rebalance(lastV, root);//´ÓÉ¾³ı½ÚµãµÄ¸¸Ç×¿ªÊ¼ÖØĞÂÆ½ºâ»¯
+      Entry e = super.remove(key);//è°ƒç”¨çˆ¶ç±»æ–¹æ³•å®Œæˆåˆ é™¤
+      if (null != e) root = rebalance(lastV, root);//ä»åˆ é™¤èŠ‚ç‚¹çš„çˆ¶äº²å¼€å§‹é‡æ–°å¹³è¡¡åŒ–
       return e;
    }
 
-   /**************************** ¸¨Öú·½·¨ ****************************/
-   //´Ó½Úµãz¿ªÊ¼£¬×ÔÉÏ¶øÏÂÖØĞÂÆ½ºâ»¯
-   //·µ»Øºó£¬rootÈÔÎªÆ½ºâºóµÄ£¨Õû¿Ã£©Ê÷µÄ¸ù½Úµã
+   /**************************** è¾…åŠ©æ–¹æ³• ****************************/
+   //ä»èŠ‚ç‚¹zå¼€å§‹ï¼Œè‡ªä¸Šè€Œä¸‹é‡æ–°å¹³è¡¡åŒ–
+   //è¿”å›åï¼Œrootä»ä¸ºå¹³è¡¡åçš„ï¼ˆæ•´æ£µï¼‰æ ‘çš„æ ¹èŠ‚ç‚¹
    protected static BinTreePosition rebalance(BinTreePosition z, BinTreePosition r) {
       if (null == z) return r;
-      while (true) {//´Óz¿ªÊ¼£¬ÏòÉÏÖğÒ»¼ì²ézµÄ×æÏÈ
-         if (!isBalanced(z))  rotate(z);//Èôz½ÚµãÊ§È¥Æ½ºâ£¬ÔòÍ¨¹ıĞı×ªÊ¹Ö®ÖØĞÂÆ½ºâ
+      while (true) {//ä»zå¼€å§‹ï¼Œå‘ä¸Šé€ä¸€æ£€æŸ¥zçš„ç¥–å…ˆ
+         if (!isBalanced(z))  rotate(z);//è‹¥zèŠ‚ç‚¹å¤±å»å¹³è¡¡ï¼Œåˆ™é€šè¿‡æ—‹è½¬ä½¿ä¹‹é‡æ–°å¹³è¡¡
          if (!z.hasParent())  return z;
-         z = z.getParent();//¼ÌĞø¼ì²éÆä¸¸Ç×
+         z = z.getParent();//ç»§ç»­æ£€æŸ¥å…¶çˆ¶äº²
       }//while
    }
 
-   //ÅĞ¶Ï½ÚµãvÊÇ·ñÆ½ºâ
+   //åˆ¤æ–­èŠ‚ç‚¹væ˜¯å¦å¹³è¡¡
    protected static boolean isBalanced(BinTreePosition v) {
       if (null == v) return true;
       int lH = (v.hasLChild()) ? (v.getLChild().getHeight()) : -1;
@@ -55,55 +55,55 @@ public class AVLTree extends BSTree implements Dictionary {
       return (-1 <= deltaH) && (deltaH <= 1);
    }
 
-   //Í¨¹ıĞı×ª£¬Ê¹½ÚµãzµÄÆ½ºâÒò×ÓµÄ¾ø¶ÔÖµ²»³¬¹ı1£¨Ö§³ÖAVLÊ÷£©
-   //·µ»ØĞÂµÄ×ÓÊ÷¸ù
+   //é€šè¿‡æ—‹è½¬ï¼Œä½¿èŠ‚ç‚¹zçš„å¹³è¡¡å› å­çš„ç»å¯¹å€¼ä¸è¶…è¿‡1ï¼ˆæ”¯æŒAVLæ ‘ï¼‰
+   //è¿”å›æ–°çš„å­æ ‘æ ¹
    public static BinTreePosition rotate(BinTreePosition z) {
-      BinTreePosition   y = tallerChild(z);//È¡yÎªz¸ü¸ßµÄº¢×Ó
-      BinTreePosition   x = tallerChild(y);//È¡xÎªy¸ü¸ßµÄº¢×Ó
-      boolean cType = z.isLChild();//¼ÇÂ¼£ºzÊÇ·ñ×óº¢×Ó
-      BinTreePosition   p = z.getParent();//pÎªzµÄ¸¸Ç×
-      BinTreePosition   a, b, c;//×Ô×óÏòÓÒ£¬Èı¸ö½Úµã
-      BinTreePosition   t0, t1, t2, t3;//×Ô×óÏòÓÒ£¬ËÄ¿Ã×ÓÊ÷
-      /******** ÒÔÏÂ·ÖËÄÖÖÇé¿ö ********/
-      if (y.isLChild()) {//ÈôyÊÇ×óº¢×Ó£¬Ôò
+      BinTreePosition   y = tallerChild(z);//å–yä¸ºzæ›´é«˜çš„å­©å­
+      BinTreePosition   x = tallerChild(y);//å–xä¸ºyæ›´é«˜çš„å­©å­
+      boolean cType = z.isLChild();//è®°å½•ï¼šzæ˜¯å¦å·¦å­©å­
+      BinTreePosition   p = z.getParent();//pä¸ºzçš„çˆ¶äº²
+      BinTreePosition   a, b, c;//è‡ªå·¦å‘å³ï¼Œä¸‰ä¸ªèŠ‚ç‚¹
+      BinTreePosition   t0, t1, t2, t3;//è‡ªå·¦å‘å³ï¼Œå››æ£µå­æ ‘
+      /******** ä»¥ä¸‹åˆ†å››ç§æƒ…å†µ ********/
+      if (y.isLChild()) {//è‹¥yæ˜¯å·¦å­©å­ï¼Œåˆ™
          c = z;   t3 = z.getRChild();
-         if (x.isLChild()) {//ÈôxÊÇ×óº¢×Ó
+         if (x.isLChild()) {//è‹¥xæ˜¯å·¦å­©å­
             b = y;   t2 = y.getRChild();
             a = x;   t1 = x.getRChild();  t0 = (BSTreeNode)x.getLChild();
-         } else {//ÈôxÊÇÓÒº¢×Ó
+         } else {//è‹¥xæ˜¯å³å­©å­
             a = y;   t0 = y.getLChild();
             b = x;   t1 = x.getLChild();  t2 = (BSTreeNode)x.getRChild();
          }
-      } else {//ÈôyÊÇÓÒº¢×Ó£¬Ôò
+      } else {//è‹¥yæ˜¯å³å­©å­ï¼Œåˆ™
          a = z;   t0 = z.getLChild();
-         if (x.isRChild()) {//ÈôxÊÇÓÒº¢×Ó
+         if (x.isRChild()) {//è‹¥xæ˜¯å³å­©å­
             b = y;   t1 = y.getLChild();
             c = x;   t2 = x.getLChild();  t3 = (BSTreeNode)x.getRChild();
-         } else {//ÈôxÊÇ×óº¢×Ó
+         } else {//è‹¥xæ˜¯å·¦å­©å­
             c = y;   t3 = y.getRChild();
             b = x;   t1 = x.getLChild();  t2 = (BSTreeNode)x.getRChild();
          }
       }
-      //ÕªÏÂÈı¸ö½Úµã
+      //æ‘˜ä¸‹ä¸‰ä¸ªèŠ‚ç‚¹
       z.secede();
       y.secede();
       x.secede();
-      //ÕªÏÂËÄ¿Ã×ÓÊ÷
+      //æ‘˜ä¸‹å››æ£µå­æ ‘
       if (null != t0) t0.secede();
       if (null != t1) t1.secede();
       if (null != t2) t2.secede();
       if (null != t3) t3.secede();
-      //ÖØĞÂÁ´½Ó
+      //é‡æ–°é“¾æ¥
       a.attachL(t0); a.attachR(t1); b.attachL(a);
       c.attachL(t2); c.attachR(t3); b.attachR(c);
-      //×ÓÊ÷ÖØĞÂ½ÓÈëÔ­Ê÷
+      //å­æ ‘é‡æ–°æ¥å…¥åŸæ ‘
       if (null != p)
          if (cType)  p.attachL(b);
          else           p.attachR(b);
-      return b;//·µ»ØĞÂµÄ×ÓÊ÷¸ù
+      return b;//è¿”å›æ–°çš„å­æ ‘æ ¹
    }//rotate
 
-   //·µ»Ø½ÚµãpµÄº¢×ÓÖĞµÄ¸ü¸ßÕß
+   //è¿”å›èŠ‚ç‚¹pçš„å­©å­ä¸­çš„æ›´é«˜è€…
    protected static BinTreePosition tallerChild(BinTreePosition v) {
       int   lH = v.hasLChild() ? v.getLChild().getHeight() : -1;
       int   rH = v.hasRChild() ? v.getRChild().getHeight() : -1;
@@ -113,7 +113,7 @@ public class AVLTree extends BSTree implements Dictionary {
       else                    return v.getRChild();
    }
 
-   //·µ»Ø½ÚµãpµÄº¢×ÓÖĞµÄ¸ü°«Õß
+   //è¿”å›èŠ‚ç‚¹pçš„å­©å­ä¸­çš„æ›´çŸ®è€…
    protected static BinTreePosition shorterChild(BinTreePosition v) {
       int   lH = v.hasLChild() ? v.getLChild().getHeight() : -1;
       int   rH = v.hasRChild() ? v.getRChild().getHeight() : -1;

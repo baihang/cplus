@@ -7,7 +7,7 @@
  ******************************************************************************************/
 
 /*
- * »ùÓÚÓÅÏÈ¶ÓÁĞµÄÅÅĞòÆ÷
+ * åŸºäºä¼˜å…ˆé˜Ÿåˆ—çš„æ’åºå™¨
  */
 
 package dsa;
@@ -22,16 +22,16 @@ public class Sorter_PQueue implements Sorter {
    { C = comp; }
 
    public void sort(Sequence S) {
-      Sequence T = new Sequence_DLNode();//ÎªÅú´¦Àí½¨Á¢ÓÅÏÈ¶ÓÁĞ¶ø×¼±¸µÄĞòÁĞ
-      while (!S.isEmpty()) {//¹¹½¨ĞòÁĞT
-         Object e = S.removeFirst();//ÖğÒ»È¡³öSÖĞ¸÷ÔªËØ
-         T.insertLast(new EntryDefault(e, e));//ÓÃ½ÚµãÔªËØ±¾Éí×÷Îª¹Ø¼üÂë
+      Sequence T = new Sequence_DLNode();//ä¸ºæ‰¹å¤„ç†å»ºç«‹ä¼˜å…ˆé˜Ÿåˆ—è€Œå‡†å¤‡çš„åºåˆ—
+      while (!S.isEmpty()) {//æ„å»ºåºåˆ—T
+         Object e = S.removeFirst();//é€ä¸€å–å‡ºSä¸­å„å…ƒç´ 
+         T.insertLast(new EntryDefault(e, e));//ç”¨èŠ‚ç‚¹å…ƒç´ æœ¬èº«ä½œä¸ºå…³é”®ç 
       }
       //    PQueue pq = new PQueue_UnsortedList(C, T);
       //    PQueue pq = new PQueue_SortedList(C, T);
       PQueue pq = new PQueue_Heap(C, T);
-      while(!pq.isEmpty()) {//´ÓÓÅÏÈ¶ÓÁĞÖĞ²»¶ÏµØ
-         S.insertLast(pq.delMin().getValue());//È¡³ö×îĞ¡ÔªËØ£¬²åÖÁĞòÁĞÄ©Î²
+      while(!pq.isEmpty()) {//ä»ä¼˜å…ˆé˜Ÿåˆ—ä¸­ä¸æ–­åœ°
+         S.insertLast(pq.delMin().getValue());//å–å‡ºæœ€å°å…ƒç´ ï¼Œæ’è‡³åºåˆ—æœ«å°¾
          System.out.println("\t:\t" + S.last().getElem());
       }
    }

@@ -7,20 +7,20 @@
  ******************************************************************************************/
 
 /*
- * ÉìÕ¹Ê÷
- * »ùÓÚBSTreeµÄÀ©³ä
+ * ä¼¸å±•æ ‘
+ * åŸºäºBSTreeçš„æ‰©å……
  */
 
 package dsa;
 
 public class SplayTree extends BSTree implements Dictionary {
-   /**************************** ¹¹Ôì·½·¨ ****************************/
+   /**************************** æ„é€ æ–¹æ³• ****************************/
    public SplayTree() { super(); }
    public SplayTree(BinTreePosition r) { super(r); }
    public SplayTree(BinTreePosition r, Comparator c) { super(r, c); }
 
-   /**************************** ´Êµä·½·¨£¨¸²¸Ç¸¸ÀàBSTree£© ****************************/
-   //Èô´ÊµäÖĞ´æÔÚÒÔkeyÎª¹Ø¼üÂëµÄÌõÄ¿£¬Ôò·µ»ØÆäÖĞµÄÒ»¸öÌõÄ¿£»·ñÔò£¬·µ»Ønull
+   /**************************** è¯å…¸æ–¹æ³•ï¼ˆè¦†ç›–çˆ¶ç±»BSTreeï¼‰ ****************************/
+   //è‹¥è¯å…¸ä¸­å­˜åœ¨ä»¥keyä¸ºå…³é”®ç çš„æ¡ç›®ï¼Œåˆ™è¿”å›å…¶ä¸­çš„ä¸€ä¸ªæ¡ç›®ï¼›å¦åˆ™ï¼Œè¿”å›null
    public Entry find(Object key) {
       if (isEmpty()) return null;
       BSTreeNode u = binSearch((BSTreeNode)root, key, C);
@@ -28,22 +28,22 @@ public class SplayTree extends BSTree implements Dictionary {
       return (0 == C.compare(key, u.getKey())) ? (Entry)u.getElem() : null;
    }
 
-   //²åÈëÌõÄ¿(key, value)£¬²¢·µ»Ø¸ÃÌõÄ¿
+   //æ’å…¥æ¡ç›®(key, value)ï¼Œå¹¶è¿”å›è¯¥æ¡ç›®
    public Entry insert(Object key, Object value) {
-      Entry e = super.insert(key, value);//µ÷ÓÃ¸¸Àà·½·¨Íê³É²åÈë
-      root = moveToRoot(lastV);//ÖØĞÂÆ½ºâ»¯
+      Entry e = super.insert(key, value);//è°ƒç”¨çˆ¶ç±»æ–¹æ³•å®Œæˆæ’å…¥
+      root = moveToRoot(lastV);//é‡æ–°å¹³è¡¡åŒ–
       return e;
    }
 
-   //Èô´ÊµäÖĞ´æÔÚÒÔkeyÎª¹Ø¼üÂëµÄÌõÄ¿£¬Ôò½«Õª³ıÆäÖĞµÄÒ»¸ö²¢·µ»Ø£»·ñÔò£¬·µ»Ønull
+   //è‹¥è¯å…¸ä¸­å­˜åœ¨ä»¥keyä¸ºå…³é”®ç çš„æ¡ç›®ï¼Œåˆ™å°†æ‘˜é™¤å…¶ä¸­çš„ä¸€ä¸ªå¹¶è¿”å›ï¼›å¦åˆ™ï¼Œè¿”å›null
    public Entry remove(Object key) {
-      Entry e = super.remove(key);//µ÷ÓÃ¸¸Àà·½·¨Íê³ÉÉ¾³ı
-      if (null != e && null != lastV)  root = moveToRoot(lastV);//ÖØĞÂÆ½ºâ»¯
+      Entry e = super.remove(key);//è°ƒç”¨çˆ¶ç±»æ–¹æ³•å®Œæˆåˆ é™¤
+      if (null != e && null != lastV)  root = moveToRoot(lastV);//é‡æ–°å¹³è¡¡åŒ–
       return e;
    }
 
-   /**************************** ¸¨Öú·½·¨ ****************************/
-   //´Ó½Úµãz¿ªÊ¼£¬×ÔÉÏ¶øÏÂÖØĞÂÆ½ºâ»¯
+   /**************************** è¾…åŠ©æ–¹æ³• ****************************/
+   //ä»èŠ‚ç‚¹zå¼€å§‹ï¼Œè‡ªä¸Šè€Œä¸‹é‡æ–°å¹³è¡¡åŒ–
    protected static BinTreePosition moveToRoot(BinTreePosition z) {
       while (z.hasParent())
          if (!z.getParent().hasParent())
@@ -57,136 +57,136 @@ public class SplayTree extends BSTree implements Dictionary {
       return z;
    }
 
-   //vÎª×óº¢×Ó
-   //Ë³Ê±ÕëĞı×ªv£¬Ê¹Ö®ÉÏÉıÒ»²ã£¨ÉìÕ¹Ê÷£©
-   //·µ»ØĞÂµÄ×ÓÊ÷¸ù
+   //vä¸ºå·¦å­©å­
+   //é¡ºæ—¶é’ˆæ—‹è½¬vï¼Œä½¿ä¹‹ä¸Šå‡ä¸€å±‚ï¼ˆä¼¸å±•æ ‘ï¼‰
+   //è¿”å›æ–°çš„å­æ ‘æ ¹
    protected static BinTreePosition zig(BinTreePosition v) {
-      if (null != v && v.isLChild()) {//v±ØĞëÓĞ¸¸Ç×£¬¶øÇÒ±ØĞëÊÇ×óº¢×Ó
-         BinTreePosition p = v.getParent();//¸¸Ç×
-         BinTreePosition g = p.getParent();//×æ¸¸
-         boolean asLChild = p.isLChild();//¸¸Ç×ÊÇ·ñ×æ¸¸µÄ×óº¢×Ó
-         v.secede();//Õª³öv£¨ÓÚÊÇpµÄ×óº¢×ÓÎª¿Õ£©
-         BinTreePosition c = v.getRChild();//½«vµÄÓÒº¢×Ó
-         if (null != c) p.attachL(c.secede());//×÷ÎªpµÄ×óº¢×Ó
-         p.secede();//Õª³ö¸¸Ç×
-         v.attachR(p);//½«p×÷ÎªvµÄÓÒº¢×Ó
-         if (null != g)//Èô×æ¸¸´æÔÚ£¬Ôò½«v×÷ÎªÆäº¢×Ó
+      if (null != v && v.isLChild()) {//vå¿…é¡»æœ‰çˆ¶äº²ï¼Œè€Œä¸”å¿…é¡»æ˜¯å·¦å­©å­
+         BinTreePosition p = v.getParent();//çˆ¶äº²
+         BinTreePosition g = p.getParent();//ç¥–çˆ¶
+         boolean asLChild = p.isLChild();//çˆ¶äº²æ˜¯å¦ç¥–çˆ¶çš„å·¦å­©å­
+         v.secede();//æ‘˜å‡ºvï¼ˆäºæ˜¯pçš„å·¦å­©å­ä¸ºç©ºï¼‰
+         BinTreePosition c = v.getRChild();//å°†vçš„å³å­©å­
+         if (null != c) p.attachL(c.secede());//ä½œä¸ºpçš„å·¦å­©å­
+         p.secede();//æ‘˜å‡ºçˆ¶äº²
+         v.attachR(p);//å°†pä½œä¸ºvçš„å³å­©å­
+         if (null != g)//è‹¥ç¥–çˆ¶å­˜åœ¨ï¼Œåˆ™å°†vä½œä¸ºå…¶å­©å­
             if (asLChild)  g.attachL(v);
             else              g.attachR(v);
       }
       return v;
    }
 
-   //vÎªÓÒº¢×Ó
-   //ÄæÊ±ÕëĞı×ªv£¬Ê¹Ö®ÉÏÉıÒ»²ã£¨ÉìÕ¹Ê÷£©
-   //·µ»ØĞÂµÄ×ÓÊ÷¸ù
+   //vä¸ºå³å­©å­
+   //é€†æ—¶é’ˆæ—‹è½¬vï¼Œä½¿ä¹‹ä¸Šå‡ä¸€å±‚ï¼ˆä¼¸å±•æ ‘ï¼‰
+   //è¿”å›æ–°çš„å­æ ‘æ ¹
    protected static BinTreePosition zag(BinTreePosition v) {
-      if (null != v && v.isRChild()) {//v±ØĞëÓĞ¸¸Ç×£¬¶øÇÒ±ØĞëÊÇÓÒº¢×Ó
-         BinTreePosition p = v.getParent();//¸¸Ç×
-         BinTreePosition g = p.getParent();//×æ¸¸
-         boolean asLChild = p.isLChild();//¸¸Ç×ÊÇ·ñ×æ¸¸µÄ×óº¢×Ó
-         v.secede();//Õª³öv£¨ÓÚÊÇpµÄ×óº¢×ÓÎª¿Õ£©
-         BinTreePosition c = v.getLChild();//½«vµÄ×óº¢×Ó
-         if (null != c) p.attachR(c.secede());//×÷ÎªpµÄÓÒº¢×Ó
-         p.secede();//Õª³ö¸¸Ç×
-         v.attachL(p);//½«p×÷ÎªvµÄ×óº¢×Ó
-         if (null != g)//Èô×æ¸¸´æÔÚ£¬Ôò½«v×÷ÎªÆäº¢×Ó
+      if (null != v && v.isRChild()) {//vå¿…é¡»æœ‰çˆ¶äº²ï¼Œè€Œä¸”å¿…é¡»æ˜¯å³å­©å­
+         BinTreePosition p = v.getParent();//çˆ¶äº²
+         BinTreePosition g = p.getParent();//ç¥–çˆ¶
+         boolean asLChild = p.isLChild();//çˆ¶äº²æ˜¯å¦ç¥–çˆ¶çš„å·¦å­©å­
+         v.secede();//æ‘˜å‡ºvï¼ˆäºæ˜¯pçš„å·¦å­©å­ä¸ºç©ºï¼‰
+         BinTreePosition c = v.getLChild();//å°†vçš„å·¦å­©å­
+         if (null != c) p.attachR(c.secede());//ä½œä¸ºpçš„å³å­©å­
+         p.secede();//æ‘˜å‡ºçˆ¶äº²
+         v.attachL(p);//å°†pä½œä¸ºvçš„å·¦å­©å­
+         if (null != g)//è‹¥ç¥–çˆ¶å­˜åœ¨ï¼Œåˆ™å°†vä½œä¸ºå…¶å­©å­
             if (asLChild)  g.attachL(v);
             else              g.attachR(v);
       }
       return v;
    }
 
-   //vÎª×óº¢×Ó£¬¸¸Ç×Îª×óº¢×Ó
-   //Ë³Ê±ÕëĞı×ªv£¬Ê¹Ö®ÉÏÉıÁ½²ã£¨ÉìÕ¹Ê÷£©
-   //·µ»ØĞÂµÄ×ÓÊ÷¸ù
+   //vä¸ºå·¦å­©å­ï¼Œçˆ¶äº²ä¸ºå·¦å­©å­
+   //é¡ºæ—¶é’ˆæ—‹è½¬vï¼Œä½¿ä¹‹ä¸Šå‡ä¸¤å±‚ï¼ˆä¼¸å±•æ ‘ï¼‰
+   //è¿”å›æ–°çš„å­æ ‘æ ¹
    protected static BinTreePosition zigzig(BinTreePosition v) {
       if (null != v && v.isLChild() && v.hasParent() && v.getParent().isLChild()) {
-         BinTreePosition p = v.getParent();//¸¸Ç×
-         BinTreePosition g = p.getParent();//×æ¸¸
-         BinTreePosition s = g.getParent();//Ôø×æ¸¸
-         boolean asLChild = g.isLChild();//×æ¸¸ÊÇ·ñÔø×æ¸¸µÄ×óº¢×Ó
+         BinTreePosition p = v.getParent();//çˆ¶äº²
+         BinTreePosition g = p.getParent();//ç¥–çˆ¶
+         BinTreePosition s = g.getParent();//æ›¾ç¥–çˆ¶
+         boolean asLChild = g.isLChild();//ç¥–çˆ¶æ˜¯å¦æ›¾ç¥–çˆ¶çš„å·¦å­©å­
          g.secede();
          p.secede();
          v.secede();
-         BinTreePosition c;//ÁÙÊ±±äÁ¿£¬¸¨Öúº¢×ÓµÄÒÆ¶¯
-         c = p.getRChild(); if (null != c)   g.attachL(c.secede());//pµÄÓÒº¢×Ó×÷ÎªgµÄ×óº¢×Ó
-         c = v.getRChild(); if (null != c)   p.attachL(c.secede());//vµÄÓÒº¢×Ó×÷ÎªpµÄ×óº¢×Ó
-         p.attachR(g);//g×÷ÎªpµÄÓÒº¢×Ó
-         v.attachR(p);//p×÷ÎªvµÄÓÒº¢×Ó
-         if (null != s)//ÈôÔø×æ¸¸´æÔÚ£¬Ôò½«v×÷ÎªÆäº¢×Ó
+         BinTreePosition c;//ä¸´æ—¶å˜é‡ï¼Œè¾…åŠ©å­©å­çš„ç§»åŠ¨
+         c = p.getRChild(); if (null != c)   g.attachL(c.secede());//pçš„å³å­©å­ä½œä¸ºgçš„å·¦å­©å­
+         c = v.getRChild(); if (null != c)   p.attachL(c.secede());//vçš„å³å­©å­ä½œä¸ºpçš„å·¦å­©å­
+         p.attachR(g);//gä½œä¸ºpçš„å³å­©å­
+         v.attachR(p);//pä½œä¸ºvçš„å³å­©å­
+         if (null != s)//è‹¥æ›¾ç¥–çˆ¶å­˜åœ¨ï¼Œåˆ™å°†vä½œä¸ºå…¶å­©å­
             if (asLChild)  s.attachL(v);
             else              s.attachR(v);
       }
       return v;
    }
 
-   //vÎªÓÒº¢×Ó£¬¸¸Ç×ÎªÓÒº¢×Ó
-   //Ë³Ê±ÕëĞı×ªv£¬Ê¹Ö®ÉÏÉıÁ½²ã£¨ÉìÕ¹Ê÷£©
-   //·µ»ØĞÂµÄ×ÓÊ÷¸ù
+   //vä¸ºå³å­©å­ï¼Œçˆ¶äº²ä¸ºå³å­©å­
+   //é¡ºæ—¶é’ˆæ—‹è½¬vï¼Œä½¿ä¹‹ä¸Šå‡ä¸¤å±‚ï¼ˆä¼¸å±•æ ‘ï¼‰
+   //è¿”å›æ–°çš„å­æ ‘æ ¹
    protected static BinTreePosition zagzag(BinTreePosition v) {
       if (null != v && v.isRChild() && v.hasParent() && v.getParent().isRChild()) {
-         BinTreePosition p = v.getParent();//¸¸Ç×
-         BinTreePosition g = p.getParent();//×æ¸¸
-         BinTreePosition s = g.getParent();//Ôø×æ¸¸
-         boolean asLChild = g.isLChild();//×æ¸¸ÊÇ·ñÔø×æ¸¸µÄ×óº¢×Ó
+         BinTreePosition p = v.getParent();//çˆ¶äº²
+         BinTreePosition g = p.getParent();//ç¥–çˆ¶
+         BinTreePosition s = g.getParent();//æ›¾ç¥–çˆ¶
+         boolean asLChild = g.isLChild();//ç¥–çˆ¶æ˜¯å¦æ›¾ç¥–çˆ¶çš„å·¦å­©å­
          g.secede();
          p.secede();
          v.secede();
-         BinTreePosition c;//ÁÙÊ±±äÁ¿£¬¸¨Öúº¢×ÓµÄÒÆ¶¯
-         c = p.getLChild(); if (null != c)   g.attachR(c.secede());//pµÄ×óº¢×Ó×÷ÎªgµÄÓÒº¢×Ó
-         c = v.getLChild(); if (null != c)   p.attachR(c.secede());//vµÄ×óº¢×Ó×÷ÎªpµÄÓÒº¢×Ó
-         p.attachL(g);//g×÷ÎªpµÄ×óº¢×Ó
-         v.attachL(p);//p×÷ÎªvµÄ×óº¢×Ó
-         if (null != s)//ÈôÔø×æ¸¸´æÔÚ£¬Ôò½«v×÷ÎªÆäº¢×Ó
+         BinTreePosition c;//ä¸´æ—¶å˜é‡ï¼Œè¾…åŠ©å­©å­çš„ç§»åŠ¨
+         c = p.getLChild(); if (null != c)   g.attachR(c.secede());//pçš„å·¦å­©å­ä½œä¸ºgçš„å³å­©å­
+         c = v.getLChild(); if (null != c)   p.attachR(c.secede());//vçš„å·¦å­©å­ä½œä¸ºpçš„å³å­©å­
+         p.attachL(g);//gä½œä¸ºpçš„å·¦å­©å­
+         v.attachL(p);//pä½œä¸ºvçš„å·¦å­©å­
+         if (null != s)//è‹¥æ›¾ç¥–çˆ¶å­˜åœ¨ï¼Œåˆ™å°†vä½œä¸ºå…¶å­©å­
             if (asLChild)  s.attachL(v);
             else              s.attachR(v);
       }
       return v;
    }
 
-   //vÎª×óº¢×Ó£¬¸¸Ç×ÎªÓÒº¢×Ó
-   //Ë³Ê±ÕëĞı×ªv£¬Ê¹Ö®ÉÏÉıÁ½²ã£¨ÉìÕ¹Ê÷£©
-   //·µ»ØĞÂµÄ×ÓÊ÷¸ù
+   //vä¸ºå·¦å­©å­ï¼Œçˆ¶äº²ä¸ºå³å­©å­
+   //é¡ºæ—¶é’ˆæ—‹è½¬vï¼Œä½¿ä¹‹ä¸Šå‡ä¸¤å±‚ï¼ˆä¼¸å±•æ ‘ï¼‰
+   //è¿”å›æ–°çš„å­æ ‘æ ¹
    protected static BinTreePosition zigzag(BinTreePosition v) {
       if (null != v && v.isLChild() && v.hasParent() && v.getParent().isRChild()) {
-         BinTreePosition p = v.getParent();//¸¸Ç×
-         BinTreePosition g = p.getParent();//×æ¸¸
-         BinTreePosition s = g.getParent();//Ôø×æ¸¸
-         boolean asLChild = g.isLChild();//×æ¸¸ÊÇ·ñÔø×æ¸¸µÄ×óº¢×Ó
+         BinTreePosition p = v.getParent();//çˆ¶äº²
+         BinTreePosition g = p.getParent();//ç¥–çˆ¶
+         BinTreePosition s = g.getParent();//æ›¾ç¥–çˆ¶
+         boolean asLChild = g.isLChild();//ç¥–çˆ¶æ˜¯å¦æ›¾ç¥–çˆ¶çš„å·¦å­©å­
          g.secede();
          p.secede();
          v.secede();
-         BinTreePosition c;//ÁÙÊ±±äÁ¿£¬¸¨Öúº¢×ÓµÄÒÆ¶¯
-         c = v.getLChild(); if (null != c)   g.attachR(c.secede());//vµÄ×óº¢×Ó×÷ÎªgµÄÓÒº¢×Ó
-         c = v.getRChild(); if (null != c)   p.attachL(c.secede());//vµÄÓÒº¢×Ó×÷ÎªpµÄ×óº¢×Ó
-         v.attachL(g);//g×÷ÎªvµÄ×óº¢×Ó
-         v.attachR(p);//p×÷ÎªvµÄÓÒº¢×Ó
-         if (null != s)//ÈôÔø×æ¸¸´æÔÚ£¬Ôò½«v×÷ÎªÆäº¢×Ó
+         BinTreePosition c;//ä¸´æ—¶å˜é‡ï¼Œè¾…åŠ©å­©å­çš„ç§»åŠ¨
+         c = v.getLChild(); if (null != c)   g.attachR(c.secede());//vçš„å·¦å­©å­ä½œä¸ºgçš„å³å­©å­
+         c = v.getRChild(); if (null != c)   p.attachL(c.secede());//vçš„å³å­©å­ä½œä¸ºpçš„å·¦å­©å­
+         v.attachL(g);//gä½œä¸ºvçš„å·¦å­©å­
+         v.attachR(p);//pä½œä¸ºvçš„å³å­©å­
+         if (null != s)//è‹¥æ›¾ç¥–çˆ¶å­˜åœ¨ï¼Œåˆ™å°†vä½œä¸ºå…¶å­©å­
             if (asLChild)  s.attachL(v);
             else              s.attachR(v);
       }
       return v;
    }
 
-   //vÎªÓÒº¢×Ó£¬¸¸Ç×Îª×óº¢×Ó
-   //Ë³Ê±ÕëĞı×ªv£¬Ê¹Ö®ÉÏÉıÁ½²ã£¨ÉìÕ¹Ê÷£©
-   //·µ»ØĞÂµÄ×ÓÊ÷¸ù
+   //vä¸ºå³å­©å­ï¼Œçˆ¶äº²ä¸ºå·¦å­©å­
+   //é¡ºæ—¶é’ˆæ—‹è½¬vï¼Œä½¿ä¹‹ä¸Šå‡ä¸¤å±‚ï¼ˆä¼¸å±•æ ‘ï¼‰
+   //è¿”å›æ–°çš„å­æ ‘æ ¹
    protected static BinTreePosition zagzig(BinTreePosition v) {
       if (null != v && v.isRChild() && v.hasParent() && v.getParent().isLChild()) {
-         BinTreePosition p = v.getParent();//¸¸Ç×
-         BinTreePosition g = p.getParent();//×æ¸¸
-         BinTreePosition s = g.getParent();//Ôø×æ¸¸
-         boolean asLChild = g.isLChild();//×æ¸¸ÊÇ·ñÔø×æ¸¸µÄ×óº¢×Ó
+         BinTreePosition p = v.getParent();//çˆ¶äº²
+         BinTreePosition g = p.getParent();//ç¥–çˆ¶
+         BinTreePosition s = g.getParent();//æ›¾ç¥–çˆ¶
+         boolean asLChild = g.isLChild();//ç¥–çˆ¶æ˜¯å¦æ›¾ç¥–çˆ¶çš„å·¦å­©å­
          g.secede();
          p.secede();
          v.secede();
-         BinTreePosition c;//ÁÙÊ±±äÁ¿£¬¸¨Öúº¢×ÓµÄÒÆ¶¯
-         c = v.getRChild(); if (null != c)   g.attachL(c.secede());//vµÄÓÒº¢×Ó×÷ÎªgµÄ×óº¢×Ó
-         c = v.getLChild(); if (null != c)   p.attachR(c.secede());//vµÄ×óº¢×Ó×÷ÎªpµÄÓÒº¢×Ó
-         v.attachR(g);//g×÷ÎªvµÄÓÒº¢×Ó
-         v.attachL(p);//p×÷ÎªvµÄ×óº¢×Ó
-         if (null != s)//ÈôÔø×æ¸¸´æÔÚ£¬Ôò½«v×÷ÎªÆäº¢×Ó
+         BinTreePosition c;//ä¸´æ—¶å˜é‡ï¼Œè¾…åŠ©å­©å­çš„ç§»åŠ¨
+         c = v.getRChild(); if (null != c)   g.attachL(c.secede());//vçš„å³å­©å­ä½œä¸ºgçš„å·¦å­©å­
+         c = v.getLChild(); if (null != c)   p.attachR(c.secede());//vçš„å·¦å­©å­ä½œä¸ºpçš„å³å­©å­
+         v.attachR(g);//gä½œä¸ºvçš„å³å­©å­
+         v.attachL(p);//pä½œä¸ºvçš„å·¦å­©å­
+         if (null != s)//è‹¥æ›¾ç¥–çˆ¶å­˜åœ¨ï¼Œåˆ™å°†vä½œä¸ºå…¶å­©å­
             if (asLChild)  s.attachL(v);
             else              s.attachR(v);
       }

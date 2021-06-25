@@ -7,9 +7,9 @@
  ******************************************************************************************/
 
 /*
- * ¿ìËÙÅÅĞòËã·¨
- * Õë¶ÔÏòÁ¿ºÍÁĞ±íÁ½ÖÖÇé¿ö£¬createPivot()·½·¨µÄ¾ßÌåÊµÏÖ²»Í¬
- * ÕâÀïÖ»Õë¶Ô»ùÓÚÏòÁ¿µÄĞòÁĞ£¬¸ø³öËã·¨ÊµÏÖ
+ * å¿«é€Ÿæ’åºç®—æ³•
+ * é’ˆå¯¹å‘é‡å’Œåˆ—è¡¨ä¸¤ç§æƒ…å†µï¼ŒcreatePivot()æ–¹æ³•çš„å…·ä½“å®ç°ä¸åŒ
+ * è¿™é‡Œåªé’ˆå¯¹åŸºäºå‘é‡çš„åºåˆ—ï¼Œç»™å‡ºç®—æ³•å®ç°
  */
 
 package dsa;
@@ -23,7 +23,7 @@ public class Sorter_Quicksort implements Sorter {
    public Sorter_Quicksort(Comparator comp)
    {  C = comp; }
 
-   public void sort(Sequence s)//Èë¿Ú·½·¨
+   public void sort(Sequence s)//å…¥å£æ–¹æ³•
    {  qsort(s, 0, s.getSize() - 1); }
 
    public void qsort(Sequence S, int lo, int hi) {//Quicksort
@@ -33,7 +33,7 @@ public class Sorter_Quicksort implements Sorter {
       qsort(S, mi + 1, hi);
    }
 
-   public int createPivot(Sequence S, int lo, int hi) {//È·¶¨Öáµã
+   public int createPivot(Sequence S, int lo, int hi) {//ç¡®å®šè½´ç‚¹
       while (lo < hi) {
          while ((lo < hi) && (C.compare(S.getAtRank(lo), S.getAtRank(hi)) <= 0)) hi--;
          swap(S, lo, hi);
@@ -43,7 +43,7 @@ public class Sorter_Quicksort implements Sorter {
       return lo;
    }
 
-   private void swap(Sequence S, int i, int j) {//½»»»S[i]ºÍS[j]
+   private void swap(Sequence S, int i, int j) {//äº¤æ¢S[i]å’ŒS[j]
       Object temp = S.getAtRank(i);
       S.replaceAtRank(i, S.getAtRank(j));
       S.replaceAtRank(j, temp);

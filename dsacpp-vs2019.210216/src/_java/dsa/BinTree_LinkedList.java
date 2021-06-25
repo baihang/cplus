@@ -7,51 +7,51 @@
  ******************************************************************************************/
 
 /*
- * »ùÓÚÁ´±íÊµÏÖ¶ş²æÊ÷
+ * åŸºäºé“¾è¡¨å®ç°äºŒå‰æ ‘
  */
 
 package dsa;
 
 public class BinTree_LinkedList implements BinTree {
-   protected BinTreePosition root;//¸ù½Úµã
+   protected BinTreePosition root;//æ ¹èŠ‚ç‚¹
 
-   /**************************** ¹¹Ôìº¯Êı ****************************/
+   /**************************** æ„é€ å‡½æ•° ****************************/
    public BinTree_LinkedList()
    { this(null); }
 
    public BinTree_LinkedList(BinTreePosition r)
    { root = r; }
 
-   /**************************** BinaryTree½Ó¿Ú·½·¨ ****************************/
-   //·µ»ØÊ÷¸ù
+   /**************************** BinaryTreeæ¥å£æ–¹æ³• ****************************/
+   //è¿”å›æ ‘æ ¹
    public BinTreePosition getRoot()
    { return root; }
 
-   //ÅĞ¶ÏÊÇ·ñÊ÷¿Õ
+   //åˆ¤æ–­æ˜¯å¦æ ‘ç©º
    public boolean isEmpty()
    { return null == root; }
 
-   //·µ»ØÊ÷µÄ¹æÄ££¨¼´Ê÷¸ùµÄºó´úÊıÄ¿£©
+   //è¿”å›æ ‘çš„è§„æ¨¡ï¼ˆå³æ ‘æ ¹çš„åä»£æ•°ç›®ï¼‰
    public int getSize()
    { return isEmpty() ? 0 : root.getSize(); }
 
-   //·µ»ØÊ÷£¨¸ù£©µÄ¸ß¶È
+   //è¿”å›æ ‘ï¼ˆæ ¹ï¼‰çš„é«˜åº¦
    public int getHeight()
    {return isEmpty() ? -1 : root.getHeight(); }
 
-   //Ç°Ğò±éÀú
+   //å‰åºéå†
    public Iterator elementsPreorder()
    { return root.elementsPreorder(); }
 
-   //ÖĞĞò±éÀú
+   //ä¸­åºéå†
    public Iterator elementsInorder()
    { return root.elementsInorder(); }
 
-   //ºóĞò±éÀú
+   //ååºéå†
    public Iterator elementsPostorder()
    { return root.elementsPostorder(); }
 
-   //²ã´Î±éÀú
+   //å±‚æ¬¡éå†
    public Iterator elementsLevelorder()
    { return root.elementsLevelorder(); }
 }

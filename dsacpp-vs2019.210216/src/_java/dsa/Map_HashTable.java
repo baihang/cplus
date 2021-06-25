@@ -7,85 +7,85 @@
  ******************************************************************************************/
 
 /*
- * »ùÓÚÉ¢ÁĞ±íÊµÏÖµÄÓ³Éä½á¹¹
- * ²ÉÓÃ·ÖÀëÁ´²ßÂÔ½â¾ö³åÍ»
+ * åŸºäºæ•£åˆ—è¡¨å®ç°çš„æ˜ å°„ç»“æ„
+ * é‡‡ç”¨åˆ†ç¦»é“¾ç­–ç•¥è§£å†³å†²çª
  */
 
 package dsa;
 
 public class Map_HashTable implements Map {
-   private Map[] A;//Í°Êı×é£¬Ã¿¸öÍ°±¾ÉíÒ²ÊÇÒ»¸ö£¨»ùÓÚÁĞ±íÊµÏÖµÄ£©Ó³Éä½á¹¹
-   private  int N;//É¢ÁĞ±í³¤
-   private final double maxLemda = 0.75;//×°ÌîÒò×ÓÉÏÏŞ
-   private int size;//Ó³Éä½á¹¹µÄ¹æÄ£
-   private EqualityTester T;//ÅĞµÈÆ÷
+   private Map[] A;//æ¡¶æ•°ç»„ï¼Œæ¯ä¸ªæ¡¶æœ¬èº«ä¹Ÿæ˜¯ä¸€ä¸ªï¼ˆåŸºäºåˆ—è¡¨å®ç°çš„ï¼‰æ˜ å°„ç»“æ„
+   private  int N;//æ•£åˆ—è¡¨é•¿
+   private final double maxLemda = 0.75;//è£…å¡«å› å­ä¸Šé™
+   private int size;//æ˜ å°„ç»“æ„çš„è§„æ¨¡
+   private EqualityTester T;//åˆ¤ç­‰å™¨
 
-   //Ä¬ÈÏ¹¹Ôì·½·¨
+   //é»˜è®¤æ„é€ æ–¹æ³•
    public Map_HashTable()
    { this(0, new EqualityTesterDefault()); }
 
-   //¹¹Ôì·½·¨
+   //æ„é€ æ–¹æ³•
    public Map_HashTable(int n, EqualityTester t) {
       T = t;
-      N = p(n);//Í°Êı×éÈİÁ¿È¡Îª²»Ğ¡ÓÚnµÄ×îĞ¡ËØÊı
+      N = p(n);//æ¡¶æ•°ç»„å®¹é‡å–ä¸ºä¸å°äºnçš„æœ€å°ç´ æ•°
       A = new Map[N];
       for (int i = 0; i < N; i++) A[i] = new Map_DLNode(T);
       size = 0;
    }
 
-   /***************************** ¸¨Öú·½·¨ *****************************/
-   //É¢ÁĞ¶¨Ö·º¯Êı£¨²ÉÓÃÄ£Óà·¨£©
+   /***************************** è¾…åŠ©æ–¹æ³• *****************************/
+   //æ•£åˆ—å®šå€å‡½æ•°ï¼ˆé‡‡ç”¨æ¨¡ä½™æ³•ï¼‰
    private int h(Object key)
    { return key.hashCode() % N; }
 
-   //ÅĞ¶ÏnÊÇ·ñÎªËØÊı
+   //åˆ¤æ–­næ˜¯å¦ä¸ºç´ æ•°
    private static boolean prime(int n) {
       for (int i = 3; i < 1 + Math.sqrt(n); i++)
          if (n / i* i == n)   return false;
       return true;
    }
 
-   //È¡²»Ğ¡ÓÚnµÄ×îĞ¡ËØÊı
+   //å–ä¸å°äºnçš„æœ€å°ç´ æ•°
    private static int p(int n) {
       if (3 > n) n = 3;
-      n = n | 1;//ÆæÊı»¯
+      n = n | 1;//å¥‡æ•°åŒ–
       while (!prime(n)) n += 2;
       return n;
    }
 
-   /***************************** ADT·½·¨ *****************************/
-   //²éÑ¯Ó³Éä½á¹¹µ±Ç°µÄ¹æÄ£
+   /***************************** ADTæ–¹æ³• *****************************/
+   //æŸ¥è¯¢æ˜ å°„ç»“æ„å½“å‰çš„è§„æ¨¡
    public int getSize()
    { return size; }
 
-   //ÅĞ¶ÏÓ³Éä½á¹¹ÊÇ·ñÎª¿Õ
+   //åˆ¤æ–­æ˜ å°„ç»“æ„æ˜¯å¦ä¸ºç©º
    public boolean isEmpty()
    { return 0 == size; }
 
-   //ÈôMÖĞ´æÔÚÒÔkeyÎª¹Ø¼üÂëµÄÌõÄ¿£¬Ôò·µ»Ø¸ÃÌõÄ¿µÄÊı¾İ¶ÔÏó£»·ñÔò£¬·µ»Ønull
+   //è‹¥Mä¸­å­˜åœ¨ä»¥keyä¸ºå…³é”®ç çš„æ¡ç›®ï¼Œåˆ™è¿”å›è¯¥æ¡ç›®çš„æ•°æ®å¯¹è±¡ï¼›å¦åˆ™ï¼Œè¿”å›null
    public Object get(Object key)
    { return A[h(key)].get(key); }
 
-   //ÈôMÖĞ²»´æÔÚÒÔkeyÎª¹Ø¼üÂëµÄÌõÄ¿£¬Ôò½«ÌõÄ¿(key, value)¼ÓÈëµ½MÖĞ²¢·µ»Ønull
-   //·ñÔò£¬½«ÒÑÓĞÌõÄ¿µÄÊı¾İ¶ÔÏóÌæ»»Îªvalue£¬²¢·µ»ØÔ­ÏÈµÄÊı¾İ¶ÔÏó
+   //è‹¥Mä¸­ä¸å­˜åœ¨ä»¥keyä¸ºå…³é”®ç çš„æ¡ç›®ï¼Œåˆ™å°†æ¡ç›®(key, value)åŠ å…¥åˆ°Mä¸­å¹¶è¿”å›null
+   //å¦åˆ™ï¼Œå°†å·²æœ‰æ¡ç›®çš„æ•°æ®å¯¹è±¡æ›¿æ¢ä¸ºvalueï¼Œå¹¶è¿”å›åŸå…ˆçš„æ•°æ®å¯¹è±¡
    public Object put(Object key, Object value) {
       Object oldValue = A[h(key)].put(key, value);
-      if (null == oldValue) { //Èô²åÈëµÄÌõÄ¿Î´³öÏÖÓÚÔ­É¢ÁĞ±íÖĞ£¬Ôò
-         size++;//¸üĞÂ¹æÄ£¼ÇÂ¼
-         if (size > N * maxLemda)   rehash();//Èô×°ÌîÒò×Ó¹ı´ó£¬ÔòÖØÉ¢ÁĞ
+      if (null == oldValue) { //è‹¥æ’å…¥çš„æ¡ç›®æœªå‡ºç°äºåŸæ•£åˆ—è¡¨ä¸­ï¼Œåˆ™
+         size++;//æ›´æ–°è§„æ¨¡è®°å½•
+         if (size > N * maxLemda)   rehash();//è‹¥è£…å¡«å› å­è¿‡å¤§ï¼Œåˆ™é‡æ•£åˆ—
       }
       return oldValue;
    }
 
-   //ÈôMÖĞ´æÔÚÒÔkeyÎª¹Ø¼üÂëµÄÌõÄ¿£¬ÔòÉ¾³ıÖ®²¢·µ»ØÆäÊı¾İ¶ÔÏó£»·ñÔò£¬·µ»Ønull
+   //è‹¥Mä¸­å­˜åœ¨ä»¥keyä¸ºå…³é”®ç çš„æ¡ç›®ï¼Œåˆ™åˆ é™¤ä¹‹å¹¶è¿”å›å…¶æ•°æ®å¯¹è±¡ï¼›å¦åˆ™ï¼Œè¿”å›null
    public Object remove(Object key) {
       Object oldValue = A[h(key)].remove(key);
       if (null != oldValue)  size--;
       return oldValue;
    }
 
-   //·µ»ØMÖĞËùÓĞÌõÄ¿µÄÒ»¸öµü´úÆ÷
-   //½«¸÷Í°¶ÔÓ¦µÄÓ³Éä½á¹¹µÄµü´úÆ÷´®½ÓÆğÀ´£¬¹¹³ÉÕûÌåµÄµü´úÆ÷
+   //è¿”å›Mä¸­æ‰€æœ‰æ¡ç›®çš„ä¸€ä¸ªè¿­ä»£å™¨
+   //å°†å„æ¡¶å¯¹åº”çš„æ˜ å°„ç»“æ„çš„è¿­ä»£å™¨ä¸²æ¥èµ·æ¥ï¼Œæ„æˆæ•´ä½“çš„è¿­ä»£å™¨
    public Iterator entries() {
       List L = new List_DLNode();
       for (int i = 0; i < N; i++) {
@@ -95,17 +95,17 @@ public class Map_HashTable implements Map {
       return new IteratorElement(L);
    }
 
-   //ÖØÉ¢ÁĞ
+   //é‡æ•£åˆ—
    private void rehash() {
       Iterator it = this.entries();
       N = p(N << 1);
-      A = new Map[N];//Í°Êı×éÈİÁ¿ÖÁÉÙ¼Ó±¶
-      for (int i = 0; i < N; i++) A[i] = new Map_DLNode(T); //ÎªÃ¿¸öÍ°·ÖÅäÒ»¸ö×ÓÓ³Éä
-      while (it.hasNext()) {//½«Æä¶ÔÓ¦µÄÓ³Éä½á¹¹ÖĞµÄ
-         Entry e = (Entry)it.getNext();//¸÷ÌõÄ¿ÖğÒ»È¡³ö£¬½«Æä
-         Object k = e.getKey();//¹Ø¼üÂëºÍ
-         Object v = e.getValue();//Êı¾İ¶ÔÏó
-         A[h(k)].put(k, v);//ÕûºÏÎªĞÂµÄÌõÄ¿£¬²åÈë¶ÔÓ¦µÄ×ÓÓ³ÉäÖĞ
+      A = new Map[N];//æ¡¶æ•°ç»„å®¹é‡è‡³å°‘åŠ å€
+      for (int i = 0; i < N; i++) A[i] = new Map_DLNode(T); //ä¸ºæ¯ä¸ªæ¡¶åˆ†é…ä¸€ä¸ªå­æ˜ å°„
+      while (it.hasNext()) {//å°†å…¶å¯¹åº”çš„æ˜ å°„ç»“æ„ä¸­çš„
+         Entry e = (Entry)it.getNext();//å„æ¡ç›®é€ä¸€å–å‡ºï¼Œå°†å…¶
+         Object k = e.getKey();//å…³é”®ç å’Œ
+         Object v = e.getValue();//æ•°æ®å¯¹è±¡
+         A[h(k)].put(k, v);//æ•´åˆä¸ºæ–°çš„æ¡ç›®ï¼Œæ’å…¥å¯¹åº”çš„å­æ˜ å°„ä¸­
       }
    }
 }

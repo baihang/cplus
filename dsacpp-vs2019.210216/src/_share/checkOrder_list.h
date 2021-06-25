@@ -10,9 +10,9 @@
 
 #include "list/list.h"
 
-template <typename T> void checkOrder ( List<T> & L ) { //ÅĞ¶ÏÁĞ±íÊÇ·ñÕûÌåÓĞĞò
-   int nInv = 0; //ÄæĞò¼ÆÊıÆ÷
-   L.traverse ( CheckOrder<T> ( nInv, L.first()->data ) ); //½øĞĞ±éÀú
+template <typename T> void checkOrder ( List<T> & L ) { //åˆ¤æ–­åˆ—è¡¨æ˜¯å¦æ•´ä½“æœ‰åº
+   int nInv = 0; //é€†åºè®¡æ•°å™¨
+   L.traverse ( CheckOrder<T> ( nInv, L.first()->data ) ); //è¿›è¡Œéå†
    if ( 0 < nInv )
       printf ( "Unsorted with %d adjacent inversion(s)\n", nInv );
    else

@@ -7,28 +7,28 @@
  ******************************************************************************************/
 
 /*
- * £¨ÓĞÏò£©Í¼»ùÓÚBFSµÄ×î¶Ì¾àÀëËã·¨
+ * ï¼ˆæœ‰å‘ï¼‰å›¾åŸºäºBFSçš„æœ€çŸ­è·ç¦»ç®—æ³•
  */
 
 package dsa;
 
 public class BFSDistance extends BFS {
-   //¹¹Ôì·½·¨
+   //æ„é€ æ–¹æ³•
    public BFSDistance(Graph g) { super(g); }
 
-   //¶¥µã·ÃÎÊ²Ù×÷£ºÔÚ±¾Ëã·¨ÖĞ£¬infoÊÇ¶¥µãvµÄÇ°Çı
+   //é¡¶ç‚¹è®¿é—®æ“ä½œï¼šåœ¨æœ¬ç®—æ³•ä¸­ï¼Œinfoæ˜¯é¡¶ç‚¹vçš„å‰é©±
    protected Object visit(Vertex v, Object info)   {
-      if (null == info)//vÎªBFSµÄÆğÊ¼¶¥µã
+      if (null == info)//vä¸ºBFSçš„èµ·å§‹é¡¶ç‚¹
          v.setDistance(0);
       else
-         v.setDistance(((Vertex)info).getDistance() + 1); //ÉèÖÃvµ½sµÄ¾àÀë = Ç°ÇıµÄ¾àÀë+1
+         v.setDistance(((Vertex)info).getDistance() + 1); //è®¾ç½®våˆ°sçš„è·ç¦» = å‰é©±çš„è·ç¦»+1
       return null;
    }
 
-   //»ùÓÚBFSÊµÏÖµÄ×î¶Ì¾àÀëËã·¨£ºsÎªÆğÊ¼¶¥µã£¬infoÏòËã·¨´«µİ²ÎÊı
+   //åŸºäºBFSå®ç°çš„æœ€çŸ­è·ç¦»ç®—æ³•ï¼šsä¸ºèµ·å§‹é¡¶ç‚¹ï¼Œinfoå‘ç®—æ³•ä¼ é€’å‚æ•°
    public Object algorithm(Vertex s, Object info) {
       reset(s);
-      traverse(s, info);//BFS£ºµ½ÆğµãµÄ×î¶Ì¾àÀë¼ÇÂ¼ÔÚ¸÷¶¥µãµÄdistanceÓòÖĞ
+      traverse(s, info);//BFSï¼šåˆ°èµ·ç‚¹çš„æœ€çŸ­è·ç¦»è®°å½•åœ¨å„é¡¶ç‚¹çš„distanceåŸŸä¸­
       return null;
    }
 }

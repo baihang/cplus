@@ -7,53 +7,53 @@
  ******************************************************************************************/
 
 /*
- * ÀûÓÃ¶ÑÊµÏÖÓÅÏÈ¶ÓÁĞ
+ * åˆ©ç”¨å †å®ç°ä¼˜å…ˆé˜Ÿåˆ—
  */
 
 package dsa;
 
 public class PQueue_Heap implements PQueue {
-   private ComplBinTree H;//ÍêÈ«¶ş²æÊ÷ĞÎÊ½µÄ¶Ñ
-   private Comparator comp;//±È½ÏÆ÷
+   private ComplBinTree H;//å®Œå…¨äºŒå‰æ ‘å½¢å¼çš„å †
+   private Comparator comp;//æ¯”è¾ƒå™¨
 
-   //¹¹Ôì·½·¨
+   //æ„é€ æ–¹æ³•
    public PQueue_Heap()
    { this(new ComparatorDefault(), null); }
 
-   //¹¹Ôì·½·¨£ºÄ¬ÈÏµÄ¿ÕÓÅÏÈ¶ÓÁĞ
+   //æ„é€ æ–¹æ³•ï¼šé»˜è®¤çš„ç©ºä¼˜å…ˆé˜Ÿåˆ—
    public PQueue_Heap(Comparator c)
    { this(c, null); }
 
-   //¹¹Ôì·½·¨£º¸ù¾İÄ³Ò»ĞòÁĞÖ±½ÓÅúÁ¿Ê½¹¹Ôì¶ÑËã·¨£¬SÖĞÔªËØ¶¼ÊÇĞÎÈç(key, value)µÄÌõÄ¿
+   //æ„é€ æ–¹æ³•ï¼šæ ¹æ®æŸä¸€åºåˆ—ç›´æ¥æ‰¹é‡å¼æ„é€ å †ç®—æ³•ï¼ŒSä¸­å…ƒç´ éƒ½æ˜¯å½¢å¦‚(key, value)çš„æ¡ç›®
    public PQueue_Heap(Sequence S)
    { this(new ComparatorDefault(), S); }
 
-   //¹¹Ôì·½·¨£º¸ù¾İÄ³Ò»ĞòÁĞÖ±½ÓÅúÁ¿Ê½¹¹Ôì¶ÑËã·¨£¬sÖĞÔªËØ¶¼ÊÇĞÎÈç(key, value)µÄÌõÄ¿
+   //æ„é€ æ–¹æ³•ï¼šæ ¹æ®æŸä¸€åºåˆ—ç›´æ¥æ‰¹é‡å¼æ„é€ å †ç®—æ³•ï¼Œsä¸­å…ƒç´ éƒ½æ˜¯å½¢å¦‚(key, value)çš„æ¡ç›®
    public PQueue_Heap(Comparator c, Sequence s) {
       comp = c;
       H = new ComplBinTree_Vector(s);
       if (!H.isEmpty()) {
-         for (int i = H.getSize() / 2 - 1; i >= 0; i--) //×Ôµ×¶øÉÏ
-            percolateDown(H.posOfNode(i));//Öğ½Úµã½øĞĞÏÂÂË
+         for (int i = H.getSize() / 2 - 1; i >= 0; i--) //è‡ªåº•è€Œä¸Š
+            percolateDown(H.posOfNode(i));//é€èŠ‚ç‚¹è¿›è¡Œä¸‹æ»¤
       }
    }
 
-   /*-------- PQueue½Ó¿ÚÖĞ¶¨ÒåµÄ·½·¨ --------*/
-   //Í³¼ÆÓÅÏÈ¶ÓÁĞµÄ¹æÄ£
+   /*-------- PQueueæ¥å£ä¸­å®šä¹‰çš„æ–¹æ³• --------*/
+   //ç»Ÿè®¡ä¼˜å…ˆé˜Ÿåˆ—çš„è§„æ¨¡
    public int getSize()
    { return H.getSize(); }
 
-   //ÅĞ¶ÏÓÅÏÈ¶ÓÁĞÊÇ·ñÎª¿Õ
+   //åˆ¤æ–­ä¼˜å…ˆé˜Ÿåˆ—æ˜¯å¦ä¸ºç©º
    public boolean isEmpty()
    { return H.isEmpty(); }
 
-   //ÈôQ·Ç¿Õ£¬Ôò·µ»ØÆäÖĞµÄ×îĞ¡ÌõÄ¿£¨²¢²»É¾³ı£©;·ñÔò£¬±¨´í
+   //è‹¥Qéç©ºï¼Œåˆ™è¿”å›å…¶ä¸­çš„æœ€å°æ¡ç›®ï¼ˆå¹¶ä¸åˆ é™¤ï¼‰;å¦åˆ™ï¼ŒæŠ¥é”™
    public Entry getMin() throws ExceptionPQueueEmpty {
-      if (isEmpty()) throw new ExceptionPQueueEmpty("ÒâÍâ£ºÓÅÏÈ¶ÓÁĞÎª¿Õ");
+      if (isEmpty()) throw new ExceptionPQueueEmpty("æ„å¤–ï¼šä¼˜å…ˆé˜Ÿåˆ—ä¸ºç©º");
       return (Entry) H.getRoot().getElem();
    }
 
-   //½«¶ÔÏóobjÓë¹Ø¼üÂëkºÏ³ÉÒ»¸öÌõÄ¿£¬½«Æä²åÈëQÖĞ£¬²¢·µ»Ø¸ÃÌõÄ¿
+   //å°†å¯¹è±¡objä¸å…³é”®ç kåˆæˆä¸€ä¸ªæ¡ç›®ï¼Œå°†å…¶æ’å…¥Qä¸­ï¼Œå¹¶è¿”å›è¯¥æ¡ç›®
    public Entry insert(Object key, Object obj) throws ExceptionKeyInvalid  {
       checkKey(key);
       Entry entry = new EntryDefault(key, obj);
@@ -61,63 +61,63 @@ public class PQueue_Heap implements PQueue {
       return entry;
    }
 
-   //ÈôQ·Ç¿Õ£¬Ôò´ÓÆäÖĞÕª³ı¹Ø¼üÂë×îĞ¡µÄÌõÄ¿£¬²¢·µ»Ø¸ÃÌõÄ¿£»·ñÔò£¬±¨´í
+   //è‹¥Qéç©ºï¼Œåˆ™ä»å…¶ä¸­æ‘˜é™¤å…³é”®ç æœ€å°çš„æ¡ç›®ï¼Œå¹¶è¿”å›è¯¥æ¡ç›®ï¼›å¦åˆ™ï¼ŒæŠ¥é”™
    public Entry delMin() throws ExceptionPQueueEmpty  {
-      if (isEmpty()) throw new ExceptionPQueueEmpty("ÒâÍâ£ºÓÅÏÈ¶ÓÁĞÎª¿Õ");
-      Entry min = (Entry)H.getRoot().getElem();//±£Áô¶Ñ¶¥
-      if (1 == getSize())//ÈôÖ»Ê£ÏÂ×îºóÒ»¸öÌõÄ¿
-         H.delLast();//Ö±½ÓÕª³ıÖ®
-      else {//·ñÔò
+      if (isEmpty()) throw new ExceptionPQueueEmpty("æ„å¤–ï¼šä¼˜å…ˆé˜Ÿåˆ—ä¸ºç©º");
+      Entry min = (Entry)H.getRoot().getElem();//ä¿ç•™å †é¡¶
+      if (1 == getSize())//è‹¥åªå‰©ä¸‹æœ€åä¸€ä¸ªæ¡ç›®
+         H.delLast();//ç›´æ¥æ‘˜é™¤ä¹‹
+      else {//å¦åˆ™
          H.getRoot().setElem(((ComplBinTreeNode_Rank)H.delLast()).getElem());
-         //È¡³ö×îºóÒ»¸öÌõÄ¿£¬Ö²Èë¶Ñ¶¥
+         //å–å‡ºæœ€åä¸€ä¸ªæ¡ç›®ï¼Œæ¤å…¥å †é¡¶
          percolateDown(H.getRoot());
       }
-      return min;//·µ»ØÔ­¶Ñ¶¥
+      return min;//è¿”å›åŸå †é¡¶
    }
 
-   /*-------- ¸¨Öú·½·¨ --------*/
-   //¼ì²é¹Ø¼üÂëµÄ¿É±È½ÏĞÔ
+   /*-------- è¾…åŠ©æ–¹æ³• --------*/
+   //æ£€æŸ¥å…³é”®ç çš„å¯æ¯”è¾ƒæ€§
    protected void checkKey(Object key) throws ExceptionKeyInvalid {
       try {
          comp.compare(key, key);
       } catch (Exception e) {
-         throw new ExceptionKeyInvalid("ÎŞ·¨±È½Ï¹Ø¼üÂë");
+         throw new ExceptionKeyInvalid("æ— æ³•æ¯”è¾ƒå…³é”®ç ");
       }
    }
 
-   //·µ»Ø½Úµãv£¨ÖĞËù´æÌõÄ¿£©µÄ¹Ø¼üÂë
+   //è¿”å›èŠ‚ç‚¹vï¼ˆä¸­æ‰€å­˜æ¡ç›®ï¼‰çš„å…³é”®ç 
    protected Object key(BinTreePosition v) {
       return ((Entry)(v.getElem())).getKey();
    }
 
-   /*-------- Ëã·¨·½·¨ --------*/
-   //½»»»¸¸×Ó½Úµã£¨ÖĞËù´æ·ÅµÄÄÚÈİ£©
+   /*-------- ç®—æ³•æ–¹æ³• --------*/
+   //äº¤æ¢çˆ¶å­èŠ‚ç‚¹ï¼ˆä¸­æ‰€å­˜æ”¾çš„å†…å®¹ï¼‰
    protected void swapParentChild(BinTreePosition u, BinTreePosition v) {
       Object temp = u.getElem();
       u.setElem(v.getElem());
       v.setElem(temp);
    }
 
-   //ÉÏÂËËã·¨
+   //ä¸Šæ»¤ç®—æ³•
    protected void percolateUp(BinTreePosition v) {
-      BinTreePosition root = H.getRoot();//¼ÇÂ¼¸ù½Úµã
-      while (v != H.getRoot()) {//²»¶ÏµØ
-         BinTreePosition p = v.getParent();//È¡µ±Ç°½ÚµãµÄ¸¸Ç×
-         if (0 >= comp.compare(key(p), key(v))) break;//³ı·Ç¸¸Ç×±Èº¢×ÓĞ¡
-         swapParentChild(p, v);//·ñÔò£¬½»»»¸¸×Ó´ÎĞò
-         v = p;//¼ÌĞø¿¼²ìĞÂµÄ¸¸½Úµã£¨¼´Ô­ÏÈµÄº¢×Ó£©
+      BinTreePosition root = H.getRoot();//è®°å½•æ ¹èŠ‚ç‚¹
+      while (v != H.getRoot()) {//ä¸æ–­åœ°
+         BinTreePosition p = v.getParent();//å–å½“å‰èŠ‚ç‚¹çš„çˆ¶äº²
+         if (0 >= comp.compare(key(p), key(v))) break;//é™¤éçˆ¶äº²æ¯”å­©å­å°
+         swapParentChild(p, v);//å¦åˆ™ï¼Œäº¤æ¢çˆ¶å­æ¬¡åº
+         v = p;//ç»§ç»­è€ƒå¯Ÿæ–°çš„çˆ¶èŠ‚ç‚¹ï¼ˆå³åŸå…ˆçš„å­©å­ï¼‰
       }
    }
 
-   //ÏÂÂËËã·¨
+   //ä¸‹æ»¤ç®—æ³•
    protected void percolateDown(BinTreePosition v) {
-      while (v.hasLChild()) {//Ö±µ½v³ÉÎªÒ¶×Ó
-         BinTreePosition smallerChild = v.getLChild();//Ê×ÏÈ¼ÙÉè×óº¢×ÓµÄ£¨¹Ø¼üÂë£©¸üĞ¡
+      while (v.hasLChild()) {//ç›´åˆ°væˆä¸ºå¶å­
+         BinTreePosition smallerChild = v.getLChild();//é¦–å…ˆå‡è®¾å·¦å­©å­çš„ï¼ˆå…³é”®ç ï¼‰æ›´å°
          if (v.hasRChild() && 0 < comp.compare(key(v.getLChild()), key(v.getRChild())))
-            smallerChild = v.getRChild();//ÈôÓÒº¢×Ó´æÔÚÇÒ¸üĞ¡£¬Ôò½«ÓÒº¢×Ó×÷Îª½øÒ»²½±È½ÏµÄ¶ÔÏó
-         if (0 <= comp.compare(key(smallerChild), key(v))) break;//ÈôÁ½¸öº¢×Ó¶¼²»±Èv¸üĞ¡£¬ÔòÏÂÂËÍê³É
-         swapParentChild(v, smallerChild);//·ñÔò£¬½«ÆäÓë¸üĞ¡µÄº¢×Ó½»»»
-         v = smallerChild;//²¢¼ÌĞø¿¼²ìÕâ¸öº¢×Ó
+            smallerChild = v.getRChild();//è‹¥å³å­©å­å­˜åœ¨ä¸”æ›´å°ï¼Œåˆ™å°†å³å­©å­ä½œä¸ºè¿›ä¸€æ­¥æ¯”è¾ƒçš„å¯¹è±¡
+         if (0 <= comp.compare(key(smallerChild), key(v))) break;//è‹¥ä¸¤ä¸ªå­©å­éƒ½ä¸æ¯”væ›´å°ï¼Œåˆ™ä¸‹æ»¤å®Œæˆ
+         swapParentChild(v, smallerChild);//å¦åˆ™ï¼Œå°†å…¶ä¸æ›´å°çš„å­©å­äº¤æ¢
+         v = smallerChild;//å¹¶ç»§ç»­è€ƒå¯Ÿè¿™ä¸ªå­©å­
       }
    }
 }

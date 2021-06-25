@@ -7,33 +7,33 @@
  ******************************************************************************************/
 
 /*
- * ¶ş²æÊ÷½Ó¿Ú
+ * äºŒå‰æ ‘æ¥å£
  */
 
 package dsa;
 
 public interface BinTree {
-   //·µ»ØÊ÷¸ù
+   //è¿”å›æ ‘æ ¹
    public BinTreePosition getRoot();
 
-   //ÅĞ¶ÏÊÇ·ñÊ÷¿Õ
+   //åˆ¤æ–­æ˜¯å¦æ ‘ç©º
    public boolean isEmpty();
 
-   //·µ»ØÊ÷µÄ¹æÄ££¨¼´Ê÷¸ùµÄºó´úÊıÄ¿£©
+   //è¿”å›æ ‘çš„è§„æ¨¡ï¼ˆå³æ ‘æ ¹çš„åä»£æ•°ç›®ï¼‰
    public int getSize();
 
-   //·µ»ØÊ÷£¨¸ù£©µÄ¸ß¶È
+   //è¿”å›æ ‘ï¼ˆæ ¹ï¼‰çš„é«˜åº¦
    public int getHeight();
 
-   //Ç°Ğò±éÀú
+   //å‰åºéå†
    public Iterator elementsPreorder();
 
-   //ÖĞĞò±éÀú
+   //ä¸­åºéå†
    public Iterator elementsInorder();
 
-   //ºóĞò±éÀú
+   //ååºéå†
    public Iterator elementsPostorder();
 
-   //²ã´Î±éÀú
+   //å±‚æ¬¡éå†
    public Iterator elementsLevelorder();
 }

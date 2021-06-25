@@ -7,65 +7,65 @@
  ******************************************************************************************/
 
 /*
- * »ùÓÚÁÚ½Ó±ß±íÊµÏÖÍ¼½á¹¹
+ * åŸºäºé‚»æ¥è¾¹è¡¨å®ç°å›¾ç»“æ„
  */
 
 package dsa;
 
 public class Graph_List implements Graph {
-   //±äÁ¿
-   protected List E;//ÈİÆ÷£º´æ·ÅÍ¼ÖĞËùÓĞ±ß
-   protected List V;//ÈİÆ÷£º´æ·ÅÍ¼ÖĞËùÓĞ¶¥µã
+   //å˜é‡
+   protected List E;//å®¹å™¨ï¼šå­˜æ”¾å›¾ä¸­æ‰€æœ‰è¾¹
+   protected List V;//å®¹å™¨ï¼šå­˜æ”¾å›¾ä¸­æ‰€æœ‰é¡¶ç‚¹
 
-   //¹¹Ôì·½·¨
+   //æ„é€ æ–¹æ³•
    public Graph_List() { E = new List_DLNode(); V = new List_DLNode(); }
 
-   //È¡Í¼µÄ±ß±í¡¢¶¥µã±í
+   //å–å›¾çš„è¾¹è¡¨ã€é¡¶ç‚¹è¡¨
    protected List getE() { return E; }
    protected List getV() { return V; }
 
-   //È¡Í¼ÖĞ¶¥µã¡¢±ßµÄÊıÄ¿
+   //å–å›¾ä¸­é¡¶ç‚¹ã€è¾¹çš„æ•°ç›®
    public int vNumber() { return V.getSize(); }
    public int eNumber() { return E.getSize(); }
 
-   //È¡Í¼ÖĞËùÓĞ¶¥µã¡¢¶¥µãÎ»ÖÃµÄµü´úÆ÷
+   //å–å›¾ä¸­æ‰€æœ‰é¡¶ç‚¹ã€é¡¶ç‚¹ä½ç½®çš„è¿­ä»£å™¨
    public Iterator vertices() { return V.elements(); }
    public Iterator vPositions() { return V.positions(); }
 
-   //·µ»ØÍ¼ÖĞËùÓĞ±ß¡¢±ßÎ»ÖÃµÄµü´úÆ÷
+   //è¿”å›å›¾ä¸­æ‰€æœ‰è¾¹ã€è¾¹ä½ç½®çš„è¿­ä»£å™¨
    public Iterator edges() { return E.elements(); }
    public Iterator ePositions() { return E.positions(); }
 
-   //¼ì²âÊÇ·ñÓĞÄ³Ìõ±ß´Ó¶¥µãuÖ¸Ïòv
+   //æ£€æµ‹æ˜¯å¦æœ‰æŸæ¡è¾¹ä»é¡¶ç‚¹uæŒ‡å‘v
    public boolean areAdjacent(Vertex u, Vertex v)
    { return (null != edgeFromTo(u, v)); }
-   //È¡´Ó¶¥µãuÖ¸ÏòvµÄ±ß£¬Èô²»´æÔÚ£¬Ôò·µ»Ønull
+   //å–ä»é¡¶ç‚¹uæŒ‡å‘vçš„è¾¹ï¼Œè‹¥ä¸å­˜åœ¨ï¼Œåˆ™è¿”å›null
    public Edge edgeFromTo(Vertex u, Vertex v) {
-      for (Iterator it = u.outEdges(); it.hasNext();) {//ÖğÒ»¼ì²é
-         Edge e = (Edge)it.getNext();//ÒÔuÎªÎ²µÄÃ¿Ò»Ìõ±ße
-         if (v == e.getVPosInV(1).getElem())//ÈôeÊÇ(u, v)£¬Ôò
-            return e;//·µ»Ø¸Ã±ß
+      for (Iterator it = u.outEdges(); it.hasNext();) {//é€ä¸€æ£€æŸ¥
+         Edge e = (Edge)it.getNext();//ä»¥uä¸ºå°¾çš„æ¯ä¸€æ¡è¾¹e
+         if (v == e.getVPosInV(1).getElem())//è‹¥eæ˜¯(u, v)ï¼Œåˆ™
+            return e;//è¿”å›è¯¥è¾¹
       }
-      return null;//Èô²»´æÔÚÕâÑùµÄ(u, v)£¬Ôò·µ»Ønull
+      return null;//è‹¥ä¸å­˜åœ¨è¿™æ ·çš„(u, v)ï¼Œåˆ™è¿”å›null
    }
 
-   //½«¶¥µãv´Ó¶¥µã¼¯ÖĞÉ¾³ı£¬²¢·µ»ØÖ®
+   //å°†é¡¶ç‚¹vä»é¡¶ç‚¹é›†ä¸­åˆ é™¤ï¼Œå¹¶è¿”å›ä¹‹
    public Vertex remove(Vertex v) {
-      while (0 < v.outDeg())//½«ÒÔvÎªÎ²µÄËùÓĞ±ß
-         remove((Edge)(((Vertex_List)v).outEdges.first()).getElem());//ÖğÒ»É¾³ı
-      while (0 < v.inDeg())//½«ÒÔvÎªÍ·µÄËùÓĞ±ß
-         remove((Edge)(((Vertex_List)v).inEdges.first()).getElem());//ÖğÒ»É¾³ı
-      return (Vertex)V.remove(v.getVPosInV());//ÔÚ¶¥µã±íÖĞÉ¾³ıv
+      while (0 < v.outDeg())//å°†ä»¥vä¸ºå°¾çš„æ‰€æœ‰è¾¹
+         remove((Edge)(((Vertex_List)v).outEdges.first()).getElem());//é€ä¸€åˆ é™¤
+      while (0 < v.inDeg())//å°†ä»¥vä¸ºå¤´çš„æ‰€æœ‰è¾¹
+         remove((Edge)(((Vertex_List)v).inEdges.first()).getElem());//é€ä¸€åˆ é™¤
+      return (Vertex)V.remove(v.getVPosInV());//åœ¨é¡¶ç‚¹è¡¨ä¸­åˆ é™¤v
    }
-   //½«±ße´Ó±ß¼¯ÖĞÉ¾³ı£¬²¢·µ»ØÖ®
+   //å°†è¾¹eä»è¾¹é›†ä¸­åˆ é™¤ï¼Œå¹¶è¿”å›ä¹‹
    public Edge remove(Edge e) {
-      ((Vertex_List)e.getVPosInV(0).getElem()).outEdges.remove(e.getEPosInI(0));//´ÓÆğµãµÄ³ö±ß±íÖĞÉ¾³ıe
-      ((Vertex_List)e.getVPosInV(1).getElem()).inEdges.remove(e.getEPosInI(1));//´ÓÖÕµãµÄÈë±ß±íÖĞÉ¾³ıe
-      return (Edge)E.remove(e.getEPosInE());//´Ó±ß±íÖĞÉ¾³ıe
+      ((Vertex_List)e.getVPosInV(0).getElem()).outEdges.remove(e.getEPosInI(0));//ä»èµ·ç‚¹çš„å‡ºè¾¹è¡¨ä¸­åˆ é™¤e
+      ((Vertex_List)e.getVPosInV(1).getElem()).inEdges.remove(e.getEPosInI(1));//ä»ç»ˆç‚¹çš„å…¥è¾¹è¡¨ä¸­åˆ é™¤e
+      return (Edge)E.remove(e.getEPosInE());//ä»è¾¹è¡¨ä¸­åˆ é™¤e
    }
 
-   //ÔÚ¶¥µã¼¯VÖĞ²åÈëĞÂ¶¥µãv£¬²¢·µ»ØÆäÎ»ÖÃ
+   //åœ¨é¡¶ç‚¹é›†Vä¸­æ’å…¥æ–°é¡¶ç‚¹vï¼Œå¹¶è¿”å›å…¶ä½ç½®
    public Position insert(Vertex v) { return V.insertLast(v); }
-   //ÔÚ±ß¼¯EÖĞ²åÈëĞÂ±ße£¬²¢·µ»ØÆäÎ»ÖÃ
+   //åœ¨è¾¹é›†Eä¸­æ’å…¥æ–°è¾¹eï¼Œå¹¶è¿”å›å…¶ä½ç½®
    public Position insert(Edge e) { return E.insertLast(e); }
 }

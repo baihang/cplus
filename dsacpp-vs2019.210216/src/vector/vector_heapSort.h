@@ -10,7 +10,7 @@
 
 template <typename T> void Vector<T>::heapSort ( Rank lo, Rank hi ) { //0 <= lo < hi <= size
    /*DSA*/ //printf ( "\tHEAPsort [%3d, %3d)\n", lo, hi );
-   T* A = _elem + lo; Rank n = hi - lo; heapify( A, n ); //½«´ýÅÅÐòÇø¼ä½¨³ÉÒ»¸öÍêÈ«¶þ²æ¶Ñ£¬O(n)
-   while ( 0 < --n ) //·´¸´µØÕª³ý×î´óÔª²¢¹éÈëÒÑÅÅÐòµÄºó×º£¬Ö±ÖÁ¶Ñ¿Õ
-      { swap( A[0], A[n] ); percolateDown( A, n, 0 ); } //¶Ñ¶¥ÓëÄ©ÔªËØ¶Ô»»£¬ÔÙÏÂÂË
+   T* A = _elem + lo; Rank n = hi - lo; heapify( A, n ); //å°†å¾…æŽ’åºåŒºé—´å»ºæˆä¸€ä¸ªå®Œå…¨äºŒå‰å †ï¼ŒO(n)
+   while ( 0 < --n ) //åå¤åœ°æ‘˜é™¤æœ€å¤§å…ƒå¹¶å½’å…¥å·²æŽ’åºçš„åŽç¼€ï¼Œç›´è‡³å †ç©º
+      { swap( A[0], A[n] ); percolateDown( A, n, 0 ); } //å †é¡¶ä¸Žæœ«å…ƒç´ å¯¹æ¢ï¼Œå†ä¸‹æ»¤
 }

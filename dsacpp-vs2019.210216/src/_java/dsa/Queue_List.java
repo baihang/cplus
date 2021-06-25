@@ -7,58 +7,58 @@
  ******************************************************************************************/
 
 /*
- * »ùÓÚµ¥Á´±íÊµÏÖ¶ÓÁĞ½á¹¹
+ * åŸºäºå•é“¾è¡¨å®ç°é˜Ÿåˆ—ç»“æ„
  */
 
 package dsa;
 
 public class Queue_List implements Queue {
-   protected Node head;//Ö¸Ïò±íÊ×ÔªËØ
-   protected Node tail;//Ö¸Ïò±íÄ©ÔªËØ
-   protected int size;//¶ÓÁĞÖĞÔªËØµÄÊıÄ¿
+   protected Node head;//æŒ‡å‘è¡¨é¦–å…ƒç´ 
+   protected Node tail;//æŒ‡å‘è¡¨æœ«å…ƒç´ 
+   protected int size;//é˜Ÿåˆ—ä¸­å…ƒç´ çš„æ•°ç›®
 
-   //¹¹Ôì·½·¨£¨¿Õ¶ÓÁĞ£©
+   //æ„é€ æ–¹æ³•ï¼ˆç©ºé˜Ÿåˆ—ï¼‰
    public Queue_List()
    {  head = tail = null;  size = 0; }
 
-   //²éÑ¯µ±Ç°¶ÓÁĞµÄ¹æÄ£
+   //æŸ¥è¯¢å½“å‰é˜Ÿåˆ—çš„è§„æ¨¡
    public int getSize()
    {  return size; }
 
-   //ÅĞ¶Ï¶ÓÁĞÊÇ·ñÎª¿Õ
+   //åˆ¤æ–­é˜Ÿåˆ—æ˜¯å¦ä¸ºç©º
    public boolean isEmpty()
    {  return (0 == size) ? true : false; }
 
-   //Èë¶Ó
+   //å…¥é˜Ÿ
    public void enqueue(Object obj) {
       Node node = new Node();
       node.setElem(obj);
-      node.setNext(null);//ĞÂ½Úµã×÷ÎªÄ©½Úµã²åÈë
-      if (0 == size) head = node;//Èô´ËÇ°¶ÓÁĞÎª¿Õ£¬ÔòÖ±½Ó²åÈë
-      else                 tail.setNext(node);//·ñÔò£¬½«ĞÂ½Úµã½ÓÖÁ¶ÓÁĞÄ©¶Ë
-      tail = node;//¸üĞÂÖ¸ÏòÄ©½ÚµãÒıÓÃ
-      size++;//¸üĞÂ¹æÄ£
+      node.setNext(null);//æ–°èŠ‚ç‚¹ä½œä¸ºæœ«èŠ‚ç‚¹æ’å…¥
+      if (0 == size) head = node;//è‹¥æ­¤å‰é˜Ÿåˆ—ä¸ºç©ºï¼Œåˆ™ç›´æ¥æ’å…¥
+      else                 tail.setNext(node);//å¦åˆ™ï¼Œå°†æ–°èŠ‚ç‚¹æ¥è‡³é˜Ÿåˆ—æœ«ç«¯
+      tail = node;//æ›´æ–°æŒ‡å‘æœ«èŠ‚ç‚¹å¼•ç”¨
+      size++;//æ›´æ–°è§„æ¨¡
    }
 
-   //³ö¶Ó
+   //å‡ºé˜Ÿ
    public Object dequeue() throws ExceptionQueueEmpty {
       if (0 == size)
-         throw new ExceptionQueueEmpty("ÒâÍâ£º¶ÓÁĞ¿Õ");
+         throw new ExceptionQueueEmpty("æ„å¤–ï¼šé˜Ÿåˆ—ç©º");
       Object obj = head.getElem();
       head = head.getNext();
       size--;
-      if (0 == size) tail = null;//Èô¶ÓÁĞÒÑ¿Õ£¬Ğë½«Ä©½ÚµãÒıÓÃÖÃ¿Õ
+      if (0 == size) tail = null;//è‹¥é˜Ÿåˆ—å·²ç©ºï¼Œé¡»å°†æœ«èŠ‚ç‚¹å¼•ç”¨ç½®ç©º
       return obj;
    }
 
-   //È¡£¨²¢²»É¾³ı£©¶ÓÊ×ÔªËØ
+   //å–ï¼ˆå¹¶ä¸åˆ é™¤ï¼‰é˜Ÿé¦–å…ƒç´ 
    public Object front() throws ExceptionQueueEmpty {
       if (isEmpty())
-         throw new ExceptionQueueEmpty("ÒâÍâ£º¶ÓÁĞ¿Õ");
+         throw new ExceptionQueueEmpty("æ„å¤–ï¼šé˜Ÿåˆ—ç©º");
       return head.getElem();
    }
 
-   //±éÀú£¨²»ÊôÓÚADT£©
+   //éå†ï¼ˆä¸å±äºADTï¼‰
    public void Traversal() {
       Node  p = head;
       while (null != p) {

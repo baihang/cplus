@@ -7,15 +7,15 @@
  ******************************************************************************************/
 
 /*
- * Õ»½Ó¿Ú
+ * æ ˆæ¥å£
  */
 
 package dsa;
 
 public interface Stack {
-   public int getSize();//·µ»ØÕ»ÖĞÔªËØÊıÄ¿
-   public boolean isEmpty();//ÅĞ¶ÏÕ»ÊÇ·ñÎª¿Õ
-   public Object top() throws ExceptionStackEmpty;//È¡Õ»¶¥ÔªËØ£¨µ«²»É¾³ı£©
-   public void push (Object ele);//ÈëÕ»
-   public Object pop() throws ExceptionStackEmpty;//³öÕ»
+   public int getSize();//è¿”å›æ ˆä¸­å…ƒç´ æ•°ç›®
+   public boolean isEmpty();//åˆ¤æ–­æ ˆæ˜¯å¦ä¸ºç©º
+   public Object top() throws ExceptionStackEmpty;//å–æ ˆé¡¶å…ƒç´ ï¼ˆä½†ä¸åˆ é™¤ï¼‰
+   public void push (Object ele);//å…¥æ ˆ
+   public Object pop() throws ExceptionStackEmpty;//å‡ºæ ˆ
 }

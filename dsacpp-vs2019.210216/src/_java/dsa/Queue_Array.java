@@ -7,35 +7,35 @@
  ******************************************************************************************/
 
 /*
- * ½èÖú¶¨³¤Ñ­»·Êı×éÊµÏÖQueue½Ó¿Ú
+ * å€ŸåŠ©å®šé•¿å¾ªç¯æ•°ç»„å®ç°Queueæ¥å£
  */
 
 package dsa;
 
 public class Queue_Array implements Queue {
-   public static final int CAPACITY = 1000;//Êı×éµÄÄ¬ÈÏÈİÁ¿
-   protected int capacity;//Êı×éµÄÊµ¼ÊÈİÁ¿
-   protected Object[] Q;//¶ÔÏóÊı×é
-   protected int f = 0;//¶ÓÊ×ÔªËØµÄÎ»ÖÃ
-   protected int r = 0; //¶ÓÎ²ÔªËØµÄÎ»ÖÃ
+   public static final int CAPACITY = 1000;//æ•°ç»„çš„é»˜è®¤å®¹é‡
+   protected int capacity;//æ•°ç»„çš„å®é™…å®¹é‡
+   protected Object[] Q;//å¯¹è±¡æ•°ç»„
+   protected int f = 0;//é˜Ÿé¦–å…ƒç´ çš„ä½ç½®
+   protected int r = 0; //é˜Ÿå°¾å…ƒç´ çš„ä½ç½®
 
-   //¹¹Ôì·½·¨£¨¿Õ¶ÓÁĞ£©
+   //æ„é€ æ–¹æ³•ï¼ˆç©ºé˜Ÿåˆ—ï¼‰
    public Queue_Array()
    {  this(CAPACITY);   }
 
-   //°´Ö¸¶¨ÈİÁ¿´´½¨¶ÔÏó
+   //æŒ‰æŒ‡å®šå®¹é‡åˆ›å»ºå¯¹è±¡
    public Queue_Array(int cap)
    {  capacity = cap;   Q = new Object[capacity];  }
 
-   //²éÑ¯µ±Ç°¶ÓÁĞµÄ¹æÄ£
+   //æŸ¥è¯¢å½“å‰é˜Ÿåˆ—çš„è§„æ¨¡
    public int getSize()
    {  return (capacity - f + r) % capacity;   }
 
-   //ÅĞ¶Ï¶ÓÁĞÊÇ·ñÎª¿Õ
+   //åˆ¤æ–­é˜Ÿåˆ—æ˜¯å¦ä¸ºç©º
    public boolean isEmpty()
    {  return (f == r);  }
 
-   //Èë¶Ó
+   //å…¥é˜Ÿ
    public void enqueue(Object obj) throws ExceptionQueueFull {
       if (getSize() == capacity - 1)
          throw new ExceptionQueueFull("Queue overflow.");
@@ -43,25 +43,25 @@ public class Queue_Array implements Queue {
       r = (r + 1) % capacity;
    }
 
-   //³ö¶Ó
+   //å‡ºé˜Ÿ
    public Object dequeue() {
       Object elem;
       if (isEmpty())
-         throw new ExceptionQueueEmpty("ÒâÍâ£º¶ÓÁĞ¿Õ");
+         throw new ExceptionQueueEmpty("æ„å¤–ï¼šé˜Ÿåˆ—ç©º");
       elem = Q[f];
       Q[f] = null;
       f = (f + 1) % capacity;
       return elem;
    }
 
-   //È¡£¨²¢²»É¾³ı£©¶ÓÊ×ÔªËØ
+   //å–ï¼ˆå¹¶ä¸åˆ é™¤ï¼‰é˜Ÿé¦–å…ƒç´ 
    public Object front() throws ExceptionQueueEmpty {
       if (isEmpty())
-         throw new ExceptionQueueEmpty("ÒâÍâ£º¶ÓÁĞ¿Õ");
+         throw new ExceptionQueueEmpty("æ„å¤–ï¼šé˜Ÿåˆ—ç©º");
       return Q[f];
    }
 
-   //±éÀú£¨²»ÊôÓÚADT£©
+   //éå†ï¼ˆä¸å±äºADTï¼‰
    public void Traversal() {
       for (int i = f; i < r; i++)
          System.out.print(Q[i] + " ");

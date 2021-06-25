@@ -7,24 +7,24 @@
  ******************************************************************************************/
 
 /*
- * ���ȶ��нӿ�
+ * 优先队列接口
  */
 
 package dsa;
 
 public interface PQueue {
-   //ͳ�����ȶ��еĹ�ģ
+   //统计优先队列的规模
    public int getSize();
 
-   //�ж����ȶ����Ƿ�Ϊ��
+   //判断优先队列是否为空
    public boolean isEmpty();
 
-   //��Q�ǿգ��򷵻����е���С��Ŀ������ɾ����;���򣬱���
+   //若Q非空，则返回其中的最小条目（并不删除）;否则，报错
    public Entry getMin() throws ExceptionPQueueEmpty;
 
-   //������obj��ؼ���k�ϳ�һ����Ŀ���������Q�У������ظ���Ŀ
+   //将对象obj与关键码k合成一个条目，将其插入Q中，并返回该条目
    public Entry insert(Object key, Object obj) throws ExceptionKeyInvalid;
 
-   //��Q�ǿգ��������ժ���ؼ�����С����Ŀ�������ظ���Ŀ�����򣬱���
+   //若Q非空，则从其中摘除关键码最小的条目，并返回该条目；否则，报错
    public Entry delMin() throws ExceptionPQueueEmpty;
 }
