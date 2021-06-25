@@ -4,4 +4,8 @@ public class TestClass {
     public void inc(){
         
     }
+
+    public static void main(String[] args) {
+        
+    }
 }

@@ -14,15 +14,17 @@ class CompareSlppeWait {
 
     public static void main(String[] args) {
 
-        LockException exThread = new LockException("ex");
-        exThread.start();
+        testVolatile();
 
-        SleepThread sleepThread = new SleepThread("sleep");
-        sleepThread.start();
-        WaitThread waitThread = new WaitThread("wait");
-        waitThread.start();
-        ReentrainThread reentrainThread = new ReentrainThread("reentrain");
-        reentrainThread.start();
+        // LockException exThread = new LockException("ex");
+        // exThread.start();
+
+        // SleepThread sleepThread = new SleepThread("sleep");
+        // sleepThread.start();
+        // WaitThread waitThread = new WaitThread("wait");
+        // waitThread.start();
+        // ReentrainThread reentrainThread = new ReentrainThread("reentrain");
+        // reentrainThread.start();
     }
 
     private static class SleepThread extends Thread {
@@ -158,4 +160,28 @@ class CompareSlppeWait {
         }
     }
 
+
+    public static volatile int num = 1;
+    /**
+     * 最后结果值小于200000，说明volatile无法保证线程安全，因为 ++ 指令由四条
+     * 字节码完成，volatile只能保证读取到的值为最新的，但是后续指令执行的时候值可能
+     * 被其他线程更改导致后续操作使用的值为旧值。
+     */
+    private static void testVolatile(){
+        int count = 20;
+        for(int i = 0; i< count; i++){
+            new Thread(){
+                public void run() {
+                    for(int j = 0; j < 10000; j++){
+                        num++;
+
+                    }
+                };
+            }.start();
+        }
+        while(Thread.activeCount() > 1){
+            Thread.yield();
+        }
+        System.out.println("num = " + num);
+    }
 }

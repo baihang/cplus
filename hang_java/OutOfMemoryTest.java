@@ -1,16 +1,23 @@
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
+import sun.misc.Unsafe;
 
 
 public class OutOfMemoryTest {
     
+    static TestFinalizeEscape escape = new TestFinalizeEscape();
 
     public static void main(String[] args) {
         System.out.println("OutOfMemoryTest");
         // testHeap();
         // testStack();
-        testLocalMethod();
+        // testLocalMethod();
+        // testDirectMemory();
+        
+        testFinalize();
+        testFinalize();
     }
 
     /**
@@ -65,6 +72,38 @@ public class OutOfMemoryTest {
         }
     }
 
+    /**
+     * 测试方法区溢出
+     * 使用CGLib动态生成大量的类，方法区载入类时内存不足会溢出
+     * 
+     */
+    public static void testMethodArea(){
+// Enhancer
+    }
+
+    /**
+     * 测试直接内存溢出
+     * 使用UNsafe分配直接内存
+     * 
+     *  如何查看直接内存？
+     * 
+     * -Xmx 20M -XX:MaxDirectMemorySize=10M
+     */
+    public static void testDirectMemory(){
+        Field field =  sun.misc.Unsafe.class.getDeclaredFields()[0];
+        System.out.println(field.getName());
+        field.setAccessible(true);
+        try{
+            sun.misc.Unsafe unsafe = (Unsafe) field.get(null);
+            while(true){
+                unsafe.allocateMemory(1024 * 1024);//1MB
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+    }
+
     static class StackClass{
         private int stackLength = 1;
 
@@ -76,4 +115,39 @@ public class OutOfMemoryTest {
 
 
     static class OomObject{}
+
+
+    /**
+     * 对象被回收之前会有一次使用finalize自救的机会，但是最多调用一次
+     * 
+     */
+    public static void testFinalize(){
+        escape = null;
+        System.gc();
+        try {
+            //finalizer优先级低，等待它执行完
+            Thread.sleep(2000);            
+        } catch (Exception e) {
+            //TODO: handle exception
+        }
+        if(escape != null){
+            escape.isAlive();
+        }else{
+            System.out.println("escape is dead");
+        }
+    }
+
+    public static class TestFinalizeEscape{
+        public void isAlive(){
+            System.out.println("is alive");
+        }
+
+
+        @Override
+        protected void finalize() throws Throwable {
+            System.out.println("finalize invoke");
+            super.finalize();
+            escape = this;
+        }
+    }
 }
