@@ -7,12 +7,12 @@
  ******************************************************************************************/
 
 /*
- * 迭代器ADT接口
+ * 杩唬鍣ˋDT鎺ュ彛
  */
 
 package dsa;
 
 public interface Iterator {
-   boolean  hasNext();//检查迭代器中是否还有剩余的元素
-   Object   getNext();//返回迭代器中的下一元素
+   boolean  hasNext();//妫�鏌ヨ凯浠ｅ櫒涓槸鍚﹁繕鏈夊墿浣欑殑鍏冪礌
+   Object   getNext();//杩斿洖杩唬鍣ㄤ腑鐨勪笅涓�鍏冪礌
 }

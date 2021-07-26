@@ -8,10 +8,10 @@
 
 #pragma once
 
-template <typename T> BinNodePosi<T> & BST<T>::search ( const T & e ) { //��BST�в��ҹؼ���e
-   if ( !_root || e == _root->data ) { _hot = NULL; return _root; } //������v������
-   for ( _hot = _root; ; ) { //�����Զ�����
-      BinNodePosi<T> & c = ( e < _hot->data ) ? _hot->lc : _hot->rc; //ȷ������
-      if ( !c || e == c->data ) return c; _hot = c; //���з��أ���������һ��
-   } //�������л�ʧ�ܣ�hot��ָ��v֮���ף�v�Ǹ�ʱ��hotΪNULL��
-} //����Ŀ��ڵ�λ�õ����ã��Ա�������롢ɾ������
+template <typename T> BinNodePosi<T> & BST<T>::search ( const T & e ) { //在BST中查找关键码e
+   if ( !_root || e == _root->data ) { _hot = NULL; return _root; } //在树根v处命中
+   for ( _hot = _root; ; ) { //否则，自顶而下
+      BinNodePosi<T> & c = ( e < _hot->data ) ? _hot->lc : _hot->rc; //确定方向
+      if ( !c || e == c->data ) return c; _hot = c; //命中返回，或者深入一层
+   } //无论命中或失败，hot均指向v之父亲（v是根时，hot为NULL）
+} //返回目标节点位置的引用，以便后续插入、删除操作

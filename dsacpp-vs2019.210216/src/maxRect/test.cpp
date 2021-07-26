@@ -2,27 +2,27 @@
 #include <ctime>
 #include <cstdio>
 
-__int64 mr_STACK ( int H[], int n, int& r, int& s, int& t ); //½èÖúÒ»¸öÕ»£ºO(n)
-__int64 mr_STACKS( int H[], int n, int& r, int& s, int& t ); //½èÖúÁ½¸öÕ»£ºO(n)
-__int64 mr_BRUTE ( int H[], int n, int& r, int& s, int& t ); //ÂùÁ¦£ºO(n^2)
+__int64 mr_STACK ( int H[], int n, int& r, int& s, int& t ); //å€ŸåŠ©ä¸€ä¸ªæ ˆï¼šO(n)
+__int64 mr_STACKS( int H[], int n, int& r, int& s, int& t ); //å€ŸåŠ©ä¸¤ä¸ªæ ˆï¼šO(n)
+__int64 mr_BRUTE ( int H[], int n, int& r, int& s, int& t ); //è›®åŠ›ï¼šO(n^2)
 
 /******************************************************************************************
- * Ö±·½Í¼ÖĞµÄ×î´ó¾ØĞÎ
+ * ç›´æ–¹å›¾ä¸­çš„æœ€å¤§çŸ©å½¢
  ******************************************************************************************/
 int main ( int argc, char* argv[] ) {
-   int* H; int n; //¿í¶ÈÎªnµÄÖ±·½Í¼
-   if ( 1 < argc ) { //ÃüÁîĞĞÖ¸¶¨£¬±ÈÈç£º77 4 120 16 96 59 0 15 123 8 79 73 57 96 84 101 26 12 88 81 111 18 87 117 46 90 94 70 125
+   int* H; int n; //å®½åº¦ä¸ºnçš„ç›´æ–¹å›¾
+   if ( 1 < argc ) { //å‘½ä»¤è¡ŒæŒ‡å®šï¼Œæ¯”å¦‚ï¼š77 4 120 16 96 59 0 15 123 8 79 73 57 96 84 101 26 12 88 81 111 18 87 117 46 90 94 70 125
       H = new int[ n = argc -1 ];
       for ( int i = 0; i < n; i++ )
          H[i] = atoi( argv[i+1] );
-   } else { //Ëæ»úÉú³É
+   } else { //éšæœºç”Ÿæˆ
       srand ( ( unsigned int ) time ( NULL ) );
       H = new int[ 1 + ( n = rand() % 128 ) ];
       for ( int i = 0; i < n; i++ )
          H[i] = rand() % 128;
    }
 
-   int r, s, t; //×î´ó¾ØĞÎ£ºH[r] x [s, t)
+   int r, s, t; //æœ€å¤§çŸ©å½¢ï¼šH[r] x [s, t)
    __int64 mrBrute = mr_BRUTE( H, n, r = -1, s = -1, t = -1 );
    printf( "MaxRect Brute-Force  : %I64d = %d x [%d,%d)\n", mrBrute, H[r], s, t );
    __int64 mrStacks = mr_STACKS( H, n, r = -1, s = -1, t = -1 );

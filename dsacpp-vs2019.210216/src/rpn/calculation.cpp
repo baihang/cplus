@@ -7,20 +7,20 @@
  ******************************************************************************************/
 
 /*DSA*/#include "rpn.h"
-double calcu ( double a, char op, double b ) { //Ö´ĞĞ¶şÔªÔËËã
+double calcu ( double a, char op, double b ) { //æ‰§è¡ŒäºŒå…ƒè¿ç®—
    switch ( op ) {
       case '+' : return a + b;
       case '-' : return a - b;
       case '*' : return a * b;
-      case '/' : if ( 0==b ) exit ( -1 ); return a/b; //×¢Òâ£ºÈç´ËÅĞ¸¡µãÊıÎªÁã¿ÉÄÜ²»°²È«
+      case '/' : if ( 0==b ) exit ( -1 ); return a/b; //æ³¨æ„ï¼šå¦‚æ­¤åˆ¤æµ®ç‚¹æ•°ä¸ºé›¶å¯èƒ½ä¸å®‰å…¨
       case '^' : return pow ( a, b );
       default  : exit ( -1 );
    }
 }
 
-double calcu ( char op, double b ) { //Ö´ĞĞÒ»ÔªÔËËã
+double calcu ( char op, double b ) { //æ‰§è¡Œä¸€å…ƒè¿ç®—
    switch ( op ) {
-      case '!' : return ( double ) facI ( ( int ) b ); //Ä¿Ç°½öÓĞ½×³Ë£¬¿ÉÕÕ´Ë·½Ê½Ìí¼Ó
+      case '!' : return ( double ) facI ( ( int ) b ); //ç›®å‰ä»…æœ‰é˜¶ä¹˜ï¼Œå¯ç…§æ­¤æ–¹å¼æ·»åŠ 
       default  : exit ( -1 );
    }
 }

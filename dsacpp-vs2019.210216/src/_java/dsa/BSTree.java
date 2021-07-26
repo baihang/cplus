@@ -7,18 +7,18 @@
  ******************************************************************************************/
 
 /*
- * »ùÓÚÁ´±íÊ½BSTÊµÏÖµÄ´Êµä½á¹¹
- * »ùÓÚBinTree½øĞĞÀ©³ä
+ * åŸºäºé“¾è¡¨å¼BSTå®ç°çš„è¯å…¸ç»“æ„
+ * åŸºäºBinTreeè¿›è¡Œæ‰©å……
  */
 
 package dsa;
 
 public class BSTree extends BinTree_LinkedList implements Dictionary {
-   /**************************** ÊµÀı±äÁ¿ ****************************/
-   protected Comparator C;//±È½ÏÆ÷
-   protected BinTreePosition lastV;//×îºó²Ù×÷µÄ½Úµã£¬ÒÔ±ãAVLÊ÷¡¢ÉìÕ¹Ê÷ÖØÆ½ºâ
+   /**************************** å®ä¾‹å˜é‡ ****************************/
+   protected Comparator C;//æ¯”è¾ƒå™¨
+   protected BinTreePosition lastV;//æœ€åæ“ä½œçš„èŠ‚ç‚¹ï¼Œä»¥ä¾¿AVLæ ‘ã€ä¼¸å±•æ ‘é‡å¹³è¡¡
 
-   /**************************** ¹¹Ôì·½·¨ ****************************/
+   /**************************** æ„é€ æ–¹æ³• ****************************/
    public BSTree()
    { this(null, new ComparatorDefault()); }
 
@@ -28,117 +28,117 @@ public class BSTree extends BinTree_LinkedList implements Dictionary {
    public BSTree(BinTreePosition r, Comparator c)
    {  root = r;   C = c; }
 
-   /**************************** ´Êµä·½·¨ ****************************/
-   //Èô´ÊµäÖĞ´æÔÚÒÔkeyÎª¹Ø¼üÂëµÄÌõÄ¿£¬Ôò·µ»ØÆäÖĞµÄÒ»¸öÌõÄ¿£»·ñÔò£¬·µ»Ønull
+   /**************************** è¯å…¸æ–¹æ³• ****************************/
+   //è‹¥è¯å…¸ä¸­å­˜åœ¨ä»¥keyä¸ºå…³é”®ç çš„æ¡ç›®ï¼Œåˆ™è¿”å›å…¶ä¸­çš„ä¸€ä¸ªæ¡ç›®ï¼›å¦åˆ™ï¼Œè¿”å›null
    public Entry find(Object key) {
       if (isEmpty()) return null;
       BSTreeNode u = binSearch((BSTreeNode)root, key, C);
       return (0 == C.compare(key, u.getKey())) ? (Entry)u.getElem() : null;
    }
 
-   //·µ»ØÓÉ¹Ø¼üÂëÎªkeyµÄÌõÄ¿×é³ÉµÄµü´úÆ÷
+   //è¿”å›ç”±å…³é”®ç ä¸ºkeyçš„æ¡ç›®ç»„æˆçš„è¿­ä»£å™¨
    public Iterator findAll(Object key) {
       List s = new List_DLNode();
       finAllNodes((BSTreeNode)root, key, s, C);
       return s.elements();
    }
 
-   //²åÈëÌõÄ¿(key, value)£¬²¢·µ»Ø¸ÃÌõÄ¿
-   //lastVÖ¸Ê¾±»²åÈëµÄ½Úµã
+   //æ’å…¥æ¡ç›®(key, value)ï¼Œå¹¶è¿”å›è¯¥æ¡ç›®
+   //lastVæŒ‡ç¤ºè¢«æ’å…¥çš„èŠ‚ç‚¹
    public Entry insert(Object key, Object value) {
-      Entry e = new EntryDefault(key, value);//´´½¨ĞÂµÄÔªËØ
-      if (isEmpty()) {//²åÈë¸ù½ÚµãµÄÇé¿ö
-         lastV = root = new BSTreeNode(e, null, true, null, null);//²åÈëĞÂ½Úµã
-      } else {//²åÈëÒ»°ã½ÚµãµÄÇé¿ö
-         BSTreeNode p = (BSTreeNode)root;//´Ó¸ù½Úµã¿ªÊ¼£¬²éÕÒ¿É²åÈëÎ»ÖÃ
-         boolean asLeftChild;//±íÊ¾ĞÂ½ÚµãÊÇ·ñ×÷ÎªpµÄ×óº¢×Ó²åÈë
-         while(true) {//²»¶ÏµØ
-            p = binSearch(p, key, C);//²éÕÒ¹Ø¼üÂëÎªkeyµÄ½Úµã£¬Ö±ÖÁ
-            if (C.compare(key, p.getKey()) < 0)//²éÕÒÊ§°ÜÓÚÎŞ×óº¢×Ó½Úµã£¬»ò
+      Entry e = new EntryDefault(key, value);//åˆ›å»ºæ–°çš„å…ƒç´ 
+      if (isEmpty()) {//æ’å…¥æ ¹èŠ‚ç‚¹çš„æƒ…å†µ
+         lastV = root = new BSTreeNode(e, null, true, null, null);//æ’å…¥æ–°èŠ‚ç‚¹
+      } else {//æ’å…¥ä¸€èˆ¬èŠ‚ç‚¹çš„æƒ…å†µ
+         BSTreeNode p = (BSTreeNode)root;//ä»æ ¹èŠ‚ç‚¹å¼€å§‹ï¼ŒæŸ¥æ‰¾å¯æ’å…¥ä½ç½®
+         boolean asLeftChild;//è¡¨ç¤ºæ–°èŠ‚ç‚¹æ˜¯å¦ä½œä¸ºpçš„å·¦å­©å­æ’å…¥
+         while(true) {//ä¸æ–­åœ°
+            p = binSearch(p, key, C);//æŸ¥æ‰¾å…³é”®ç ä¸ºkeyçš„èŠ‚ç‚¹ï¼Œç›´è‡³
+            if (C.compare(key, p.getKey()) < 0)//æŸ¥æ‰¾å¤±è´¥äºæ— å·¦å­©å­èŠ‚ç‚¹ï¼Œæˆ–
                { asLeftChild = true; break; }
-            else if (C.compare(key, p.getKey()) > 0)//²éÕÒÊ§°ÜÎŞÓÒº¢×Ó½Úµã£¬»ò
+            else if (C.compare(key, p.getKey()) > 0)//æŸ¥æ‰¾å¤±è´¥æ— å³å­©å­èŠ‚ç‚¹ï¼Œæˆ–
                { asLeftChild = false; break; }
-            else if (!p.hasLChild())//²éÕÒ³É¹¦£¬ÇÒ¿É×÷Îª×óº¢×Ó²åÈë£¬»ò
+            else if (!p.hasLChild())//æŸ¥æ‰¾æˆåŠŸï¼Œä¸”å¯ä½œä¸ºå·¦å­©å­æ’å…¥ï¼Œæˆ–
                { asLeftChild = true; break; }
-            else if (!p.hasRChild())//²éÕÒ³É¹¦£¬ÇÒ¿É×÷ÎªÓÒº¢×Ó²åÈë£¬»ò
+            else if (!p.hasRChild())//æŸ¥æ‰¾æˆåŠŸï¼Œä¸”å¯ä½œä¸ºå³å­©å­æ’å…¥ï¼Œæˆ–
                { asLeftChild = false; break; }
-            else//·ñÔò
-               p = (BSTreeNode)p.getLChild();//ÔÚ×ó×ÓÊ÷ÖĞ¼ÌĞø²éÕÒ£¨µ±È»£¬ÔÚÓÒ×ÓÊ÷ÖĞ²éÕÒÒà¿É£©
-         }//ÖÁ´Ë£¬ĞÂ½Úµã¿ÉÒÔ×÷ÎªpµÄº¢×Ó²åÈë£¬²åÈëµÄ·½ÏòÓÉchildTypeÈ·¶¨
-         lastV = new BSTreeNode(e, p, asLeftChild, null, null);//²åÈëĞÂ½Úµã
+            else//å¦åˆ™
+               p = (BSTreeNode)p.getLChild();//åœ¨å·¦å­æ ‘ä¸­ç»§ç»­æŸ¥æ‰¾ï¼ˆå½“ç„¶ï¼Œåœ¨å³å­æ ‘ä¸­æŸ¥æ‰¾äº¦å¯ï¼‰
+         }//è‡³æ­¤ï¼Œæ–°èŠ‚ç‚¹å¯ä»¥ä½œä¸ºpçš„å­©å­æ’å…¥ï¼Œæ’å…¥çš„æ–¹å‘ç”±childTypeç¡®å®š
+         lastV = new BSTreeNode(e, p, asLeftChild, null, null);//æ’å…¥æ–°èŠ‚ç‚¹
       }//else
       return e;
    }
 
-   //Èô´ÊµäÖĞ´æÔÚÒÔkeyÎª¹Ø¼üÂëµÄÌõÄ¿£¬ÔòÕª³ıÕâÑùµÄÒ»¸ö½Úµã£¬²¢·µ»ØÆäÖĞ´æ·ÅµÄÌõÄ¿£»·ñÔò£¬·µ»Ønull
-   //lastVÖ¸Ê¾±»É¾³ı½ÚµãµÄ¸¸Ç×
+   //è‹¥è¯å…¸ä¸­å­˜åœ¨ä»¥keyä¸ºå…³é”®ç çš„æ¡ç›®ï¼Œåˆ™æ‘˜é™¤è¿™æ ·çš„ä¸€ä¸ªèŠ‚ç‚¹ï¼Œå¹¶è¿”å›å…¶ä¸­å­˜æ”¾çš„æ¡ç›®ï¼›å¦åˆ™ï¼Œè¿”å›null
+   //lastVæŒ‡ç¤ºè¢«åˆ é™¤èŠ‚ç‚¹çš„çˆ¶äº²
    public Entry remove(Object key) {
-      if (isEmpty()) return null;//¿ÕÊ÷
-      BinTreePosition v = binSearch((BSTreeNode)root, key, C);//²éÕÒ
-      if (0 != C.compare(key, ((BSTreeNode)v).getKey())) return null;//Èô²éÕÒÊ§°Ü£¬Ôò·µ»Ønull
-      //ÖÁ´Ë²éÕÒ±Ø³É¹¦£¬vÎª´ıÉ¾³ı½Úµã
-      if (v.hasLChild()) {//ÈôvµÄ×ó×ÓÊ÷·Ç¿Õ£¬Ôò
-         BinTreePosition w = v.getPrev();//ÔÚvµÄ×ó×ÓÊ÷ÖĞÕÒ³öÆäÖ±½ÓÇ°Çıw
-         w.setElem(v.setElem(w.getElem()));//½»»»vºÍuµÄÊı¾İ¶ÔÏó
-         v = w;//ÕâÑù£¬Ïàµ±ÓÚÉ¾³ıw
+      if (isEmpty()) return null;//ç©ºæ ‘
+      BinTreePosition v = binSearch((BSTreeNode)root, key, C);//æŸ¥æ‰¾
+      if (0 != C.compare(key, ((BSTreeNode)v).getKey())) return null;//è‹¥æŸ¥æ‰¾å¤±è´¥ï¼Œåˆ™è¿”å›null
+      //è‡³æ­¤æŸ¥æ‰¾å¿…æˆåŠŸï¼Œvä¸ºå¾…åˆ é™¤èŠ‚ç‚¹
+      if (v.hasLChild()) {//è‹¥vçš„å·¦å­æ ‘éç©ºï¼Œåˆ™
+         BinTreePosition w = v.getPrev();//åœ¨vçš„å·¦å­æ ‘ä¸­æ‰¾å‡ºå…¶ç›´æ¥å‰é©±w
+         w.setElem(v.setElem(w.getElem()));//äº¤æ¢vå’Œuçš„æ•°æ®å¯¹è±¡
+         v = w;//è¿™æ ·ï¼Œç›¸å½“äºåˆ é™¤w
       }
-      //ÖÁ´Ë£¬vÖÁ¶àÖ»ÓĞÒ»¸öº¢×Ó
-      //ÏÂÃæ£¬É¾³ıv£¬´úÖ®ÒÔÆäº¢×Ó
-      lastV = v.getParent();//È¡´ıÉ¾³ı½ÚµãvµÄ¸¸Ç×
-      BinTreePosition u = v.hasLChild() ? v.getLChild() : v.getRChild();//È¡vµÄº¢×Óu
-      if (null == lastV)//ÈôvÇ¡ÎªÊ÷¸ù
-         {  if (null != u) u.secede(); root = u; }//½«u×÷ÎªÊ÷¸ù
-      else {//·ñÔò
-         if (v.isLChild())//ÈôvÊÇpµÄ×óº¢×Ó£¬Ôò
-            { v.secede();  lastV.attachL(u); }//Õª³öv£¬½«u×÷ÎªpµÄ×óº¢×Ó
-         else//·ñÔò
-            { v.secede();  lastV.attachR(u); }//Õª³öv£¬½«u×÷ÎªpµÄÓÒº¢×Ó
+      //è‡³æ­¤ï¼Œvè‡³å¤šåªæœ‰ä¸€ä¸ªå­©å­
+      //ä¸‹é¢ï¼Œåˆ é™¤vï¼Œä»£ä¹‹ä»¥å…¶å­©å­
+      lastV = v.getParent();//å–å¾…åˆ é™¤èŠ‚ç‚¹vçš„çˆ¶äº²
+      BinTreePosition u = v.hasLChild() ? v.getLChild() : v.getRChild();//å–vçš„å­©å­u
+      if (null == lastV)//è‹¥væ°ä¸ºæ ‘æ ¹
+         {  if (null != u) u.secede(); root = u; }//å°†uä½œä¸ºæ ‘æ ¹
+      else {//å¦åˆ™
+         if (v.isLChild())//è‹¥væ˜¯pçš„å·¦å­©å­ï¼Œåˆ™
+            { v.secede();  lastV.attachL(u); }//æ‘˜å‡ºvï¼Œå°†uä½œä¸ºpçš„å·¦å­©å­
+         else//å¦åˆ™
+            { v.secede();  lastV.attachR(u); }//æ‘˜å‡ºvï¼Œå°†uä½œä¸ºpçš„å³å­©å­
       }
-      return (Entry) v.getElem();//·µ»Ø±»É¾³ı½ÚµãÖĞ´æ·ÅµÄµÄÔªËØ
+      return (Entry) v.getElem();//è¿”å›è¢«åˆ é™¤èŠ‚ç‚¹ä¸­å­˜æ”¾çš„çš„å…ƒç´ 
    }
 
-   //·µ»Ø´ÊµäÖĞËùÓĞÌõÄ¿µÄÒ»¸öµü´úÆ÷
+   //è¿”å›è¯å…¸ä¸­æ‰€æœ‰æ¡ç›®çš„ä¸€ä¸ªè¿­ä»£å™¨
    public Iterator entries() {
       List list = new List_DLNode();
       concatenate(list, (BSTreeNode)root);
       return list.elements();
    }
 
-   /**************************** ¸¨Öú·½·¨ ****************************/
-   //ÔÚÒÔvÎª¸ùµÄ×ÓÊ÷ÖĞ²éÕÒ¹Ø¼üÂëÎªkeyµÄ½Úµã£¨¼ÙÉè¸Ã×ÓÊ÷²»Îª¿Õ£©
-   //  ÈôÕÒµ½£¬Ôò·µ»Ø¸Ã½Úµã
-   //  ·ñÔò£¬·µ»Ø±»·ÃÎÊµÄ×îºóÒ»¸ö½Úµã
-   //ÎªÁËÈ·¶¨ÊÇ·ñ³É¹¦£¬ÉÏ²ã·½·¨ĞèÒªÔÙ¼ì²éÒ»´Î·µ»Ø½ÚµãµÄ¹Ø¼üÂë
+   /**************************** è¾…åŠ©æ–¹æ³• ****************************/
+   //åœ¨ä»¥vä¸ºæ ¹çš„å­æ ‘ä¸­æŸ¥æ‰¾å…³é”®ç ä¸ºkeyçš„èŠ‚ç‚¹ï¼ˆå‡è®¾è¯¥å­æ ‘ä¸ä¸ºç©ºï¼‰
+   //  è‹¥æ‰¾åˆ°ï¼Œåˆ™è¿”å›è¯¥èŠ‚ç‚¹
+   //  å¦åˆ™ï¼Œè¿”å›è¢«è®¿é—®çš„æœ€åä¸€ä¸ªèŠ‚ç‚¹
+   //ä¸ºäº†ç¡®å®šæ˜¯å¦æˆåŠŸï¼Œä¸Šå±‚æ–¹æ³•éœ€è¦å†æ£€æŸ¥ä¸€æ¬¡è¿”å›èŠ‚ç‚¹çš„å…³é”®ç 
    protected static BSTreeNode binSearch(BSTreeNode v, Object key, Comparator c) {
-      BSTreeNode  u = v;//µ±Ç°½Úµã
-      while (true) {//²»¶ÏµØ
-         int comp = c.compare(key, u.getKey());//½«µ±Ç°½ÚµãÓëÄ¿±ê¹Ø¼üÂë×ö±È½Ï
-         if (comp < 0)//ÈôÄ¿±ê¹Ø¼üÂë¸üĞ¡£¬Ôò
-            if (u.hasLChild())//ÈôuÓĞ×óº¢×Ó
-               u = (BSTreeNode)u.getLChild();//µİ¹é²éÕÒ×ó×ÓÊ÷£¬»ò
+      BSTreeNode  u = v;//å½“å‰èŠ‚ç‚¹
+      while (true) {//ä¸æ–­åœ°
+         int comp = c.compare(key, u.getKey());//å°†å½“å‰èŠ‚ç‚¹ä¸ç›®æ ‡å…³é”®ç åšæ¯”è¾ƒ
+         if (comp < 0)//è‹¥ç›®æ ‡å…³é”®ç æ›´å°ï¼Œåˆ™
+            if (u.hasLChild())//è‹¥uæœ‰å·¦å­©å­
+               u = (BSTreeNode)u.getLChild();//é€’å½’æŸ¥æ‰¾å·¦å­æ ‘ï¼Œæˆ–
             else
-               return u;//ÖÕÖ¹ÓÚÎŞ×óº¢×Ó½Úµã
-         else if (comp > 0)//ÈôÄ¿±ê¹Ø¼üÂë¸ü´ó£¬Ôò
-            if (u.hasRChild())//uÓĞÓÒº¢×Ó
-               u = (BSTreeNode)u.getRChild();//µİ¹é²éÕÒÓÒ×ÓÊ÷£¬»ò
+               return u;//ç»ˆæ­¢äºæ— å·¦å­©å­èŠ‚ç‚¹
+         else if (comp > 0)//è‹¥ç›®æ ‡å…³é”®ç æ›´å¤§ï¼Œåˆ™
+            if (u.hasRChild())//uæœ‰å³å­©å­
+               u = (BSTreeNode)u.getRChild();//é€’å½’æŸ¥æ‰¾å³å­æ ‘ï¼Œæˆ–
             else
-               return u;//ÖÕÖ¹ÓÚÎŞÓÒº¢×Ó½Úµã
+               return u;//ç»ˆæ­¢äºæ— å³å­©å­èŠ‚ç‚¹
          else
-            return u;//²éÕÒÃüÖĞ
+            return u;//æŸ¥æ‰¾å‘½ä¸­
       }
    }
 
-   //ÔÚÒÔvÎª¸ù½ÚµãµÄ£¨×Ó£©Ê÷ÖĞ£¬µİ¹éµØÕÒ³ö¹Ø¼üÂëÎªkeyµÄËùÓĞ½Úµã
-   //ÕâĞ©½Úµã±»×éÖ¯ÎªÒ»¸öÁĞ±í£¨½è´Ë¿ÉÒÔÉú³ÉÒ»¸öµü´úÆ÷£©
+   //åœ¨ä»¥vä¸ºæ ¹èŠ‚ç‚¹çš„ï¼ˆå­ï¼‰æ ‘ä¸­ï¼Œé€’å½’åœ°æ‰¾å‡ºå…³é”®ç ä¸ºkeyçš„æ‰€æœ‰èŠ‚ç‚¹
+   //è¿™äº›èŠ‚ç‚¹è¢«ç»„ç»‡ä¸ºä¸€ä¸ªåˆ—è¡¨ï¼ˆå€Ÿæ­¤å¯ä»¥ç”Ÿæˆä¸€ä¸ªè¿­ä»£å™¨ï¼‰
    protected static void finAllNodes(BSTreeNode v, Object k, List s, Comparator c) {
-      if (null == v) return;//µİ¹é»ù£º¿ÕÊ÷
+      if (null == v) return;//é€’å½’åŸºï¼šç©ºæ ‘
       int comp = c.compare(k, v.getKey());
-      if (0 >= comp) finAllNodes((BSTreeNode)v.getLChild(), k, s, c);//²éÕÒ×ó×ÓÊ÷
-      if (0 == comp) s.insertLast(v);//ÃüÖĞ
-      if (0 <= comp) finAllNodes((BSTreeNode)v.getRChild(), k, s, c);//²éÕÒÓÒ×ÓÊ÷
+      if (0 >= comp) finAllNodes((BSTreeNode)v.getLChild(), k, s, c);//æŸ¥æ‰¾å·¦å­æ ‘
+      if (0 == comp) s.insertLast(v);//å‘½ä¸­
+      if (0 <= comp) finAllNodes((BSTreeNode)v.getRChild(), k, s, c);//æŸ¥æ‰¾å³å­æ ‘
    }
 
-   //½«vµÄËùÓĞºó´ú½Úµã£¨ÖĞ´æ·ÅµÄÌõÄ¿£©×éÖ¯ÎªÒ»¸öÁĞ±í£¨½è´Ë¿ÉÒÔÉú³ÉÒ»¸öµü´úÆ÷£©
+   //å°†vçš„æ‰€æœ‰åä»£èŠ‚ç‚¹ï¼ˆä¸­å­˜æ”¾çš„æ¡ç›®ï¼‰ç»„ç»‡ä¸ºä¸€ä¸ªåˆ—è¡¨ï¼ˆå€Ÿæ­¤å¯ä»¥ç”Ÿæˆä¸€ä¸ªè¿­ä»£å™¨ï¼‰
    protected static void concatenate(List list, BSTreeNode v) {
       if (null == v) return;
       concatenate(list, (BSTreeNode) v.getLChild());

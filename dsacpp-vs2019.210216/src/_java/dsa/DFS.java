@@ -7,42 +7,42 @@
  ******************************************************************************************/
 
 /*
- * £¨ÓĞÏò£©Í¼µÄÉî¶ÈÓÅÏÈ±éÀúËã·¨Ä£°å
+ * ï¼ˆæœ‰å‘ï¼‰å›¾çš„æ·±åº¦ä¼˜å…ˆéå†ç®—æ³•æ¨¡æ¿
  */
 
 package dsa;
 
 public abstract class DFS extends GraphTraverse {
-   //±äÁ¿
-   protected static int clock = 0;//±éÀú¹ı³ÌÖĞÊ¹ÓÃµÄ¼ÆÊ±ÖÓ
+   //å˜é‡
+   protected static int clock = 0;//éå†è¿‡ç¨‹ä¸­ä½¿ç”¨çš„è®¡æ—¶é’Ÿ
 
-   //¹¹Ôì·½·¨
+   //æ„é€ æ–¹æ³•
    public DFS(Graph g) { super(g); }
 
-   //Éî¶ÈÓÅÏÈ±éÀúËã·¨
-   protected Object traverse(Vertex v, Object info) {//´Ó¶¥µãv³ö·¢£¬×öÉî¶ÈÓÅÏÈ²éÕÒ
-      if (UNDISCOVERED != v.getStatus())  return null;//Ìø¹ıÒÑ·ÃÎÊ¹ıµÄ¶¥µã£¨Õë¶Ô·ÇÁ¬Í¨Í¼£©
-      v.setDStamp(clock++);      v.setStatus(DISCOVERED);   visit(v, info);//·ÃÎÊµ±Ç°¶¥µã
-      for (Iterator it = v.outEdges(); it.hasNext();) {//¼ì²éÓë¶¥µãv
-         Edge e = (Edge)it.getNext();//Í¨¹ı±ße = (v, u)
-         Vertex u = (Vertex)e.getVPosInV(1).getElem();//ÏàÁªµÄÃ¿Ò»¶¥µãu
-         switch (u.getStatus()) {//¸ù¾İuµ±Ç°µÄ²»Í¬×´Ì¬£¬·Ö±ğ×öÏàÓ¦´¦Àí
-            case  UNDISCOVERED ://ÈôuÉĞÎ´±»·¢ÏÖ£¬Ôò
-               e.setType(TREE);//e±»¹éÀàÎª¡°Ê÷±ß¡±
-               traverse(u, info);//´Óu³ö·¢£¬¼ÌĞø×öÉî¶ÈÓÅÏÈ²éÕÒ
+   //æ·±åº¦ä¼˜å…ˆéå†ç®—æ³•
+   protected Object traverse(Vertex v, Object info) {//ä»é¡¶ç‚¹vå‡ºå‘ï¼Œåšæ·±åº¦ä¼˜å…ˆæŸ¥æ‰¾
+      if (UNDISCOVERED != v.getStatus())  return null;//è·³è¿‡å·²è®¿é—®è¿‡çš„é¡¶ç‚¹ï¼ˆé’ˆå¯¹éè¿é€šå›¾ï¼‰
+      v.setDStamp(clock++);      v.setStatus(DISCOVERED);   visit(v, info);//è®¿é—®å½“å‰é¡¶ç‚¹
+      for (Iterator it = v.outEdges(); it.hasNext();) {//æ£€æŸ¥ä¸é¡¶ç‚¹v
+         Edge e = (Edge)it.getNext();//é€šè¿‡è¾¹e = (v, u)
+         Vertex u = (Vertex)e.getVPosInV(1).getElem();//ç›¸è”çš„æ¯ä¸€é¡¶ç‚¹u
+         switch (u.getStatus()) {//æ ¹æ®uå½“å‰çš„ä¸åŒçŠ¶æ€ï¼Œåˆ†åˆ«åšç›¸åº”å¤„ç†
+            case  UNDISCOVERED ://è‹¥uå°šæœªè¢«å‘ç°ï¼Œåˆ™
+               e.setType(TREE);//eè¢«å½’ç±»ä¸ºâ€œæ ‘è¾¹â€
+               traverse(u, info);//ä»uå‡ºå‘ï¼Œç»§ç»­åšæ·±åº¦ä¼˜å…ˆæŸ¥æ‰¾
                break;
-            case  DISCOVERED ://ÈôuÒÑ¾­±»·¢ÏÖ£¬µ«¶ÔÆä·ÃÎÊÉĞÎ´½áÊø£¬Ôò
-               e.setType(BACKWARD);//½«e¹éÀàÎª¡°ºóÏò¿ç±ß¡±
+            case  DISCOVERED ://è‹¥uå·²ç»è¢«å‘ç°ï¼Œä½†å¯¹å…¶è®¿é—®å°šæœªç»“æŸï¼Œåˆ™
+               e.setType(BACKWARD);//å°†eå½’ç±»ä¸ºâ€œåå‘è·¨è¾¹â€
                break;
-            default ://VISITED£¬¼´¶ÔuµÄ·ÃÎÊÒÑ¾­½áÊø
-               if (u.getDStamp() < v.getDStamp())//ÈôÏà¶ÔÓÚv£¬u±»·¢ÏÖµÃ¸üÔç£¬Ôò
-                  e.setType(CROSS);//½«e¹éÀàÎª¡°ºá¿ç±ß¡±
-               else//·ñÔò
-                  e.setType(FORWARD);//½«e¹éÀàÎª¡°Ç°Ïò¿ç±ß¡±
+            default ://VISITEDï¼Œå³å¯¹uçš„è®¿é—®å·²ç»ç»“æŸ
+               if (u.getDStamp() < v.getDStamp())//è‹¥ç›¸å¯¹äºvï¼Œuè¢«å‘ç°å¾—æ›´æ—©ï¼Œåˆ™
+                  e.setType(CROSS);//å°†eå½’ç±»ä¸ºâ€œæ¨ªè·¨è¾¹â€
+               else//å¦åˆ™
+                  e.setType(FORWARD);//å°†eå½’ç±»ä¸ºâ€œå‰å‘è·¨è¾¹â€
                break;
          }
-      }//ÖÁ´Ë£¬vµÄËùÓĞÁÚ¾Ó¶¼ÒÑ·ÃÎÊ½áÊø£¬¹Ê
-      v.setFStamp(clock++);   v.setStatus(VISITED);//½«v±ê¼ÇÎªVISITED
-      return null;//È»ºó»ØËİ
+      }//è‡³æ­¤ï¼Œvçš„æ‰€æœ‰é‚»å±…éƒ½å·²è®¿é—®ç»“æŸï¼Œæ•…
+      v.setFStamp(clock++);   v.setStatus(VISITED);//å°†væ ‡è®°ä¸ºVISITED
+      return null;//ç„¶åå›æº¯
    }
 }

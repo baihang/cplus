@@ -7,23 +7,23 @@
  ******************************************************************************************/
 
 /*
- * £¨ÓĞÏò£©Í¼»ùÓÚDFSÄ£°åµÄ¿É´ï·ÖÁ¿Ëã·¨
+ * ï¼ˆæœ‰å‘ï¼‰å›¾åŸºäºDFSæ¨¡æ¿çš„å¯è¾¾åˆ†é‡ç®—æ³•
  */
 
 package dsa;
 
 public class DFSReachableComponent extends DFS {
-   //¹¹Ôì·½·¨
+   //æ„é€ æ–¹æ³•
    public DFSReachableComponent(Graph g) { super(g); }
 
-   //DFS¹ı³ÌÖĞ¶Ô¶¥µãvµÄ¾ßÌå·ÃÎÊ²Ù×÷£¨infoÊµ¼ÊÉÏÊÇÒ»¸öÕ»£¬¼ÇÂ¼ËùÓĞ¿É´ïµÄ¶¥µã£©
+   //DFSè¿‡ç¨‹ä¸­å¯¹é¡¶ç‚¹vçš„å…·ä½“è®¿é—®æ“ä½œï¼ˆinfoå®é™…ä¸Šæ˜¯ä¸€ä¸ªæ ˆï¼Œè®°å½•æ‰€æœ‰å¯è¾¾çš„é¡¶ç‚¹ï¼‰
    protected Object visit(Vertex v, Object info)
    { ((Stack)info).push(v); return null; }
 
-   //»ùÓÚDFSµÄ¿É´ïĞÔËã·¨£ºsÎªÆğÊ¼¶¥µã£¨infoÊµ¼ÊÉÏÊÇÒ»¸öÕ»£¬¼ÇÂ¼ËùÓĞ¿É´ïµÄ¶¥µã£©
+   //åŸºäºDFSçš„å¯è¾¾æ€§ç®—æ³•ï¼šsä¸ºèµ·å§‹é¡¶ç‚¹ï¼ˆinfoå®é™…ä¸Šæ˜¯ä¸€ä¸ªæ ˆï¼Œè®°å½•æ‰€æœ‰å¯è¾¾çš„é¡¶ç‚¹ï¼‰
    public Object algorithm(Vertex s, Object info) {
       reset(s);
-      Stack S = new Stack_Array();//±£´æ´ÓÆğÊ¼¶¥µã¿É´ïµÄ¶¥µã
+      Stack S = new Stack_Array();//ä¿å­˜ä»èµ·å§‹é¡¶ç‚¹å¯è¾¾çš„é¡¶ç‚¹
       traverse(s, info);//DFS
       return null;
    }

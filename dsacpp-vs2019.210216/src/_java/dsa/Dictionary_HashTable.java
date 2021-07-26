@@ -7,85 +7,85 @@
  ******************************************************************************************/
 
 /*
- * »ùÓÚÉ¢ÁĞ±íÊµÏÖµÄ£¨ÎŞĞò£©´Êµä½á¹¹
- * ²ÉÓÃ·ÖÀëÁ´²ßÂÔ½â¾ö³åÍ»
+ * åŸºäºæ•£åˆ—è¡¨å®ç°çš„ï¼ˆæ— åºï¼‰è¯å…¸ç»“æ„
+ * é‡‡ç”¨åˆ†ç¦»é“¾ç­–ç•¥è§£å†³å†²çª
  */
 
 package dsa;
 
 public class Dictionary_HashTable implements Dictionary {
-   private Dictionary[] A;//Í°Êı×é£¬Ã¿¸öÍ°±¾ÉíÒ²ÊÇÒ»¸ö£¨»ùÓÚÁĞ±íÊµÏÖµÄ£©´Êµä½á¹¹
-   private  int N;//É¢ÁĞ±í³¤
-   private final double maxLemda = 0.75;//×°ÌîÒò×ÓÉÏÏŞ
-   private int size;//´Êµä½á¹¹µÄ¹æÄ£
-   private EqualityTester T;//ÅĞµÈÆ÷
+   private Dictionary[] A;//æ¡¶æ•°ç»„ï¼Œæ¯ä¸ªæ¡¶æœ¬èº«ä¹Ÿæ˜¯ä¸€ä¸ªï¼ˆåŸºäºåˆ—è¡¨å®ç°çš„ï¼‰è¯å…¸ç»“æ„
+   private  int N;//æ•£åˆ—è¡¨é•¿
+   private final double maxLemda = 0.75;//è£…å¡«å› å­ä¸Šé™
+   private int size;//è¯å…¸ç»“æ„çš„è§„æ¨¡
+   private EqualityTester T;//åˆ¤ç­‰å™¨
 
-   //Ä¬ÈÏ¹¹Ôì·½·¨
+   //é»˜è®¤æ„é€ æ–¹æ³•
    public Dictionary_HashTable()
    { this(0, new EqualityTesterDefault()); }
 
-   //¹¹Ôì·½·¨
+   //æ„é€ æ–¹æ³•
    public Dictionary_HashTable(int n, EqualityTester t) {
       T = t;
-      N = p(n);//Í°Êı×éÈİÁ¿È¡Îª²»Ğ¡ÓÚnµÄ×îĞ¡ËØÊı
+      N = p(n);//æ¡¶æ•°ç»„å®¹é‡å–ä¸ºä¸å°äºnçš„æœ€å°ç´ æ•°
       A = new Dictionary[N];
       for (int i = 0; i < N; i++) A[i] = new Dictionary_DLNode(T);
       size = 0;
    }
 
-   /***************************** ¸¨Öú·½·¨ *****************************/
-   //É¢ÁĞ¶¨Ö·º¯Êı£¨²ÉÓÃÄ£Óà·¨£©
+   /***************************** è¾…åŠ©æ–¹æ³• *****************************/
+   //æ•£åˆ—å®šå€å‡½æ•°ï¼ˆé‡‡ç”¨æ¨¡ä½™æ³•ï¼‰
    private int h(Object key)
    { return key.hashCode() % N; }
 
-   //ÅĞ¶ÏnÊÇ·ñÎªËØÊı
+   //åˆ¤æ–­næ˜¯å¦ä¸ºç´ æ•°
    private static boolean prime(int n) {
       for (int i = 3; i < 1 + Math.sqrt(n); i++)
          if (n / i* i == n)   return false;
       return true;
    }
 
-   //È¡²»Ğ¡ÓÚnµÄ×îĞ¡ËØÊı
+   //å–ä¸å°äºnçš„æœ€å°ç´ æ•°
    private static int p(int n) {
       if (3 > n) n = 3;
-      n = n | 1;//ÆæÊı»¯
+      n = n | 1;//å¥‡æ•°åŒ–
       while (!prime(n)) n += 2;
       return n;
    }
 
-   /***************************** ADT·½·¨ *****************************/
-   //²éÑ¯´Êµä½á¹¹µ±Ç°µÄ¹æÄ£
+   /***************************** ADTæ–¹æ³• *****************************/
+   //æŸ¥è¯¢è¯å…¸ç»“æ„å½“å‰çš„è§„æ¨¡
    public int getSize()
    { return size; }
 
-   //ÅĞ¶Ï´Êµä½á¹¹ÊÇ·ñÎª¿Õ
+   //åˆ¤æ–­è¯å…¸ç»“æ„æ˜¯å¦ä¸ºç©º
    public boolean isEmpty()
    { return 0 == size; }
 
-   //Èô´ÊµäÖĞ´æÔÚÒÔkeyÎª¹Ø¼üÂëµÄÌõÄ¿£¬Ôò·µ»ØÆäÖĞµÄÒ»¸öÌõÄ¿£»·ñÔò£¬·µ»Ønull
+   //è‹¥è¯å…¸ä¸­å­˜åœ¨ä»¥keyä¸ºå…³é”®ç çš„æ¡ç›®ï¼Œåˆ™è¿”å›å…¶ä¸­çš„ä¸€ä¸ªæ¡ç›®ï¼›å¦åˆ™ï¼Œè¿”å›null
    public Entry find(Object key)
    {  return A[h(key)].find(key); }
 
-   //·µ»ØÓÉ¹Ø¼üÂëÎªkeyµÄÌõÄ¿×é³ÉµÄµü´úÆ÷
+   //è¿”å›ç”±å…³é”®ç ä¸ºkeyçš„æ¡ç›®ç»„æˆçš„è¿­ä»£å™¨
    public Iterator findAll(Object key)
    {  return A[h(key)].findAll(key); }
 
-   //²åÈëÌõÄ¿(key, value)£¬²¢·µ»Ø¸ÃÌõÄ¿
+   //æ’å…¥æ¡ç›®(key, value)ï¼Œå¹¶è¿”å›è¯¥æ¡ç›®
    public Entry insert(Object key, Object value) {
-      Entry entry = A[h(key)].insert(key, value);//½«ĞÂÌõÄ¿²åÖÁÍ°A[h(key)]¶ÔÓ¦µÄ×Ó´Êµä
-      size ++;//¸üĞÂ¹æÄ£¼ÇÂ¼
-      if (size > N * maxLemda)   rehash();//Èô×°ÌîÒò×Ó¹ı´ó£¬ÔòÖØÉ¢ÁĞ
-      return entry;//·µ»Ønull±êÖ¾
+      Entry entry = A[h(key)].insert(key, value);//å°†æ–°æ¡ç›®æ’è‡³æ¡¶A[h(key)]å¯¹åº”çš„å­è¯å…¸
+      size ++;//æ›´æ–°è§„æ¨¡è®°å½•
+      if (size > N * maxLemda)   rehash();//è‹¥è£…å¡«å› å­è¿‡å¤§ï¼Œåˆ™é‡æ•£åˆ—
+      return entry;//è¿”å›nullæ ‡å¿—
    }
 
-   //Èô´ÊµäÖĞ´æÔÚÒÔkeyÎª¹Ø¼üÂëµÄÌõÄ¿£¬Ôò½«ÆäÕª³ı²¢·µ»Ø£»·ñÔò£¬·µ»Ønull
+   //è‹¥è¯å…¸ä¸­å­˜åœ¨ä»¥keyä¸ºå…³é”®ç çš„æ¡ç›®ï¼Œåˆ™å°†å…¶æ‘˜é™¤å¹¶è¿”å›ï¼›å¦åˆ™ï¼Œè¿”å›null
    public Entry remove(Object key) {
       Entry oldEntry = A[h(key)].remove(key);
       if (null != oldEntry)  size--;
       return oldEntry;
    }
 
-   //·µ»Ø´ÊµäÖĞËùÓĞÌõÄ¿µÄÒ»¸öµü´úÆ÷
+   //è¿”å›è¯å…¸ä¸­æ‰€æœ‰æ¡ç›®çš„ä¸€ä¸ªè¿­ä»£å™¨
    public Iterator entries()  {
       List L = new List_DLNode();
       for (int i = 0; i < N; i++) {
@@ -95,17 +95,17 @@ public class Dictionary_HashTable implements Dictionary {
       return new IteratorElement(L);
    }
 
-   //ÖØÉ¢ÁĞ
+   //é‡æ•£åˆ—
    private void rehash() {
       Iterator it = this.entries();
       N = p(N << 1);
-      A = new Dictionary[N];//Í°Êı×éÈİÁ¿ÖÁÉÙ¼Ó±¶
-      for (int i = 0; i < N; i++) A[i] = new Dictionary_DLNode(T); //ÎªÃ¿¸öÍ°·ÖÅäÒ»¸ö×Ó´Êµä
-      while (it.hasNext()) {//½«Æä¶ÔÓ¦µÄ´Êµä½á¹¹ÖĞµÄ
-         Entry e = (Entry)it.getNext();//¸÷ÌõÄ¿ÖğÒ»È¡³ö£¬½«Æä
-         Object k = e.getKey();//¹Ø¼üÂëºÍ
-         Object v = e.getValue();//Êı¾İ¶ÔÏó
-         A[h(k)].insert(k, v);//ÕûºÏÎªĞÂµÄÌõÄ¿£¬²åÈë¶ÔÓ¦µÄ×Ó´ÊµäÖĞ
+      A = new Dictionary[N];//æ¡¶æ•°ç»„å®¹é‡è‡³å°‘åŠ å€
+      for (int i = 0; i < N; i++) A[i] = new Dictionary_DLNode(T); //ä¸ºæ¯ä¸ªæ¡¶åˆ†é…ä¸€ä¸ªå­è¯å…¸
+      while (it.hasNext()) {//å°†å…¶å¯¹åº”çš„è¯å…¸ç»“æ„ä¸­çš„
+         Entry e = (Entry)it.getNext();//å„æ¡ç›®é€ä¸€å–å‡ºï¼Œå°†å…¶
+         Object k = e.getKey();//å…³é”®ç å’Œ
+         Object v = e.getValue();//æ•°æ®å¯¹è±¡
+         A[h(k)].insert(k, v);//æ•´åˆä¸ºæ–°çš„æ¡ç›®ï¼Œæ’å…¥å¯¹åº”çš„å­è¯å…¸ä¸­
       }
    }
 }

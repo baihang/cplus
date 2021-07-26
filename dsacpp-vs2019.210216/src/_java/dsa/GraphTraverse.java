@@ -7,45 +7,45 @@
  ******************************************************************************************/
 
 /*
- * £¨ÓĞÏò£©Í¼µÄ±éÀúËã·¨Ä£°å
+ * ï¼ˆæœ‰å‘ï¼‰å›¾çš„éå†ç®—æ³•æ¨¡æ¿
  */
 
 package dsa;
 
 public abstract class GraphTraverse {
-   //³£Á¿
-   final static int UNDISCOVERED = 0;//ÉĞÎ´±»·¢ÏÖµÄ¶¥µã
-   final static int DISCOVERED = 1;//ÒÑ±»·¢ÏÖµÄ¶¥µã
-   final static int VISITED = 2;//ÒÑ·ÃÎÊ¹ıµÄ¶¥µã
-   final static int UNKNOWN = 0;//Î´Öª±ß
-   final static int TREE = 1;//Ê÷±ß
-   final static int CROSS = 2;//ºá¿ç±ß
-   final static int FORWARD = 3;//Ç°Ïò¿ç±ß
-   final static int BACKWARD = 4;//ºóÏò¿ç±ß
+   //å¸¸é‡
+   final static int UNDISCOVERED = 0;//å°šæœªè¢«å‘ç°çš„é¡¶ç‚¹
+   final static int DISCOVERED = 1;//å·²è¢«å‘ç°çš„é¡¶ç‚¹
+   final static int VISITED = 2;//å·²è®¿é—®è¿‡çš„é¡¶ç‚¹
+   final static int UNKNOWN = 0;//æœªçŸ¥è¾¹
+   final static int TREE = 1;//æ ‘è¾¹
+   final static int CROSS = 2;//æ¨ªè·¨è¾¹
+   final static int FORWARD = 3;//å‰å‘è·¨è¾¹
+   final static int BACKWARD = 4;//åå‘è·¨è¾¹
 
-   //±äÁ¿
-   protected Graph G;//Í¼
+   //å˜é‡
+   protected Graph G;//å›¾
 
-   //¹¹Ôì·½·¨
+   //æ„é€ æ–¹æ³•
    public GraphTraverse(Graph g) { G = g; }
 
-   //½«GÖĞ¸÷¶¥µãµÄ±êÖ¾¡¢¸÷±ßµÄ·ÖÀà¸´Î»£¨sÎª±éÀúÆğµã£©
+   //å°†Gä¸­å„é¡¶ç‚¹çš„æ ‡å¿—ã€å„è¾¹çš„åˆ†ç±»å¤ä½ï¼ˆsä¸ºéå†èµ·ç‚¹ï¼‰
    protected void reset(Vertex s) {
-      for (Iterator it = G.vertices(); it.hasNext();) {//ËùÓĞ
-         Vertex v = (Vertex)it.getNext();//¶¥µãµÄ
-         v.setStatus(UNDISCOVERED);//×´Ì¬ÖÃÎªUNDISCOVERED
-         v.setDistance(Integer.MAX_VALUE);//×î¶Ì¾àÀë³õÊ¼»¯ÎªÎŞÇî´ó
+      for (Iterator it = G.vertices(); it.hasNext();) {//æ‰€æœ‰
+         Vertex v = (Vertex)it.getNext();//é¡¶ç‚¹çš„
+         v.setStatus(UNDISCOVERED);//çŠ¶æ€ç½®ä¸ºUNDISCOVERED
+         v.setDistance(Integer.MAX_VALUE);//æœ€çŸ­è·ç¦»åˆå§‹åŒ–ä¸ºæ— ç©·å¤§
       }
-      for (Iterator it = G.edges(); it.hasNext();)//ËùÓĞ±ß
-         ((Edge)it.getNext()).setType(UNKNOWN);//ÖÃÎªUNKNOWN
+      for (Iterator it = G.edges(); it.hasNext();)//æ‰€æœ‰è¾¹
+         ((Edge)it.getNext()).setType(UNKNOWN);//ç½®ä¸ºUNKNOWN
    }
 
-   //±éÀú¹ı³ÌÖĞ¶Ô¶¥µãvµÄ¾ßÌå·ÃÎÊ²Ù×÷µÄÄ£°å£ºÈ¡¾öÓÚ¡¢·şÎñÓÚ¾ßÌåµÄËã·¨algorithm()
+   //éå†è¿‡ç¨‹ä¸­å¯¹é¡¶ç‚¹vçš„å…·ä½“è®¿é—®æ“ä½œçš„æ¨¡æ¿ï¼šå–å†³äºã€æœåŠ¡äºå…·ä½“çš„ç®—æ³•algorithm()
    protected abstract Object visit(Vertex v, Object info);
 
-   //»ùÓÚ±éÀú²Ù×÷ÊµÏÖµÄÆäËüËã·¨µÄÄ£°å£ºsÎªÆğÊ¼¶¥µã£¬infoÏòËã·¨´«µİ²ÎÊı¼°±£´æËã·¨µÄ·µ»ØĞÅÏ¢
+   //åŸºäºéå†æ“ä½œå®ç°çš„å…¶å®ƒç®—æ³•çš„æ¨¡æ¿ï¼šsä¸ºèµ·å§‹é¡¶ç‚¹ï¼Œinfoå‘ç®—æ³•ä¼ é€’å‚æ•°åŠä¿å­˜ç®—æ³•çš„è¿”å›ä¿¡æ¯
    public abstract Object algorithm(Vertex s, Object info);
 
-   //±éÀúËã·¨Ä£°å
-   protected abstract Object traverse(Vertex v, Object info);//´Ó¶¥µãv³ö·¢×ö±éÀú
+   //éå†ç®—æ³•æ¨¡æ¿
+   protected abstract Object traverse(Vertex v, Object info);//ä»é¡¶ç‚¹vå‡ºå‘åšéå†
 }

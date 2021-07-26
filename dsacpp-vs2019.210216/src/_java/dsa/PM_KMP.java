@@ -7,9 +7,9 @@
  ******************************************************************************************/
 
 /*
- * ´®Ä£Ê½Æ¥Åä£ºKMPËã·¨
- * Èô·µ»ØÎ»ÖÃi > length(T) - length(P)£¬ÔòËµÃ÷Ê§Åä
- * ·ñÔò£¬iÎªÆ¥ÅäÎ»ÖÃ
+ * ä¸²æ¨¡å¼åŒ¹é…ï¼šKMPç®—æ³•
+ * è‹¥è¿”å›ä½ç½®i > length(T) - length(P)ï¼Œåˆ™è¯´æ˜å¤±é…
+ * å¦åˆ™ï¼Œiä¸ºåŒ¹é…ä½ç½®
  */
 import dsa.*;
 import java.io.*;
@@ -21,44 +21,44 @@ public class PM_KMP {
    // P:                               j     j+1   .     .     .     j+k   .     .
    //                                  |-------------------|
    //////////////////////////////////////////////////////////////////////////
-   public static int PM(String T, String P) {//KMPËã·¨
-      int[]    next = BuildNextImproved(P);//¹¹Ôìnext[]±í
-      int      i = 0;//ÎÄ±¾´®Ö¸Õë
-      int      j = 0;//Ä£Ê½´®Ö¸Õë
-      while(j < P.length() && i < T.length()) { //×Ô×óÏòÓÒÖğ¸ö±È½Ï×Ö·û
+   public static int PM(String T, String P) {//KMPç®—æ³•
+      int[]    next = BuildNextImproved(P);//æ„é€ next[]è¡¨
+      int      i = 0;//æ–‡æœ¬ä¸²æŒ‡é’ˆ
+      int      j = 0;//æ¨¡å¼ä¸²æŒ‡é’ˆ
+      while(j < P.length() && i < T.length()) { //è‡ªå·¦å‘å³é€ä¸ªæ¯”è¾ƒå­—ç¬¦
          ShowProgress(T, P, i - j, j);      ShowNextTable(next, i - j, P.length());  System.out.println();
-         if (0 > j || T.charAt(i) == P.charAt(j)) { //ÈôÆ¥Åä£¬»òPÒÑÒÆ³ö×î×ó²à£¨ÌáÎÊ£ºÕâÁ½¸öÌõ¼şÄÜ·ñ½»»»´ÎĞò£¿£©
-            i++;  j++;//Ôò×ªµ½ÏÂÒ»¶Ô×Ö·û
-         } else//·ñÔò
-            j = next[j];//Ä£Ê½´®ÓÒÒÆ£¨×¢Òâ£ºÎÄ±¾´®²»ÓÃ»ØÍË£©
+         if (0 > j || T.charAt(i) == P.charAt(j)) { //è‹¥åŒ¹é…ï¼Œæˆ–På·²ç§»å‡ºæœ€å·¦ä¾§ï¼ˆæé—®ï¼šè¿™ä¸¤ä¸ªæ¡ä»¶èƒ½å¦äº¤æ¢æ¬¡åºï¼Ÿï¼‰
+            i++;  j++;//åˆ™è½¬åˆ°ä¸‹ä¸€å¯¹å­—ç¬¦
+         } else//å¦åˆ™
+            j = next[j];//æ¨¡å¼ä¸²å³ç§»ï¼ˆæ³¨æ„ï¼šæ–‡æœ¬ä¸²ä¸ç”¨å›é€€ï¼‰
       }//while
       return(i - j);
    }
 
-   protected static int[] BuildNext(String   P) {//½¨Á¢Ä£Ê½´®PµÄnext[]±í
-      int[]    next = new int[P.length()];//next[]±í
-      int      j = 0;//¡°Ö÷¡±´®Ö¸Õë
-      int      t = next[0] = -1;//¡°Ä£Ê½¡±´®Ö¸Õë
+   protected static int[] BuildNext(String   P) {//å»ºç«‹æ¨¡å¼ä¸²Pçš„next[]è¡¨
+      int[]    next = new int[P.length()];//next[]è¡¨
+      int      j = 0;//â€œä¸»â€ä¸²æŒ‡é’ˆ
+      int      t = next[0] = -1;//â€œæ¨¡å¼â€ä¸²æŒ‡é’ˆ
       while (j < P.length() - 1)
-         if (0 > t || P.charAt(j) == P.charAt(t)) {//Æ¥Åä
+         if (0 > t || P.charAt(j) == P.charAt(t)) {//åŒ¹é…
             j++;  t++;
-            next[j] = t;//´Ë¾ä¿ÉÒÔ¸Ä½ø...
-         } else//Ê§Åä
+            next[j] = t;//æ­¤å¥å¯ä»¥æ”¹è¿›...
+         } else//å¤±é…
             t = next[t];
       for (j = 0; j < P.length(); j++)  System.out.print("\t" + P.charAt(j)); System.out.print("\n");
       ShowNextTable(next, 0, P.length());
       return(next);
    }
 
-   protected static int[] BuildNextImproved(String P) {//½¨Á¢Ä£Ê½´®PµÄnext[]±í£¨¸Ä½ø°æ±¾£©
-      int[]    next = new int[P.length()];;//next[]±í
-      int      j = 0;//¡°Ö÷¡±´®Ö¸Õë
-      int      t = next[0] = -1;//¡°Ä£Ê½¡±´®Ö¸Õë
+   protected static int[] BuildNextImproved(String P) {//å»ºç«‹æ¨¡å¼ä¸²Pçš„next[]è¡¨ï¼ˆæ”¹è¿›ç‰ˆæœ¬ï¼‰
+      int[]    next = new int[P.length()];;//next[]è¡¨
+      int      j = 0;//â€œä¸»â€ä¸²æŒ‡é’ˆ
+      int      t = next[0] = -1;//â€œæ¨¡å¼â€ä¸²æŒ‡é’ˆ
       while (j < P.length() - 1)
-         if (0 > t || P.charAt(j) == P.charAt(t)) {//Æ¥Åä
+         if (0 > t || P.charAt(j) == P.charAt(t)) {//åŒ¹é…
             j++;  t++;
-            next[j] = (P.charAt(j) != P.charAt(t)) ? t : next[t];//×¢Òâ´Ë¾äÓëÎ´¸Ä½øÖ®Ç°µÄÇø±ğ
-         } else//Ê§Åä
+            next[j] = (P.charAt(j) != P.charAt(t)) ? t : next[t];//æ³¨æ„æ­¤å¥ä¸æœªæ”¹è¿›ä¹‹å‰çš„åŒºåˆ«
+         } else//å¤±é…
             t = next[t];
       for (j = 0; j < P.length(); j++)  System.out.print("\t" + P.charAt(j)); System.out.print("\n");
       ShowNextTable(next, 0, P.length());
@@ -66,7 +66,7 @@ public class PM_KMP {
    }
 
 
-   protected static void ShowNextTable(//ÏÔÊ¾next[]±í£¬¹©ÑİÊ¾·ÖÎö
+   protected static void ShowNextTable(//æ˜¾ç¤ºnext[]è¡¨ï¼Œä¾›æ¼”ç¤ºåˆ†æ
       int[] N,
       int      offset,
       int      length) {
@@ -75,11 +75,11 @@ public class PM_KMP {
       for (i = 0; i < length; i++)   System.out.print("\t" + N[i]);  System.out.print("\n\n");
    }
 
-   protected static void ShowProgress(//¶¯Ì¬ÏÔÊ¾Æ¥Åä½øÕ¹
-      String   T,//ÎÄ±¾´®
-      String   P,//Ä£Ê½´®
-      int         i,//Ä£Ê½´®Ïà¶ÔÓÚÎÄ±¾´®µÄÆğÊ¼Î»ÖÃ
-      int         j) { //Ä£Ê½´®µÄµ±Ç°×Ö·û
+   protected static void ShowProgress(//åŠ¨æ€æ˜¾ç¤ºåŒ¹é…è¿›å±•
+      String   T,//æ–‡æœ¬ä¸²
+      String   P,//æ¨¡å¼ä¸²
+      int         i,//æ¨¡å¼ä¸²ç›¸å¯¹äºæ–‡æœ¬ä¸²çš„èµ·å§‹ä½ç½®
+      int         j) { //æ¨¡å¼ä¸²çš„å½“å‰å­—ç¬¦
       int         t;
       System.out.println("-------------------------------------------");
       for (t = 0; t < T.length(); t++)  System.out.print("\t" + T.charAt(t)); System.out.print("\n");

@@ -7,54 +7,54 @@
  ******************************************************************************************/
 
 /*
- * ½èÖú¶¨³¤Êı×éÊµÏÖStack½Ó¿Ú
+ * å€ŸåŠ©å®šé•¿æ•°ç»„å®ç°Stackæ¥å£
  */
 
 package dsa;
 
 public class Stack_Array implements Stack {
-   public static final int CAPACITY = 1024;//Êı×éµÄÄ¬ÈÏÈİÁ¿
-   protected int capacity;//Êı×éµÄÊµ¼ÊÈİÁ¿
-   protected Object[] S;//¶ÔÏóÊı×é
-   protected int top = -1;//Õ»¶¥ÔªËØµÄÎ»ÖÃ
+   public static final int CAPACITY = 1024;//æ•°ç»„çš„é»˜è®¤å®¹é‡
+   protected int capacity;//æ•°ç»„çš„å®é™…å®¹é‡
+   protected Object[] S;//å¯¹è±¡æ•°ç»„
+   protected int top = -1;//æ ˆé¡¶å…ƒç´ çš„ä½ç½®
 
-   //°´Ä¬ÈÏÈİÁ¿´´½¨Õ»¶ÔÏó
+   //æŒ‰é»˜è®¤å®¹é‡åˆ›å»ºæ ˆå¯¹è±¡
    public Stack_Array()
    {  this(CAPACITY);   }
 
-   //°´Ö¸¶¨ÈİÁ¿´´½¨Õ»¶ÔÏó
+   //æŒ‰æŒ‡å®šå®¹é‡åˆ›å»ºæ ˆå¯¹è±¡
    public Stack_Array(int cap) {
       capacity = cap;
       S = new Object[capacity];
    }
 
-   //»ñÈ¡Õ»µ±Ç°µÄ¹æÄ£
+   //è·å–æ ˆå½“å‰çš„è§„æ¨¡
    public int getSize()
    {  return (top + 1); }
 
-   //²âÊÔÕ»ÊÇ·ñÎª¿Õ
+   //æµ‹è¯•æ ˆæ˜¯å¦ä¸ºç©º
    public boolean isEmpty()
    {  return (top < 0); }
 
-   //ÈëÕ»
+   //å…¥æ ˆ
    public void push(Object obj) throws ExceptionStackFull {
       if (getSize() == capacity)
-         throw new ExceptionStackFull("ÒâÍâ£ºÕ»Òç³ö");
+         throw new ExceptionStackFull("æ„å¤–ï¼šæ ˆæº¢å‡º");
       S[++top] = obj;
    }
 
-   //È¡Õ»¶¥ÔªËØ
+   //å–æ ˆé¡¶å…ƒç´ 
    public Object top() throws ExceptionStackEmpty {
       if (isEmpty())
-         throw new ExceptionStackEmpty("ÒâÍâ£ºÕ»¿Õ");
+         throw new ExceptionStackEmpty("æ„å¤–ï¼šæ ˆç©º");
       return S[top];
    }
 
-   //³öÕ»
+   //å‡ºæ ˆ
    public Object pop() throws ExceptionStackEmpty {
       Object elem;
       if (isEmpty())
-         throw new ExceptionStackEmpty("ÒâÍâ£ºÕ»¿Õ");
+         throw new ExceptionStackEmpty("æ„å¤–ï¼šæ ˆç©º");
       elem = S[top];
       S[top--] = null;
       return elem;

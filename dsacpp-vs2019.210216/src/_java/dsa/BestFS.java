@@ -7,57 +7,57 @@
  ******************************************************************************************/
 
 /*
- * £¨ÓĞÏò£©´øÈ¨Í¼×î¼ÑÓÅÏÈ±éÀú
+ * ï¼ˆæœ‰å‘ï¼‰å¸¦æƒå›¾æœ€ä½³ä¼˜å…ˆéå†
  */
 
 package dsa;
 
 public abstract class BestFS extends GraphTraverse {
-   //¹¹Ôì·½·¨
+   //æ„é€ æ–¹æ³•
    public BestFS(Graph g) { super(g); }
 
-   //¸üĞÂÉĞÎ´·ÃÎÊµÄ¶¥µãµ½ÒÑ·ÃÎÊµã¼¯µÄ×î¶Ì¾àÀë£¨È¡¾öÓÚ¾ßÌåµÄËã·¨£©
+   //æ›´æ–°å°šæœªè®¿é—®çš„é¡¶ç‚¹åˆ°å·²è®¿é—®ç‚¹é›†çš„æœ€çŸ­è·ç¦»ï¼ˆå–å†³äºå…·ä½“çš„ç®—æ³•ï¼‰
    protected abstract void updateDistanceAfter(Vertex v);
 
-   //×î¼ÑÓÅÏÈ±éÀúËã·¨
-   protected Object traverse(Vertex s, Object info) {//´Ó¶¥µãs³ö·¢£¬×ö×î¼ÑÓÅÏÈ±éÀú
-      if (UNDISCOVERED != s.getStatus())  return null;//Ìø¹ıÒÑ·ÃÎÊ¹ıµÄ¶¥µã£¨Õë¶Ô·ÇÁ¬Í¨Í¼£©
-      s.setDistance(0);//ÉèÖÃsµ½ÒÑ·ÃÎÊµã¼¯µÄ¾àÀë
-      Vertex v;//×î¼Ñ¶¥µã
-      while (null != (v = bestVertex())) {//Ö»Òª»¹ÓĞ×î¼Ñ¶¥µã
-         visit(v, null);//ÔÚ·¢ÏÖ²¢·ÃÎÊvÖ®ºó
-         updateDistanceAfter(v);//¸üĞÂÉĞÎ´·ÃÎÊµÄ¶¥µãµ½ÒÑ·ÃÎÊ¼¯µÄ×î¶Ì¾àÀë
+   //æœ€ä½³ä¼˜å…ˆéå†ç®—æ³•
+   protected Object traverse(Vertex s, Object info) {//ä»é¡¶ç‚¹så‡ºå‘ï¼Œåšæœ€ä½³ä¼˜å…ˆéå†
+      if (UNDISCOVERED != s.getStatus())  return null;//è·³è¿‡å·²è®¿é—®è¿‡çš„é¡¶ç‚¹ï¼ˆé’ˆå¯¹éè¿é€šå›¾ï¼‰
+      s.setDistance(0);//è®¾ç½®såˆ°å·²è®¿é—®ç‚¹é›†çš„è·ç¦»
+      Vertex v;//æœ€ä½³é¡¶ç‚¹
+      while (null != (v = bestVertex())) {//åªè¦è¿˜æœ‰æœ€ä½³é¡¶ç‚¹
+         visit(v, null);//åœ¨å‘ç°å¹¶è®¿é—®vä¹‹å
+         updateDistanceAfter(v);//æ›´æ–°å°šæœªè®¿é—®çš„é¡¶ç‚¹åˆ°å·²è®¿é—®é›†çš„æœ€çŸ­è·ç¦»
       }//while
       return null;
    }
 
-   //¶¥µã·ÃÎÊ²Ù×÷£ºÔÚ±¾Ëã·¨ÖĞ£¬infoÎŞÓÃ
+   //é¡¶ç‚¹è®¿é—®æ“ä½œï¼šåœ¨æœ¬ç®—æ³•ä¸­ï¼Œinfoæ— ç”¨
    protected Object visit(Vertex v, Object info)   {
-      v.setStatus(VISITED);//ÉèÖÃ¡°ÒÑ·ÃÎÊ¡±±ê¼Ç
+      v.setStatus(VISITED);//è®¾ç½®â€œå·²è®¿é—®â€æ ‡è®°
       return null;
    }
 
-   //»ùÓÚBestFSÊµÏÖµÄ×î¶Ì¾àÀëËã·¨£ºsÎªÆğÊ¼¶¥µã£¬infoÏòËã·¨´«µİ²ÎÊı
+   //åŸºäºBestFSå®ç°çš„æœ€çŸ­è·ç¦»ç®—æ³•ï¼šsä¸ºèµ·å§‹é¡¶ç‚¹ï¼Œinfoå‘ç®—æ³•ä¼ é€’å‚æ•°
    public Object algorithm(Vertex s, Object info) {
-      reset(s);//³õÊ¼»¯£¬±ê¼Ç¸´Î»
-      traverse(s, info);//BestFS£ºµ½ÆğµãµÄ×î¶Ì¾àÀë¼ÇÂ¼ÔÚ¸÷¶¥µãµÄdistanceÓòÖĞ
+      reset(s);//åˆå§‹åŒ–ï¼Œæ ‡è®°å¤ä½
+      traverse(s, info);//BestFSï¼šåˆ°èµ·ç‚¹çš„æœ€çŸ­è·ç¦»è®°å½•åœ¨å„é¡¶ç‚¹çš„distanceåŸŸä¸­
       return null;
    }
 
-   //´ÓÉĞÎ´·ÃÎÊµÄ¶¥µãÖĞÑ¡³ö×î¼ÑÕß
-   //¶ÔÓÚDijkstraËã·¨¶øÑÔ£¬¾ÍÊÇÓëÒÑ·ÃÎÊ¼¯Á¬Í¨¡¢¾àÀë×î½üµÄ¶¥µã£¨¼°¾àÀë²»ÊÇÎŞÇîµÄ×î½ü¶¥µã£©
-   //ÈôÃ»ÓĞÕâÑùµÄ¶¥µã£¬Ôò·µ»Ønull
+   //ä»å°šæœªè®¿é—®çš„é¡¶ç‚¹ä¸­é€‰å‡ºæœ€ä½³è€…
+   //å¯¹äºDijkstraç®—æ³•è€Œè¨€ï¼Œå°±æ˜¯ä¸å·²è®¿é—®é›†è¿é€šã€è·ç¦»æœ€è¿‘çš„é¡¶ç‚¹ï¼ˆåŠè·ç¦»ä¸æ˜¯æ— ç©·çš„æœ€è¿‘é¡¶ç‚¹ï¼‰
+   //è‹¥æ²¡æœ‰è¿™æ ·çš„é¡¶ç‚¹ï¼Œåˆ™è¿”å›null
    protected Vertex bestVertex() {
-      int bestValue = Integer.MAX_VALUE;//×î¼ÑÖ¸±ê£¨Ô½Ğ¡Ô½ºÃ£©
-      Vertex bestVertex = null;//×î¼Ñ¶¥µã
-      for (Iterator it = G.vertices(); it.hasNext();) {//Öğ¸ö¼ì²é
-         Vertex u = (Vertex)it.getNext();//¸÷¸ö
-         if (UNDISCOVERED == u.getStatus())//ÉĞÎ´·ÃÎÊµÄ¶¥µãu
-            if (bestValue > u.getDistance())//Èôuµ½ÒÑ·ÃÎÊµã¼¯¾àÀë¸ü½ü£¬Ôò
-               { bestValue = u.getDistance();  bestVertex = u; }//¸üĞÂ×î¼Ñ¼ÇÂ¼
+      int bestValue = Integer.MAX_VALUE;//æœ€ä½³æŒ‡æ ‡ï¼ˆè¶Šå°è¶Šå¥½ï¼‰
+      Vertex bestVertex = null;//æœ€ä½³é¡¶ç‚¹
+      for (Iterator it = G.vertices(); it.hasNext();) {//é€ä¸ªæ£€æŸ¥
+         Vertex u = (Vertex)it.getNext();//å„ä¸ª
+         if (UNDISCOVERED == u.getStatus())//å°šæœªè®¿é—®çš„é¡¶ç‚¹u
+            if (bestValue > u.getDistance())//è‹¥uåˆ°å·²è®¿é—®ç‚¹é›†è·ç¦»æ›´è¿‘ï¼Œåˆ™
+               { bestValue = u.getDistance();  bestVertex = u; }//æ›´æ–°æœ€ä½³è®°å½•
       }
-      if ((null != bestVertex) && (null != bestVertex.getBFSParent()))//×î¼Ñ¶¥µãÓëÆä¸¸Ç×Ö®¼äµÄÁª±ß
-         G.edgeFromTo(bestVertex.getBFSParent(), bestVertex).setType(TREE);//±»±ê¼ÇÎªTREE
+      if ((null != bestVertex) && (null != bestVertex.getBFSParent()))//æœ€ä½³é¡¶ç‚¹ä¸å…¶çˆ¶äº²ä¹‹é—´çš„è”è¾¹
+         G.edgeFromTo(bestVertex.getBFSParent(), bestVertex).setType(TREE);//è¢«æ ‡è®°ä¸ºTREE
       return bestVertex;
    }
 }

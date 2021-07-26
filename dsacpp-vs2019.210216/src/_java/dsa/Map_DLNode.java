@@ -7,33 +7,33 @@
  ******************************************************************************************/
 
 /*
- * »ùÓÚÁĞ±íÊµÏÖÓ³Éä½á¹¹
+ * åŸºäºåˆ—è¡¨å®ç°æ˜ å°„ç»“æ„
  */
 
 package  dsa;
 
 public class Map_DLNode implements Map {
-   private List L;//´æ·ÅÌõÄ¿µÄÁĞ±í
-   private EqualityTester T;//ÅĞµÈÆ÷
+   private List L;//å­˜æ”¾æ¡ç›®çš„åˆ—è¡¨
+   private EqualityTester T;//åˆ¤ç­‰å™¨
 
-   //¹¹Ôì·½·¨
+   //æ„é€ æ–¹æ³•
    public Map_DLNode()
    {  this(new EqualityTesterDefault()); }
 
-   //Ä¬ÈÏ¹¹Ôì·½·¨
+   //é»˜è®¤æ„é€ æ–¹æ³•
    public Map_DLNode(EqualityTester t)
    {  L = new List_DLNode();  T = t; }
 
-   /***************************** ADT·½·¨ *****************************/
-   //²éÑ¯Ó³Éä½á¹¹µ±Ç°µÄ¹æÄ£
+   /***************************** ADTæ–¹æ³• *****************************/
+   //æŸ¥è¯¢æ˜ å°„ç»“æ„å½“å‰çš„è§„æ¨¡
    public int getSize()
    { return L.getSize(); }
 
-   //ÅĞ¶ÏÓ³Éä½á¹¹ÊÇ·ñÎª¿Õ
+   //åˆ¤æ–­æ˜ å°„ç»“æ„æ˜¯å¦ä¸ºç©º
    public boolean isEmpty()
    { return L.isEmpty(); }
 
-   //ÈôMÖĞ´æÔÚÒÔkeyÎª¹Ø¼üÂëµÄÌõÄ¿£¬Ôò·µ»Ø¸ÃÌõÄ¿µÄÊı¾İ¶ÔÏó£»·ñÔò£¬·µ»Ønull
+   //è‹¥Mä¸­å­˜åœ¨ä»¥keyä¸ºå…³é”®ç çš„æ¡ç›®ï¼Œåˆ™è¿”å›è¯¥æ¡ç›®çš„æ•°æ®å¯¹è±¡ï¼›å¦åˆ™ï¼Œè¿”å›null
    public Object get(Object key) {
       Iterator P = L.positions();
       while (P.hasNext()) {
@@ -44,39 +44,39 @@ public class Map_DLNode implements Map {
       return null;
    }
 
-   //ÈôMÖĞ²»´æÔÚÒÔkeyÎª¹Ø¼üÂëµÄÌõÄ¿£¬Ôò½«ÌõÄ¿(key, value)¼ÓÈëµ½MÖĞ²¢·µ»Ønull
-   //·ñÔò£¬½«ÒÑÓĞÌõÄ¿µÄÊı¾İ¶ÔÏóÌæ»»Îªvalue£¬²¢·µ»ØÔ­ÏÈµÄÊı¾İ¶ÔÏó
+   //è‹¥Mä¸­ä¸å­˜åœ¨ä»¥keyä¸ºå…³é”®ç çš„æ¡ç›®ï¼Œåˆ™å°†æ¡ç›®(key, value)åŠ å…¥åˆ°Mä¸­å¹¶è¿”å›null
+   //å¦åˆ™ï¼Œå°†å·²æœ‰æ¡ç›®çš„æ•°æ®å¯¹è±¡æ›¿æ¢ä¸ºvalueï¼Œå¹¶è¿”å›åŸå…ˆçš„æ•°æ®å¯¹è±¡
    public Object put(Object key, Object value)  {
       Iterator P = L.positions();
-      while (P.hasNext()) {//ÖğÒ»¶Ô±È
-         Position pos = (Position)P.getNext();//¸÷¸öÎ»ÖÃ
-         Entry entry = (EntryDefault) pos.getElem();//´¦µÄÌõÄ¿
-         if (T.isEqualTo(entry.getKey(), key)) {//Èô·¢ÏÖkeyÒÑ³öÏÖÔÚÄ³¸öÌõÄ¿ÖĞ£¬Ôò
-            Object oldValue = entry.getValue();//ÏÈ±£Áô¸ÃÌõÄ¿Ô­ÏÈµÄÊı¾İ¶ÔÏó
-            L.replace(pos, new EntryDefault(key, value));//ÔÙÌæÖ®ÒÔĞÂÊı¾İ¶ÔÏó
-            return oldValue;//×îºó·µ»ØÔ­ÏÈµÄÊı¾İ¶ÔÏó¡£×¢Òâ£º·µ»ØnullÊ±µÄÆçÒå
+      while (P.hasNext()) {//é€ä¸€å¯¹æ¯”
+         Position pos = (Position)P.getNext();//å„ä¸ªä½ç½®
+         Entry entry = (EntryDefault) pos.getElem();//å¤„çš„æ¡ç›®
+         if (T.isEqualTo(entry.getKey(), key)) {//è‹¥å‘ç°keyå·²å‡ºç°åœ¨æŸä¸ªæ¡ç›®ä¸­ï¼Œåˆ™
+            Object oldValue = entry.getValue();//å…ˆä¿ç•™è¯¥æ¡ç›®åŸå…ˆçš„æ•°æ®å¯¹è±¡
+            L.replace(pos, new EntryDefault(key, value));//å†æ›¿ä¹‹ä»¥æ–°æ•°æ®å¯¹è±¡
+            return oldValue;//æœ€åè¿”å›åŸå…ˆçš„æ•°æ®å¯¹è±¡ã€‚æ³¨æ„ï¼šè¿”å›nullæ—¶çš„æ­§ä¹‰
          }
-      }//Èô´ËÑ­»·½áÊø£¬ËµÃ÷keyÉĞÎ´ÔÚMÖĞ³öÏÖ£¬Òò´Ë
-      L.insertFirst(new EntryDefault(key, value));//½«ĞÂÌõÄ¿²åÖÁ±íÊ×£¬²¢
-      return null;//·µ»Ønull±êÖ¾
+      }//è‹¥æ­¤å¾ªç¯ç»“æŸï¼Œè¯´æ˜keyå°šæœªåœ¨Mä¸­å‡ºç°ï¼Œå› æ­¤
+      L.insertFirst(new EntryDefault(key, value));//å°†æ–°æ¡ç›®æ’è‡³è¡¨é¦–ï¼Œå¹¶
+      return null;//è¿”å›nullæ ‡å¿—
    }
 
-   //ÈôMÖĞ´æÔÚÒÔkeyÎª¹Ø¼üÂëµÄÌõÄ¿£¬ÔòÉ¾³ıÖ®²¢·µ»ØÆäÊı¾İ¶ÔÏó£»·ñÔò£¬·µ»Ønull
+   //è‹¥Mä¸­å­˜åœ¨ä»¥keyä¸ºå…³é”®ç çš„æ¡ç›®ï¼Œåˆ™åˆ é™¤ä¹‹å¹¶è¿”å›å…¶æ•°æ®å¯¹è±¡ï¼›å¦åˆ™ï¼Œè¿”å›null
    public Object remove(Object key) {
       Iterator P = L.positions();
-      while (P.hasNext()) {//ÖğÒ»¶Ô±È
-         Position pos = (Position)P.getNext();//¸÷¸öÎ»ÖÃ
-         Entry entry = (EntryDefault) pos.getElem();//´¦µÄÌõÄ¿
-         if (T.isEqualTo(entry.getKey(), key)) {//Èô·¢ÏÖkeyÒÑ³öÏÖÔÚÄ³¸öÌõÄ¿ÖĞ£¬Ôò
-            Object oldValue = entry.getValue();//ÏÈ±£Áô¸ÃÌõÄ¿Ô­ÏÈµÄÊı¾İ¶ÔÏó
-            L.remove(pos);//É¾³ı¸ÃÌõÄ¿
-            return oldValue;//×îºó·µ»ØÔ­ÏÈµÄÊı¾İ¶ÔÏó¡£×¢Òâ£º·µ»ØnullÊ±µÄÆçÒå
+      while (P.hasNext()) {//é€ä¸€å¯¹æ¯”
+         Position pos = (Position)P.getNext();//å„ä¸ªä½ç½®
+         Entry entry = (EntryDefault) pos.getElem();//å¤„çš„æ¡ç›®
+         if (T.isEqualTo(entry.getKey(), key)) {//è‹¥å‘ç°keyå·²å‡ºç°åœ¨æŸä¸ªæ¡ç›®ä¸­ï¼Œåˆ™
+            Object oldValue = entry.getValue();//å…ˆä¿ç•™è¯¥æ¡ç›®åŸå…ˆçš„æ•°æ®å¯¹è±¡
+            L.remove(pos);//åˆ é™¤è¯¥æ¡ç›®
+            return oldValue;//æœ€åè¿”å›åŸå…ˆçš„æ•°æ®å¯¹è±¡ã€‚æ³¨æ„ï¼šè¿”å›nullæ—¶çš„æ­§ä¹‰
          }
-      }//Èô´ËÑ­»·½áÊø£¬ËµÃ÷keyÉĞÎ´ÔÚÓ³ÉäÖĞ³öÏÖ£¬Òò´Ë
-      return null;//·µ»Ønull±êÖ¾
+      }//è‹¥æ­¤å¾ªç¯ç»“æŸï¼Œè¯´æ˜keyå°šæœªåœ¨æ˜ å°„ä¸­å‡ºç°ï¼Œå› æ­¤
+      return null;//è¿”å›nullæ ‡å¿—
    }
 
-   //·µ»ØMÖĞËùÓĞÌõÄ¿µÄÒ»¸öµü´úÆ÷
+   //è¿”å›Mä¸­æ‰€æœ‰æ¡ç›®çš„ä¸€ä¸ªè¿­ä»£å™¨
    public Iterator entries()
-   {  return new IteratorElement(L); }//Ö±½ÓÀûÓÃList½Ó¿ÚµÄ·½·¨Éú³ÉÔªËØµü´úÆ÷
+   {  return new IteratorElement(L); }//ç›´æ¥åˆ©ç”¨Listæ¥å£çš„æ–¹æ³•ç”Ÿæˆå…ƒç´ è¿­ä»£å™¨
 }

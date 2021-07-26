@@ -7,7 +7,7 @@
  ******************************************************************************************/
 
 /*
- * Ä¬ÈÏÅĞµÈÆ÷
+ * é»˜è®¤åˆ¤ç­‰å™¨
  */
 
 package dsa;
@@ -15,5 +15,5 @@ package dsa;
 public class EqualityTesterDefault implements EqualityTester {
    public EqualityTesterDefault() {}
    public boolean isEqualTo(Object a, Object b)
-   {  return (a.equals(b)); }//Ê¹ÓÃJavaÌá¹©µÄÅĞµÈÆ÷
+   {  return (a.equals(b)); }//ä½¿ç”¨Javaæä¾›çš„åˆ¤ç­‰å™¨
 }

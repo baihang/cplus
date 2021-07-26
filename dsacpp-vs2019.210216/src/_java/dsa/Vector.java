@@ -7,31 +7,31 @@
  ******************************************************************************************/
 
 /*
- * ÏòÁ¿½Ó¿Ú
+ * å‘é‡æ¥å£
  */
 
 package dsa;
 
 public interface Vector {
-   //·µ»ØÏòÁ¿ÖĞÔªËØÊıÄ¿
+   //è¿”å›å‘é‡ä¸­å…ƒç´ æ•°ç›®
    public int getSize();
 
-   //ÅĞ¶ÏÏòÁ¿ÊÇ·ñÎª¿Õ
+   //åˆ¤æ–­å‘é‡æ˜¯å¦ä¸ºç©º
    public boolean isEmpty();
 
-   //È¡ÖÈÎªrµÄÔªËØ
+   //å–ç§©ä¸ºrçš„å…ƒç´ 
    public Object getAtRank(int r)
    throws ExceptionBoundaryViolation;
 
-   //½«ÖÈÎªrµÄÔªËØÌæ»»Îªobj
+   //å°†ç§©ä¸ºrçš„å…ƒç´ æ›¿æ¢ä¸ºobj
    public Object replaceAtRank(int r, Object obj)
    throws ExceptionBoundaryViolation;
 
-   //²åÈëobj£¬×÷ÎªÖÈÎªrµÄÔªËØ£»·µ»Ø¸ÃÔªËØ
+   //æ’å…¥objï¼Œä½œä¸ºç§©ä¸ºrçš„å…ƒç´ ï¼›è¿”å›è¯¥å…ƒç´ 
    public Object insertAtRank(int r, Object obj)
    throws ExceptionBoundaryViolation;
 
-   //É¾³ıÖÈÎªrµÄÔªËØ
+   //åˆ é™¤ç§©ä¸ºrçš„å…ƒç´ 
    public Object removeAtRank(int r)
    throws ExceptionBoundaryViolation;
 }

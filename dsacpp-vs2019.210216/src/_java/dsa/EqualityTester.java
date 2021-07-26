@@ -7,11 +7,11 @@
  ******************************************************************************************/
 
 /*
- * ÅĞµÈÆ÷½Ó¿Ú
+ * åˆ¤ç­‰å™¨æ¥å£
  */
 
 package dsa;
 
 public interface EqualityTester {
-   public boolean isEqualTo(Object a, Object b);//ÈôaÓëbÏàµÈ£¬Ôò·µ»Øtrue£»·ñÔò£¬·µ»Øfalse
+   public boolean isEqualTo(Object a, Object b);//è‹¥aä¸bç›¸ç­‰ï¼Œåˆ™è¿”å›trueï¼›å¦åˆ™ï¼Œè¿”å›false
 }

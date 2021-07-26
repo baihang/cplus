@@ -7,18 +7,18 @@
  ******************************************************************************************/
 
 /*
- * ��ȫ�������ӿ�
+ * 完全二叉树接口
  */
 
 package dsa;
 
 public interface ComplBinTree extends BinTree {
-   //���ɲ�����һ�����e���ⲿ�ڵ㣬�ýڵ��Ϊ�µ�ĩ�ڵ�
+   //生成并返回一个存放e的外部节点，该节点成为新的末节点
    public BinTreePosition addLast(Object e);
 
-   //ɾ��ĩ�ڵ㣬���������д�ŵ�����
+   //删除末节点，并返回其中存放的内容
    public Object delLast();
 
-   //���ذ��ղ�α������Ϊi�Ľڵ��λ�ã�0 <= i < size()
+   //返回按照层次遍历编号为i的节点的位置，0 <= i < size()
    public BinTreePosition posOfNode(int i);
 }

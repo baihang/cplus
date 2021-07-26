@@ -7,48 +7,48 @@
  ******************************************************************************************/
 
 /*
- * »ùÓÚµ¥Á´±íÊµÏÖÕ»½á¹¹
+ * åŸºäºå•é“¾è¡¨å®ç°æ ˆç»“æ„
  */
 
 package dsa;
 
 public class Stack_List implements Stack {
-   protected Node top;//Ö¸ÏòÕ»¶¥ÔªËØ
-   protected int size;//Õ»ÖĞÔªËØµÄÊıÄ¿
+   protected Node top;//æŒ‡å‘æ ˆé¡¶å…ƒç´ 
+   protected int size;//æ ˆä¸­å…ƒç´ çš„æ•°ç›®
 
-   //¹¹Ôì·½·¨£¨¿ÕÕ»£©
+   //æ„é€ æ–¹æ³•ï¼ˆç©ºæ ˆï¼‰
    public Stack_List()
    {  top = null; size = 0; }
 
-   //²éÑ¯µ±Ç°Õ»µÄ¹æÄ£
+   //æŸ¥è¯¢å½“å‰æ ˆçš„è§„æ¨¡
    public int getSize()
    {  return size; }
 
-   //ÅĞ¶ÏÊÇ·ñÕ»¿Õ
+   //åˆ¤æ–­æ˜¯å¦æ ˆç©º
    public boolean isEmpty()
    {  return (top == null) ? true : false; }
 
-   //Ñ¹Õ»
+   //å‹æ ˆ
    public void push(Object elem) {
-      Node v = new Node(elem, top);//´´½¨Ò»¸öĞÂ½Úµã£¬½«Æä×÷ÎªÊ×½Úµã²åÈë
-      top = v;//¸üĞÂÊ×½ÚµãÒıÓÃ
-      size++;//¸üĞÂ¹æÄ£¼ÇÂ¼
+      Node v = new Node(elem, top);//åˆ›å»ºä¸€ä¸ªæ–°èŠ‚ç‚¹ï¼Œå°†å…¶ä½œä¸ºé¦–èŠ‚ç‚¹æ’å…¥
+      top = v;//æ›´æ–°é¦–èŠ‚ç‚¹å¼•ç”¨
+      size++;//æ›´æ–°è§„æ¨¡è®°å½•
    }
 
-   //¶ÁÈ¡£¨µ«²»É¾³ı£©Õ»¶¥
+   //è¯»å–ï¼ˆä½†ä¸åˆ é™¤ï¼‰æ ˆé¡¶
    public Object top() throws ExceptionStackEmpty {
       if (isEmpty())
-         throw new ExceptionStackEmpty("ÒâÍâ£ºÕ»¿Õ");
+         throw new ExceptionStackEmpty("æ„å¤–ï¼šæ ˆç©º");
       return top.getElem();
    }
 
-   //µ¯³öÕ»¶¥
+   //å¼¹å‡ºæ ˆé¡¶
    public Object pop() throws ExceptionStackEmpty {
       if (isEmpty())
-         throw new ExceptionStackEmpty("ÒâÍâ£ºÕ»¿Õ");
+         throw new ExceptionStackEmpty("æ„å¤–ï¼šæ ˆç©º");
       Object temp = top.getElem();
-      top = top.getNext();//¸üĞÂÊ×½ÚµãÒıÓÃ
-      size--;//¸üĞÂ¹æÄ£¼ÇÂ¼
+      top = top.getNext();//æ›´æ–°é¦–èŠ‚ç‚¹å¼•ç”¨
+      size--;//æ›´æ–°è§„æ¨¡è®°å½•
       return temp;
    }
 }

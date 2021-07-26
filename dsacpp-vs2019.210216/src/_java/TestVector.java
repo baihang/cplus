@@ -7,7 +7,7 @@
  ******************************************************************************************/
 
 /*
- * ²âÊÔÏòÁ¿
+ * æµ‹è¯•å‘é‡
  */
 import dsa.*;
 import java.io.*;
@@ -27,7 +27,7 @@ public class TestVector {
       }
    }
 
-   //Êä³öÏòÁ¿ÖĞµÄËùÓĞÔªËØ
+   //è¾“å‡ºå‘é‡ä¸­çš„æ‰€æœ‰å…ƒç´ 
    protected static void Print(Vector v) {
       for (int i = 0; i < v.getSize(); i++)
          System.out.print(v.getAtRank(i) + " ");

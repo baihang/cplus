@@ -7,22 +7,22 @@
  ******************************************************************************************/
 
 /*
- * £¨ÓĞÏò£©´øÈ¨Í¼µÄµ¥Ô´µã×î¶ÌÂ·¾¶Ëã·¨
+ * ï¼ˆæœ‰å‘ï¼‰å¸¦æƒå›¾çš„å•æºç‚¹æœ€çŸ­è·¯å¾„ç®—æ³•
  */
 
 package dsa;
 
 public class BestFSDijkstra extends BestFS {
-   //¹¹Ôì·½·¨
+   //æ„é€ æ–¹æ³•
    public BestFSDijkstra(Graph g) { super(g); }
 
-   //¸üĞÂÉĞÎ´·ÃÎÊµÄ¶¥µãµ½Ô´µãµÄ×î¶Ì¾àÀë
+   //æ›´æ–°å°šæœªè®¿é—®çš„é¡¶ç‚¹åˆ°æºç‚¹çš„æœ€çŸ­è·ç¦»
    protected void updateDistanceAfter(Vertex v) {
-      for (Iterator it = v.outEdges(); it.hasNext();) {//¼ì²éÓë¶¥µãv
-         Edge e = (Edge)it.getNext();//Í¨¹ı±ße = (v, w)
-         Vertex w = (Vertex)e.getVPosInV(1).getElem();//ÏàÁªµÄÃ¿Ò»¶¥µãw
-         int   weight = ((Integer)e.getInfo()).intValue();//¸ù¾İ±ß(v, w)µÄÈ¨ÖØ
-         if (w.getDistance() > v.getDistance() + weight) {//È¡Ô­¾àÀëÓëĞÂ¾àÀëÖĞµÄĞ¡Õß
+      for (Iterator it = v.outEdges(); it.hasNext();) {//æ£€æŸ¥ä¸é¡¶ç‚¹v
+         Edge e = (Edge)it.getNext();//é€šè¿‡è¾¹e = (v, w)
+         Vertex w = (Vertex)e.getVPosInV(1).getElem();//ç›¸è”çš„æ¯ä¸€é¡¶ç‚¹w
+         int   weight = ((Integer)e.getInfo()).intValue();//æ ¹æ®è¾¹(v, w)çš„æƒé‡
+         if (w.getDistance() > v.getDistance() + weight) {//å–åŸè·ç¦»ä¸æ–°è·ç¦»ä¸­çš„å°è€…
             w.setDistance(v.getDistance() + weight);
             w.setBFSParent(v);
          }

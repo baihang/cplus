@@ -7,38 +7,38 @@
  ******************************************************************************************/
 
 /*
- * »ùÓÚÁĞ±íÊµÏÖµÄÎ»ÖÃµü´úÆ÷
+ * åŸºäºåˆ—è¡¨å®ç°çš„ä½ç½®è¿­ä»£å™¨
  */
 
 package dsa;
 
 public class IteratorPosition implements Iterator {
-   private List list;//ÁĞ±í
-   private Position nextPosition;//µ±Ç°£¨ÏÂÒ»¸ö£©Î»ÖÃ
+   private List list;//åˆ—è¡¨
+   private Position nextPosition;//å½“å‰ï¼ˆä¸‹ä¸€ä¸ªï¼‰ä½ç½®
 
-   //Ä¬ÈÏ¹¹Ôì·½·¨
+   //é»˜è®¤æ„é€ æ–¹æ³•
    public IteratorPosition() { list = null; }
 
-   //¹¹Ôì·½·¨
+   //æ„é€ æ–¹æ³•
    public IteratorPosition(List L) {
       list = L;
-      if (list.isEmpty())//ÈôÁĞ±íÎª¿Õ£¬Ôò
-         nextPosition = null;//µ±Ç°Î»ÖÃÖÃ¿Õ
-      else//·ñÔò
-         nextPosition = list.first();//´ÓµÚÒ»¸öÎ»ÖÃ¿ªÊ¼
+      if (list.isEmpty())//è‹¥åˆ—è¡¨ä¸ºç©ºï¼Œåˆ™
+         nextPosition = null;//å½“å‰ä½ç½®ç½®ç©º
+      else//å¦åˆ™
+         nextPosition = list.first();//ä»ç¬¬ä¸€ä¸ªä½ç½®å¼€å§‹
    }
 
-   //¼ì²éµü´úÆ÷ÖĞÊÇ·ñ»¹ÓĞÊ£ÓàµÄÎ»ÖÃ
+   //æ£€æŸ¥è¿­ä»£å™¨ä¸­æ˜¯å¦è¿˜æœ‰å‰©ä½™çš„ä½ç½®
    public boolean hasNext() { return (nextPosition != null); }
 
-   //·µ»Øµü´úÆ÷ÖĞµÄÏÂÒ»Î»ÖÃ
+   //è¿”å›è¿­ä»£å™¨ä¸­çš„ä¸‹ä¸€ä½ç½®
    public Object getNext() throws ExceptionNoSuchElement {
-      if (!hasNext()) throw new ExceptionNoSuchElement("ÒâÍâ£ºÃ»ÓĞÏÂÒ»Î»ÖÃ");
+      if (!hasNext()) throw new ExceptionNoSuchElement("æ„å¤–ï¼šæ²¡æœ‰ä¸‹ä¸€ä½ç½®");
       Position currentPosition = nextPosition;
-      if (currentPosition == list.last())//ÈôÒÑµ½´ïÎ²Î»ÖÃ£¬Ôò
-         nextPosition = null;//²»ÔÙÓĞÏÂÒ»¸öÎ»ÖÃ
-      else//·ñÔò
-         nextPosition = list.getNext(currentPosition);//×ªÏòÏÂÒ»Î»ÖÃ
+      if (currentPosition == list.last())//è‹¥å·²åˆ°è¾¾å°¾ä½ç½®ï¼Œåˆ™
+         nextPosition = null;//ä¸å†æœ‰ä¸‹ä¸€ä¸ªä½ç½®
+      else//å¦åˆ™
+         nextPosition = list.getNext(currentPosition);//è½¬å‘ä¸‹ä¸€ä½ç½®
       return currentPosition;
    }
 }

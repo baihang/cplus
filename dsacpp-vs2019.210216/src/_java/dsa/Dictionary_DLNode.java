@@ -7,33 +7,33 @@
  ******************************************************************************************/
 
 /*
- * »ùÓÚÁĞ±íÊµÏÖ£¨ÎŞĞò£©´Êµä½á¹¹
+ * åŸºäºåˆ—è¡¨å®ç°ï¼ˆæ— åºï¼‰è¯å…¸ç»“æ„
  */
 
 package  dsa;
 
 public class Dictionary_DLNode implements Dictionary {
-   private List L;//´æ·ÅÌõÄ¿µÄÁĞ±í
-   private EqualityTester T;//ÅĞµÈÆ÷
+   private List L;//å­˜æ”¾æ¡ç›®çš„åˆ—è¡¨
+   private EqualityTester T;//åˆ¤ç­‰å™¨
 
-   //¹¹Ôì·½·¨
+   //æ„é€ æ–¹æ³•
    public Dictionary_DLNode()
    {  this(new EqualityTesterDefault()); }
 
-   //Ä¬ÈÏ¹¹Ôì·½·¨
+   //é»˜è®¤æ„é€ æ–¹æ³•
    public Dictionary_DLNode(EqualityTester t)
    {  L = new List_DLNode();  T = t; }
 
-   /***************************** ADT·½·¨ *****************************/
-   //²éÑ¯´Êµä½á¹¹µ±Ç°µÄ¹æÄ£
+   /***************************** ADTæ–¹æ³• *****************************/
+   //æŸ¥è¯¢è¯å…¸ç»“æ„å½“å‰çš„è§„æ¨¡
    public int getSize()
    { return L.getSize(); }
 
-   //ÅĞ¶Ï´Êµä½á¹¹ÊÇ·ñÎª¿Õ
+   //åˆ¤æ–­è¯å…¸ç»“æ„æ˜¯å¦ä¸ºç©º
    public boolean isEmpty()
    { return L.isEmpty(); }
 
-   //Èô´ÊµäÖĞ´æÔÚÒÔkeyÎª¹Ø¼üÂëµÄÌõÄ¿£¬Ôò·µ»ØÆäÖĞµÄÒ»¸öÌõÄ¿£»·ñÔò£¬·µ»Ønull
+   //è‹¥è¯å…¸ä¸­å­˜åœ¨ä»¥keyä¸ºå…³é”®ç çš„æ¡ç›®ï¼Œåˆ™è¿”å›å…¶ä¸­çš„ä¸€ä¸ªæ¡ç›®ï¼›å¦åˆ™ï¼Œè¿”å›null
    public Entry find(Object key) {
       Iterator P = L.positions();
       while (P.hasNext()) {
@@ -44,7 +44,7 @@ public class Dictionary_DLNode implements Dictionary {
       return null;
    }
 
-   //·µ»ØÓÉ¹Ø¼üÂëÎªkeyµÄÌõÄ¿×é³ÉµÄµü´úÆ÷
+   //è¿”å›ç”±å…³é”®ç ä¸ºkeyçš„æ¡ç›®ç»„æˆçš„è¿­ä»£å™¨
    public Iterator findAll(Object key) {
       List  list = new List_DLNode();
       Iterator P = L.positions();
@@ -57,29 +57,29 @@ public class Dictionary_DLNode implements Dictionary {
       return new IteratorElement(list);
    }
 
-   //²åÈëÌõÄ¿(key, value)£¬²¢·µ»Ø¸ÃÌõÄ¿
+   //æ’å…¥æ¡ç›®(key, value)ï¼Œå¹¶è¿”å›è¯¥æ¡ç›®
    public Entry insert(Object key, Object value) {
-      Entry entry = new EntryDefault(key, value);//´´½¨ĞÂÌõÄ¿
-      L.insertFirst(entry);//½«ĞÂÌõÄ¿²åÖÁ±íÊ×£¬²¢
-      return entry;//·µ»Ønull±êÖ¾
+      Entry entry = new EntryDefault(key, value);//åˆ›å»ºæ–°æ¡ç›®
+      L.insertFirst(entry);//å°†æ–°æ¡ç›®æ’è‡³è¡¨é¦–ï¼Œå¹¶
+      return entry;//è¿”å›nullæ ‡å¿—
    }
 
-   //Èô´ÊµäÖĞ´æÔÚÒÔkeyÎª¹Ø¼üÂëµÄÌõÄ¿£¬Ôò½«Õª³ıÆäÖĞµÄÒ»¸ö²¢·µ»Ø£»·ñÔò£¬·µ»Ønull
+   //è‹¥è¯å…¸ä¸­å­˜åœ¨ä»¥keyä¸ºå…³é”®ç çš„æ¡ç›®ï¼Œåˆ™å°†æ‘˜é™¤å…¶ä¸­çš„ä¸€ä¸ªå¹¶è¿”å›ï¼›å¦åˆ™ï¼Œè¿”å›null
    public Entry remove(Object key) {
       Iterator P = L.positions();
-      while (P.hasNext()) {//ÖğÒ»¶Ô±È
-         Position pos = (Position)P.getNext();//¸÷¸öÎ»ÖÃ
-         Entry entry = (EntryDefault) pos.getElem();//´¦µÄÌõÄ¿
-         if (T.isEqualTo(entry.getKey(), key)) {//Èô·¢ÏÖkeyÒÑ³öÏÖÔÚÄ³¸öÌõÄ¿ÖĞ£¬Ôò
-            Entry oldEntry = entry;//ÏÈ±£Áô¸ÃÌõÄ¿
-            L.remove(pos);//É¾³ı¸ÃÌõÄ¿
-            return oldEntry;//×îºó·µ»ØÔ­ÏÈµÄÌõÄ¿
+      while (P.hasNext()) {//é€ä¸€å¯¹æ¯”
+         Position pos = (Position)P.getNext();//å„ä¸ªä½ç½®
+         Entry entry = (EntryDefault) pos.getElem();//å¤„çš„æ¡ç›®
+         if (T.isEqualTo(entry.getKey(), key)) {//è‹¥å‘ç°keyå·²å‡ºç°åœ¨æŸä¸ªæ¡ç›®ä¸­ï¼Œåˆ™
+            Entry oldEntry = entry;//å…ˆä¿ç•™è¯¥æ¡ç›®
+            L.remove(pos);//åˆ é™¤è¯¥æ¡ç›®
+            return oldEntry;//æœ€åè¿”å›åŸå…ˆçš„æ¡ç›®
          }
-      }//Èô´ËÑ­»·½áÊø£¬ËµÃ÷keyÉĞÎ´ÔÚ´ÊµäÖĞ³öÏÖ£¬Òò´Ë
-      return null;//·µ»Ønull±êÖ¾
+      }//è‹¥æ­¤å¾ªç¯ç»“æŸï¼Œè¯´æ˜keyå°šæœªåœ¨è¯å…¸ä¸­å‡ºç°ï¼Œå› æ­¤
+      return null;//è¿”å›nullæ ‡å¿—
    }
 
-   //·µ»Ø´ÊµäÖĞËùÓĞÌõÄ¿µÄÒ»¸öµü´úÆ÷
+   //è¿”å›è¯å…¸ä¸­æ‰€æœ‰æ¡ç›®çš„ä¸€ä¸ªè¿­ä»£å™¨
    public Iterator entries()
-   {  return new IteratorElement(L); }//Ö±½ÓÀûÓÃList½Ó¿ÚµÄ·½·¨Éú³ÉÔªËØµü´úÆ÷
+   {  return new IteratorElement(L); }//ç›´æ¥åˆ©ç”¨Listæ¥å£çš„æ–¹æ³•ç”Ÿæˆå…ƒç´ è¿­ä»£å™¨
 }

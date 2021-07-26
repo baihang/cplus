@@ -14,7 +14,7 @@
 #include <cstring>
 #include <cmath>
 
-#include "stack/stack.h" //Ê¹ÓÃÕ»
+#include "stack/stack.h" //ä½¿ç”¨æ ˆ
 #include "priority.h"
 
 __int64 facI ( int n );
@@ -24,6 +24,6 @@ void displayProgress ( char*, char*, Stack<double>&, Stack<char>&, char* );
 void readNumber ( char*&, Stack<double>& );
 Operator optr2rank ( char );
 char orderBetween ( char, char );
-void append ( char*&, double ); //ÖØÔØ
-void append ( char*&, char ); //ÖØÔØ
+void append ( char*&, double ); //é‡è½½
+void append ( char*&, char ); //é‡è½½
 double evaluate ( char* expr, char*& rpn );

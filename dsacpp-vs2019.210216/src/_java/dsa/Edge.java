@@ -7,33 +7,33 @@
  ******************************************************************************************/
 
 /*
- * ������ͼ�ı߽ṹ�ӿ�
- * ����ͼҲ���Կ���������ͼ��Ϊ�ˣ�ֻ�轫ÿ��������滻Ϊ�ԳƵ�һ�������
+ * （有向）图的边结构接口
+ * 无向图也可以看成是有向图，为此，只需将每条无向边替换为对称的一对有向边
  */
 
 package  dsa;
 
 public interface Edge {
-   //����
-   final static int UNKNOWN = 0;//δ֪��
-   final static int TREE = 1;//����
-   final static int CROSS = 2;//����
-   final static int FORWARD = 3;//ǰ����
-   final static int BACKWARD = 4;//������
+   //常量
+   final static int UNKNOWN = 0;//未知边
+   final static int TREE = 1;//树边
+   final static int CROSS = 2;//横跨边
+   final static int FORWARD = 3;//前向跨边
+   final static int BACKWARD = 4;//后向跨边
 
-   //���ص�ǰ�ߵ���Ϣ�����ڴ�Ȩͼ��Ҳ���Ǹ��ߵ�Ȩ�أ�
+   //返回当前边的信息（对于带权图，也就是各边的权重）
    public Object getInfo();
-   //����ǰ�ߵ���Ϣ����Ϊx��������ԭ�ȵ���Ϣ
+   //将当前边的信息更新为x，并返回原先的信息
    public Object setInfo(Object x);
 
-   //ȡ��ǰ����������ͼ�ı߼�E�е�λ��
+   //取当前边在所属的图的边集E中的位置
    public Position getEPosInE();
-   //ȡv[i]�ڶ��㼯V�е�λ�ã�i=0��1���ֱ��Ӧ����㡢�յ㣩
+   //取v[i]在顶点集V中的位置（i=0或1，分别对应于起点、终点）
    public Position getVPosInV(int i);
-   //��ǰ�����������˵�Ĺ����߼�I(v[i])�е�λ��
+   //当前边在其两个端点的关联边集I(v[i])中的位置
    public Position getEPosInI(int i);
 
-   //��ȡ�����ñߵ������Ա�����
+   //读取、设置边的类别（针对遍历）
    public int getType();
    public int setType(int t);
 }

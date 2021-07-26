@@ -7,67 +7,67 @@
  ******************************************************************************************/
 
 /**
- * »ùÓÚÁĞ±íÊµÏÖµÄÊ÷µü´úÆ÷
+ * åŸºäºåˆ—è¡¨å®ç°çš„æ ‘è¿­ä»£å™¨
  */
 
 package dsa;
 
 public class IteratorTree implements Iterator {
-   private List list;//ÁĞ±í
-   private Position nextPosition;//µ±Ç°£¨ÏÂÒ»¸ö£©ÔªËØµÄÎ»ÖÃ
+   private List list;//åˆ—è¡¨
+   private Position nextPosition;//å½“å‰ï¼ˆä¸‹ä¸€ä¸ªï¼‰å…ƒç´ çš„ä½ç½®
 
-   //Ä¬ÈÏ¹¹Ôì·½·¨
+   //é»˜è®¤æ„é€ æ–¹æ³•
    public IteratorTree() { list = null; }
 
-   //Ç°Ğò±éÀú
+   //å‰åºéå†
    public void elementsPreorderIterator(TreeLinkedList T) {
-      if (null == T) return;//µİ¹é»ù
-      list.insertLast(T);//Ê×ÏÈÊä³öµ±Ç°½Úµã
-      TreeLinkedList subtree = T.getFirstChild();//´Óµ±Ç°½ÚµãµÄ³¤×Ó¿ªÊ¼
-      while (null != subtree) {//ÒÀ´Î¶Ôµ±Ç°½ÚµãµÄ¸÷¸öº¢×Ó
-         this.elementsPreorderIterator(subtree);//×öÇ°Ğò±éÀú
+      if (null == T) return;//é€’å½’åŸº
+      list.insertLast(T);//é¦–å…ˆè¾“å‡ºå½“å‰èŠ‚ç‚¹
+      TreeLinkedList subtree = T.getFirstChild();//ä»å½“å‰èŠ‚ç‚¹çš„é•¿å­å¼€å§‹
+      while (null != subtree) {//ä¾æ¬¡å¯¹å½“å‰èŠ‚ç‚¹çš„å„ä¸ªå­©å­
+         this.elementsPreorderIterator(subtree);//åšå‰åºéå†
          subtree = subtree.getNextSibling();
       }
    }
 
-   //ºóĞò±éÀú
+   //ååºéå†
    public void elementsPostorderIterator(TreeLinkedList T) {
-      if (null == T) return;//µİ¹é»ù
-      TreeLinkedList subtree = T.getFirstChild();//´Óµ±Ç°½ÚµãµÄ³¤×Ó¿ªÊ¼
-      while (null != subtree) {//ÒÀ´Î¶Ôµ±Ç°½ÚµãµÄ¸÷¸öº¢×Ó
-         this.elementsPostorderIterator(subtree);//×öºóĞò±éÀú
+      if (null == T) return;//é€’å½’åŸº
+      TreeLinkedList subtree = T.getFirstChild();//ä»å½“å‰èŠ‚ç‚¹çš„é•¿å­å¼€å§‹
+      while (null != subtree) {//ä¾æ¬¡å¯¹å½“å‰èŠ‚ç‚¹çš„å„ä¸ªå­©å­
+         this.elementsPostorderIterator(subtree);//åšååºéå†
          subtree = subtree.getNextSibling();
       }
-      list.insertLast(T);//µ±ËùÓĞºó´ú¶¼·ÃÎÊ¹ıºó£¬×îºó²Å·ÃÎÊµ±Ç°½Úµã
+      list.insertLast(T);//å½“æ‰€æœ‰åä»£éƒ½è®¿é—®è¿‡åï¼Œæœ€åæ‰è®¿é—®å½“å‰èŠ‚ç‚¹
    }
 
-   //²ã´Î±éÀú
+   //å±‚æ¬¡éå†
    public void levelTraversalIterator(TreeLinkedList T) {
       if (null == T) return;
-      Queue_List  Q = new Queue_List();//¿Õ¶Ó
-      Q.enqueue(T);//¸ù½ÚµãÈë¶Ó
-      while (!Q.isEmpty()) {//ÔÚ¶ÓÁĞÖØĞÂ±ä¿ÕÖ®Ç°
-         TreeLinkedList tree = (TreeLinkedList) (Q.dequeue());//È¡³ö¶ÓÁĞÊ×½Úµã
-         list.insertLast(tree);//½«ĞÂ³ö¶ÓµÄ½Úµã½ÓÈëµü´úÆ÷ÖĞ
-         TreeLinkedList subtree = tree.getFirstChild();//´ÓtreeµÄµÚÒ»¸öº¢×ÓÆğ
-         while (null != subtree) {//ÒÀ´ÎÕÒ³öËùÓĞº¢×Ó£¬²¢
-            Q.enqueue(subtree);//½«Æä¼ÓÖÁ¶ÓÁĞÖĞ
+      Queue_List  Q = new Queue_List();//ç©ºé˜Ÿ
+      Q.enqueue(T);//æ ¹èŠ‚ç‚¹å…¥é˜Ÿ
+      while (!Q.isEmpty()) {//åœ¨é˜Ÿåˆ—é‡æ–°å˜ç©ºä¹‹å‰
+         TreeLinkedList tree = (TreeLinkedList) (Q.dequeue());//å–å‡ºé˜Ÿåˆ—é¦–èŠ‚ç‚¹
+         list.insertLast(tree);//å°†æ–°å‡ºé˜Ÿçš„èŠ‚ç‚¹æ¥å…¥è¿­ä»£å™¨ä¸­
+         TreeLinkedList subtree = tree.getFirstChild();//ä»treeçš„ç¬¬ä¸€ä¸ªå­©å­èµ·
+         while (null != subtree) {//ä¾æ¬¡æ‰¾å‡ºæ‰€æœ‰å­©å­ï¼Œå¹¶
+            Q.enqueue(subtree);//å°†å…¶åŠ è‡³é˜Ÿåˆ—ä¸­
             subtree = subtree.getNextSibling();
          }
       }
    }
 
-   //¼ì²éµü´úÆ÷ÖĞÊÇ·ñ»¹ÓĞÊ£ÓàµÄÔªËØ
+   //æ£€æŸ¥è¿­ä»£å™¨ä¸­æ˜¯å¦è¿˜æœ‰å‰©ä½™çš„å…ƒç´ 
    public boolean hasNext() { return (null != nextPosition); }
 
-   //·µ»Øµü´úÆ÷ÖĞµÄÏÂÒ»ÔªËØ
+   //è¿”å›è¿­ä»£å™¨ä¸­çš„ä¸‹ä¸€å…ƒç´ 
    public Object getNext() throws ExceptionNoSuchElement {
       if (!hasNext()) throw new ExceptionNoSuchElement("No next position");
       Position currentPosition = nextPosition;
-      if (currentPosition == list.last())//ÈôÒÑµ½´ïÎ²ÔªËØ£¬Ôò
-         nextPosition = null;//²»ÔÙÓĞÏÂÒ»ÔªËØ
-      else//·ñÔò
-         nextPosition = list.getNext(currentPosition);//×ªÏòÏÂÒ»ÔªËØ
+      if (currentPosition == list.last())//è‹¥å·²åˆ°è¾¾å°¾å…ƒç´ ï¼Œåˆ™
+         nextPosition = null;//ä¸å†æœ‰ä¸‹ä¸€å…ƒç´ 
+      else//å¦åˆ™
+         nextPosition = list.getNext(currentPosition);//è½¬å‘ä¸‹ä¸€å…ƒç´ 
       return currentPosition.getElem();
    }
 }

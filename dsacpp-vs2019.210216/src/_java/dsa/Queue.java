@@ -7,19 +7,19 @@
  ******************************************************************************************/
 
 /*
- * ¶ÓÁĞ½Ó¿Ú
+ * é˜Ÿåˆ—æ¥å£
  */
 
 package dsa;
 
 public interface Queue {
-   public int getSize();//·µ»Ø¶ÓÁĞÖĞÔªËØÊıÄ¿
-   public boolean isEmpty();//ÅĞ¶Ï¶ÓÁĞÊÇ·ñÎª¿Õ
-   public Object front()//È¡¶ÓÊ×ÔªËØ£¨µ«²»É¾³ı£©
+   public int getSize();//è¿”å›é˜Ÿåˆ—ä¸­å…ƒç´ æ•°ç›®
+   public boolean isEmpty();//åˆ¤æ–­é˜Ÿåˆ—æ˜¯å¦ä¸ºç©º
+   public Object front()//å–é˜Ÿé¦–å…ƒç´ ï¼ˆä½†ä¸åˆ é™¤ï¼‰
    throws ExceptionQueueEmpty;
    public void enqueue (Object obj)
-   throws ExceptionQueueFull;//Èë¶Ó
-   public Object dequeue()//³ö¶Ó
+   throws ExceptionQueueFull;//å…¥é˜Ÿ
+   public Object dequeue()//å‡ºé˜Ÿ
    throws ExceptionQueueEmpty;
-   public void Traversal();//±éÀú
+   public void Traversal();//éå†
 }

@@ -3,17 +3,17 @@
 
 extern int s_lo, s_hi;
 
-int gs_DC( int A[], int lo, int hi ) { //·ÖÖÎ²ßÂÔ£ºO(n*logn)
+int gs_DC( int A[], int lo, int hi ) { //åˆ†æ²»ç­–ç•¥ï¼šO(n*logn)
    if ( hi - lo < 2 ) return A[lo];
    int mi = (lo + hi) / 2;
 
-   int gsL = A[mi-1], sL = 0, i = mi; //Ã¶¾Ù
-   while ( lo < i-- ) //ËùÓĞ[i, mi)ÀàÇø¶Î
+   int gsL = A[mi-1], sL = 0, i = mi; //æšä¸¾
+   while ( lo < i-- ) //æ‰€æœ‰[i, mi)ç±»åŒºæ®µ
       if ( gsL < (sL += A[i]) ) gsL = sL;
 
-   int gsR = A[mi], sR = 0, j = mi-1; //Ã¶¾Ù
-   while ( ++j < hi ) //ËùÓĞ[mi, j)ÀàÇø¶Î
-      if ( gsR < (sR += A[j]) ) gsR = sR; //ÔñÓÅ¡¢¸üĞÂ
+   int gsR = A[mi], sR = 0, j = mi-1; //æšä¸¾
+   while ( ++j < hi ) //æ‰€æœ‰[mi, j)ç±»åŒºæ®µ
+      if ( gsR < (sR += A[j]) ) gsR = sR; //æ‹©ä¼˜ã€æ›´æ–°
 
-   return max( gsL + gsR, max( gs_DC( A, lo, mi ), gs_DC( A, mi, hi ) ) ); //µİ¹é
+   return max( gsL + gsR, max( gs_DC( A, lo, mi ), gs_DC( A, mi, hi ) ) ); //é€’å½’
 }

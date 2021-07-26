@@ -14,18 +14,18 @@ import java.util.*;
 public class Hash {
    public static void main(String[] args) {
       HashMap HM = new HashMap();  //Map
-      HM.put("东岳", "泰山");
-      HM.put("西岳", "华山");
-      HM.put("南岳", "衡山");
-      HM.put("北岳", "恒山");
-      HM.put("中岳", "嵩山");
+      HM.put("涓滃渤", "娉板北");
+      HM.put("瑗垮渤", "鍗庡北");
+      HM.put("鍗楀渤", "琛″北");
+      HM.put("鍖楀渤", "鎭掑北");
+      HM.put("涓渤", "宓╁北");
       System.out.println(HM);
       Hashtable HT = new Hashtable();  //Dictionary
-      HT.put("东岳", "泰山");
-      HT.put("西岳", "华山");
-      HT.put("南岳", "衡山");
-      HT.put("北岳", "恒山");
-      HT.put("中岳", "嵩山");
+      HT.put("涓滃渤", "娉板北");
+      HT.put("瑗垮渤", "鍗庡北");
+      HT.put("鍗楀渤", "琛″北");
+      HT.put("鍖楀渤", "鎭掑北");
+      HT.put("涓渤", "宓╁北");
       System.out.println(HT);
    }
 }

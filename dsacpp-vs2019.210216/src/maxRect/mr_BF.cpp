@@ -1,5 +1,5 @@
-// °´¶¨ÒåÂùÁ¦µØ¼ÆËãÖ±·½Í¼H[]ÖÐµÄ×î´ó¾ØÐÎ£¨¶à¸ö²¢ÁÐÊ±È¡×î¿¿×ó²àÕß£©
-__int64 mr_BRUTE( int H[], int n, int& mr_r, int& mr_s, int& mr_t ) { //ÂùÁ¦£ºO(n^2)
+// æŒ‰å®šä¹‰è›®åŠ›åœ°è®¡ç®—ç›´æ–¹å›¾H[]ä¸­çš„æœ€å¤§çŸ©å½¢ï¼ˆå¤šä¸ªå¹¶åˆ—æ—¶å–æœ€é å·¦ä¾§è€…ï¼‰
+__int64 mr_BRUTE( int H[], int n, int& mr_r, int& mr_s, int& mr_t ) { //è›®åŠ›ï¼šO(n^2)
    __int64 maxRect = 0;
    for ( int r = 0, s = 0, t = 0; r < n; r++, s = t = r ) {
       do s--; while ( -1 < s  &&  H[s] >= H[r] ); s++;
@@ -9,4 +9,4 @@ __int64 mr_BRUTE( int H[], int n, int& mr_r, int& mr_s, int& mr_t ) { //ÂùÁ¦£ºO(
          { maxRect = rect; mr_r = r; mr_s = s; mr_t = t; }
    }
    return maxRect;
-} //Ã¿¸ö¼«´ó¾ØÐÎºÄÊ±O(n)£¬ÀÛ¼ÆO(n^2)
+} //æ¯ä¸ªæžå¤§çŸ©å½¢è€—æ—¶O(n)ï¼Œç´¯è®¡O(n^2)

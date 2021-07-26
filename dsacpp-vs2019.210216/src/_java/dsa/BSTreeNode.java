@@ -7,38 +7,38 @@
  ******************************************************************************************/
 
 /*
- * »ùÓÚÁ´±íÊµÏÖµÄBST½ÚµãÀà
+ * åŸºäºé“¾è¡¨å®ç°çš„BSTèŠ‚ç‚¹ç±»
  */
 
 package dsa;
 
 public class BSTreeNode extends BinTreeNode implements BinTreePosition, Entry {
-   /**************************** ¹¹Ôì·½·¨ ****************************/
+   /**************************** æ„é€ æ–¹æ³• ****************************/
    public BSTreeNode()
    { super(); }
 
    public BSTreeNode(
-      Object e,//½ÚµãÄÚÈİ
-      BinTreePosition p,//¸¸½Úµã
-      boolean asLChild,//ÊÇ·ñ×÷Îª¸¸½ÚµãµÄ×óº¢×Ó
-      BinTreePosition l,//×óº¢×Ó
-      BinTreePosition r)//ÓÒº¢×Ó
+      Object e,//èŠ‚ç‚¹å†…å®¹
+      BinTreePosition p,//çˆ¶èŠ‚ç‚¹
+      boolean asLChild,//æ˜¯å¦ä½œä¸ºçˆ¶èŠ‚ç‚¹çš„å·¦å­©å­
+      BinTreePosition l,//å·¦å­©å­
+      BinTreePosition r)//å³å­©å­
    {  super(e, p, asLChild, l, r); }
 
-   /**************************** ÊµÏÖEntry½Ó¿ÚµÄ·½·¨ ****************************/
-   //·µ»Øµ±Ç°½ÚµãµÄ¹Ø¼üÂë
+   /**************************** å®ç°Entryæ¥å£çš„æ–¹æ³• ****************************/
+   //è¿”å›å½“å‰èŠ‚ç‚¹çš„å…³é”®ç 
    public Object getKey()
    { return ((Entry)getElem()).getKey(); }
 
-   //ĞŞ¸ÄÌõÄ¿µÄ¹Ø¼üÂë£¬·µ»Ø´ËÇ°´æ·ÅµÄ¹Ø¼üÂë
+   //ä¿®æ”¹æ¡ç›®çš„å…³é”®ç ï¼Œè¿”å›æ­¤å‰å­˜æ”¾çš„å…³é”®ç 
    public Object setKey(Object k)
    { return ((Entry)getElem()).setKey(k); }
 
-   //È¡ÌõÄ¿µÄÊı¾İ¶ÔÏó
+   //å–æ¡ç›®çš„æ•°æ®å¯¹è±¡
    public Object getValue()
    { return ((Entry)getElem()).getValue(); }
 
-   //ĞŞ¸ÄÌõÄ¿µÄÊı¾İ¶ÔÏó£¬·µ»Ø´ËÇ°´æ·ÅµÄÊı¾İ¶ÔÏó
+   //ä¿®æ”¹æ¡ç›®çš„æ•°æ®å¯¹è±¡ï¼Œè¿”å›æ­¤å‰å­˜æ”¾çš„æ•°æ®å¯¹è±¡
    public Object setValue(Object v)
    { return ((Entry)getElem()).setValue(v); }
 }

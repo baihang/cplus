@@ -7,55 +7,55 @@
  ******************************************************************************************/
 
 /*
- * »ùÓÚÏòÁ¿ÊµÏÖµÄÍêÈ«¶ş²æÊ÷
+ * åŸºäºå‘é‡å®ç°çš„å®Œå…¨äºŒå‰æ ‘
  */
 
 package dsa;
 
 public class ComplBinTree_Vector extends BinTree_LinkedList implements ComplBinTree {
-   private Vector T;//ÏòÁ¿
+   private Vector T;//å‘é‡
 
-   //¹¹Ôì·½·¨£ºÄ¬ÈÏµÄ¿ÕÊ÷
+   //æ„é€ æ–¹æ³•ï¼šé»˜è®¤çš„ç©ºæ ‘
    public ComplBinTree_Vector()
    { T = new Vector_ExtArray();  root = null; }
 
-   //¹¹Ôì·½·¨£º°´ÕÕ¸ø¶¨µÄ½ÚµãĞòÁĞ£¬ÅúÁ¿Ê½½¨Á¢ÍêÈ«¶ş²æÊ÷
+   //æ„é€ æ–¹æ³•ï¼šæŒ‰ç…§ç»™å®šçš„èŠ‚ç‚¹åºåˆ—ï¼Œæ‰¹é‡å¼å»ºç«‹å®Œå…¨äºŒå‰æ ‘
    public ComplBinTree_Vector(Sequence s)
    { this();   if (null != s) while (!s.isEmpty()) addLast(s.removeFirst()); }
 
-   /*---------- BinaryTree½Ó¿ÚÖĞ¸÷·½·¨µÄÊµÏÖ ----------*/
-   //·µ»ØÊ÷¸ù£¨ÖØĞ´£©
+   /*---------- BinaryTreeæ¥å£ä¸­å„æ–¹æ³•çš„å®ç° ----------*/
+   //è¿”å›æ ‘æ ¹ï¼ˆé‡å†™ï¼‰
    public BinTreePosition getRoot()
    { return T.isEmpty() ? null : posOfNode(0); }
 
-   //ÅĞ¶ÏÊÇ·ñÊ÷¿Õ£¨ÖØĞ´£©
+   //åˆ¤æ–­æ˜¯å¦æ ‘ç©ºï¼ˆé‡å†™ï¼‰
    public boolean isEmpty()
    { return T.isEmpty(); }
 
-   //·µ»ØÊ÷µÄ¹æÄ££¨ÖØĞ´£©
+   //è¿”å›æ ‘çš„è§„æ¨¡ï¼ˆé‡å†™ï¼‰
    public int getSize()
    { return T.getSize(); }
 
-   //·µ»ØÊ÷£¨¸ù£©µÄ¸ß¶È£¨ÖØĞ´£©
+   //è¿”å›æ ‘ï¼ˆæ ¹ï¼‰çš„é«˜åº¦ï¼ˆé‡å†™ï¼‰
    public int getHeight()
    {return isEmpty() ? -1 : getRoot().getHeight(); }
 
-   /*---------- ComplBinTree½Ó¿ÚÖĞ¸÷·½·¨µÄÊµÏÖ ----------*/
-   //Éú³É²¢·µ»ØÒ»¸ö´æ·ÅeµÄÍâ²¿½Úµã£¬¸Ã½Úµã³ÉÎªĞÂµÄÄ©½Úµã
+   /*---------- ComplBinTreeæ¥å£ä¸­å„æ–¹æ³•çš„å®ç° ----------*/
+   //ç”Ÿæˆå¹¶è¿”å›ä¸€ä¸ªå­˜æ”¾eçš„å¤–éƒ¨èŠ‚ç‚¹ï¼Œè¯¥èŠ‚ç‚¹æˆä¸ºæ–°çš„æœ«èŠ‚ç‚¹
    public BinTreePosition addLast(Object e) {
       BinTreePosition node = new ComplBinTreeNode_Rank(T, e);
       root = (BinTreePosition) T.getAtRank(0);
       return node;
    }
 
-   //É¾³ıÄ©½Úµã£¬²¢·µ»ØÆäÖĞ´æ·ÅµÄÄÚÈİ
+   //åˆ é™¤æœ«èŠ‚ç‚¹ï¼Œå¹¶è¿”å›å…¶ä¸­å­˜æ”¾çš„å†…å®¹
    public Object delLast() {
-      if (isEmpty()) return null;//ÈôÊ÷£¨¶Ñ£©ÒÑ¿Õ£¬ÎŞ·¨É¾³ı
-      if (1 == getSize()) root = null;//ÈôÉ¾³ı×îºóÒ»¸ö½Úµã£¬ÔòÊ÷¿Õ
+      if (isEmpty()) return null;//è‹¥æ ‘ï¼ˆå †ï¼‰å·²ç©ºï¼Œæ— æ³•åˆ é™¤
+      if (1 == getSize()) root = null;//è‹¥åˆ é™¤æœ€åä¸€ä¸ªèŠ‚ç‚¹ï¼Œåˆ™æ ‘ç©º
       return T.removeAtRank(T.getSize() - 1);
    }
 
-   //·µ»Ø°´ÕÕ²ã´Î±éÀú±àºÅÎªiµÄ½ÚµãµÄÎ»ÖÃ£¬0 <= i < size()
+   //è¿”å›æŒ‰ç…§å±‚æ¬¡éå†ç¼–å·ä¸ºiçš„èŠ‚ç‚¹çš„ä½ç½®ï¼Œ0 <= i < size()
    public BinTreePosition posOfNode(int i) {
       return (BinTreePosition)T.getAtRank(i);
    }

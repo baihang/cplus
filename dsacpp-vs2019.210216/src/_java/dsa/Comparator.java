@@ -7,11 +7,11 @@
  ******************************************************************************************/
 
 /*
- * ±È½ÏÆ÷½Ó¿Ú
+ * æ¯”è¾ƒå™¨æŽ¥å£
  */
 
 package dsa;
 
 public interface Comparator {
-   public int compare(Object a, Object b);//Èôa>£¨=»ò<£©b£¬·µ»ØÕýÊý¡¢Áã»ò¸ºÊý
+   public int compare(Object a, Object b);//è‹¥a>ï¼ˆ=æˆ–<ï¼‰bï¼Œè¿”å›žæ­£æ•°ã€é›¶æˆ–è´Ÿæ•°
 }

@@ -9,11 +9,11 @@
 #pragma once
 
 template <typename T> BinNodePosi<T> BinTree<T>::insertAsRoot ( T const& e )
-{ _size = 1; return _root = new BinNode<T> ( e ); } //½«eµ±×÷¸ù½Úµã²åÈë¿ÕµÄ¶ş²æÊ÷
+{ _size = 1; return _root = new BinNode<T> ( e ); } //å°†eå½“ä½œæ ¹èŠ‚ç‚¹æ’å…¥ç©ºçš„äºŒå‰æ ‘
 /*DSA*/
 /*DSA*/template <typename T> BinNodePosi<T> BinTree<T>::insertAsLC ( BinNodePosi<T> x, T const& e )
-/*DSA*/{ _size++; x->insertAsLC ( e ); updateHeightAbove ( x ); return x->lc; } //e²åÈëÎªxµÄ×óº¢×Ó
+/*DSA*/{ _size++; x->insertAsLC ( e ); updateHeightAbove ( x ); return x->lc; } //eæ’å…¥ä¸ºxçš„å·¦å­©å­
 
 template <typename T> BinNodePosi<T> BinTree<T>::insertAsRC ( BinNodePosi<T> x, T const& e )
-{ _size++; x->insertAsRC ( e ); updateHeightAbove ( x ); return x->rc; } //e²åÈëÎªxµÄÓÒº¢×Ó
-//insertAsLC()ÍêÈ«¶Ô³Æ£¬ÔÚ´ËÊ¡ÂÔ
+{ _size++; x->insertAsRC ( e ); updateHeightAbove ( x ); return x->rc; } //eæ’å…¥ä¸ºxçš„å³å­©å­
+//insertAsLC()å®Œå…¨å¯¹ç§°ï¼Œåœ¨æ­¤çœç•¥

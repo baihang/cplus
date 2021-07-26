@@ -7,20 +7,20 @@
  ******************************************************************************************/
 
 /*
- * »ùÓÚÁ´±íÊµÏÖÊ÷½á¹¹
+ * åŸºäºé“¾è¡¨å®ç°æ ‘ç»“æ„
  */
 
 package dsa;
 
 public class TreeLinkedList implements Tree {
-   private Object element;//Ê÷¸ù½Úµã
-   private TreeLinkedList parent, firstChild, nextSibling;//¸¸Ç×¡¢³¤×Ó¼°×î´óµÄµÜµÜ
+   private Object element;//æ ‘æ ¹èŠ‚ç‚¹
+   private TreeLinkedList parent, firstChild, nextSibling;//çˆ¶äº²ã€é•¿å­åŠæœ€å¤§çš„å¼Ÿå¼Ÿ
 
-   //£¨µ¥½ÚµãÊ÷£©¹¹Ôì·½·¨
+   //ï¼ˆå•èŠ‚ç‚¹æ ‘ï¼‰æ„é€ æ–¹æ³•
    public TreeLinkedList()
    {  this(null, null, null, null); }
 
-   //¹¹Ôì·½·¨
+   //æ„é€ æ–¹æ³•
    public TreeLinkedList(Object e, TreeLinkedList p, TreeLinkedList c, TreeLinkedList s) {
       element = e;
       parent = p;
@@ -28,57 +28,57 @@ public class TreeLinkedList implements Tree {
       nextSibling = s;
    }
 
-   /*---------- Tree½Ó¿ÚÖĞ¸÷·½·¨µÄÊµÏÖ ----------*/
-   //·µ»Øµ±Ç°½ÚµãÖĞ´æ·ÅµÄ¶ÔÏó
+   /*---------- Treeæ¥å£ä¸­å„æ–¹æ³•çš„å®ç° ----------*/
+   //è¿”å›å½“å‰èŠ‚ç‚¹ä¸­å­˜æ”¾çš„å¯¹è±¡
    public Object getElem()
    { return element; }
 
 
-   //½«¶ÔÏóobj´æÈëµ±Ç°½Úµã£¬²¢·µ»Ø´ËÇ°µÄÄÚÈİ
+   //å°†å¯¹è±¡objå­˜å…¥å½“å‰èŠ‚ç‚¹ï¼Œå¹¶è¿”å›æ­¤å‰çš„å†…å®¹
    public Object setElem(Object obj)
    {  Object bak = element;   element = obj; return bak; }
 
-   //·µ»Øµ±Ç°½ÚµãµÄ¸¸½Úµã£»¶ÔÓÚ¸ù½Úµã£¬·µ»Ønull
+   //è¿”å›å½“å‰èŠ‚ç‚¹çš„çˆ¶èŠ‚ç‚¹ï¼›å¯¹äºæ ¹èŠ‚ç‚¹ï¼Œè¿”å›null
    public TreeLinkedList getParent()
    { return parent; }
 
-   //·µ»Øµ±Ç°½ÚµãµÄ³¤×Ó£»ÈôÃ»ÓĞº¢×Ó£¬Ôò·µ»Ønull
+   //è¿”å›å½“å‰èŠ‚ç‚¹çš„é•¿å­ï¼›è‹¥æ²¡æœ‰å­©å­ï¼Œåˆ™è¿”å›null
    public TreeLinkedList getFirstChild()
    { return firstChild; }
 
-   //·µ»Øµ±Ç°½ÚµãµÄ×î´óµÜµÜ£»ÈôÃ»ÓĞµÜµÜ£¬Ôò·µ»Ønull
+   //è¿”å›å½“å‰èŠ‚ç‚¹çš„æœ€å¤§å¼Ÿå¼Ÿï¼›è‹¥æ²¡æœ‰å¼Ÿå¼Ÿï¼Œåˆ™è¿”å›null
    public TreeLinkedList getNextSibling()
    { return nextSibling; }
 
-   //·µ»Øµ±Ç°½Úµãºó´úÔªËØµÄÊıÄ¿£¬¼´ÒÔµ±Ç°½ÚµãÎª¸ùµÄ×ÓÊ÷µÄ¹æÄ£
+   //è¿”å›å½“å‰èŠ‚ç‚¹åä»£å…ƒç´ çš„æ•°ç›®ï¼Œå³ä»¥å½“å‰èŠ‚ç‚¹ä¸ºæ ¹çš„å­æ ‘çš„è§„æ¨¡
    public int getSize() {
-      int   size = 1;//µ±Ç°½ÚµãÒ²ÊÇ×Ô¼ºµÄºó´ú
-      TreeLinkedList subtree = firstChild;//´Ó³¤×Ó¿ªÊ¼
-      while (null != subtree) {//ÒÀ´Î
-         size += subtree.getSize();//ÀÛ¼Ó
-         subtree = subtree.getNextSibling();//ËùÓĞº¢×ÓµÄºó´úÊıÄ¿
+      int   size = 1;//å½“å‰èŠ‚ç‚¹ä¹Ÿæ˜¯è‡ªå·±çš„åä»£
+      TreeLinkedList subtree = firstChild;//ä»é•¿å­å¼€å§‹
+      while (null != subtree) {//ä¾æ¬¡
+         size += subtree.getSize();//ç´¯åŠ 
+         subtree = subtree.getNextSibling();//æ‰€æœ‰å­©å­çš„åä»£æ•°ç›®
       }
-      return size;//¼´¿ÉµÃµ½µ±Ç°½ÚµãµÄºó´ú×ÜÊı
+      return size;//å³å¯å¾—åˆ°å½“å‰èŠ‚ç‚¹çš„åä»£æ€»æ•°
    }
 
-   //·µ»Øµ±Ç°½ÚµãµÄ¸ß¶È
+   //è¿”å›å½“å‰èŠ‚ç‚¹çš„é«˜åº¦
    public int getHeight() {
       int   height = -1;
-      TreeLinkedList subtree = firstChild;//´Ó³¤×Ó¿ªÊ¼
-      while (null != subtree) {//ÒÀ´Î
-         height = Math.max(height, subtree.getHeight());//ÔÚËùÓĞº¢×ÓÖĞÈ¡×î´ó¸ß¶È
+      TreeLinkedList subtree = firstChild;//ä»é•¿å­å¼€å§‹
+      while (null != subtree) {//ä¾æ¬¡
+         height = Math.max(height, subtree.getHeight());//åœ¨æ‰€æœ‰å­©å­ä¸­å–æœ€å¤§é«˜åº¦
          subtree = subtree.getNextSibling();
       }
-      return height + 1; //¼´¿ÉµÃµ½µ±Ç°½ÚµãµÄ¸ß¶È
+      return height + 1; //å³å¯å¾—åˆ°å½“å‰èŠ‚ç‚¹çš„é«˜åº¦
    }
 
-   //·µ»Øµ±Ç°½ÚµãµÄÉî¶È
+   //è¿”å›å½“å‰èŠ‚ç‚¹çš„æ·±åº¦
    public int getDepth() {
       int   depth = 0;
-      TreeLinkedList p = parent;//´Ó¸¸Ç×¿ªÊ¼
-      while (null != p) {//ÒÀ´Î
-         depth++; p = p.getParent();//·ÃÎÊ¸÷¸öÕæ×æÏÈ
+      TreeLinkedList p = parent;//ä»çˆ¶äº²å¼€å§‹
+      while (null != p) {//ä¾æ¬¡
+         depth++; p = p.getParent();//è®¿é—®å„ä¸ªçœŸç¥–å…ˆ
       }
-      return depth;//Õæ×æÏÈµÄÊıÄ¿£¬¼´Îªµ±Ç°½ÚµãµÄÉî¶È
+      return depth;//çœŸç¥–å…ˆçš„æ•°ç›®ï¼Œå³ä¸ºå½“å‰èŠ‚ç‚¹çš„æ·±åº¦
    }
 }
