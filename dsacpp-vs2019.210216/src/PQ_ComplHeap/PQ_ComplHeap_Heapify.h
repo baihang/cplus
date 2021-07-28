@@ -8,13 +8,15 @@
 
 #pragma once
 
-template <typename T> void heapify ( T* A, const Rank n ) { //Floyd建堆算法，O(n)时间
-   for ( int i = n/2 - 1; 0 <= i; i-- ) //自底而上，依次
-/*DSA*///{
-      percolateDown ( A, n, i ); //下滤各内部节点
-/*DSA*///for ( int k = 0; k < n; k++ ) {
-/*DSA*///  int kk = k; while ( i < kk ) kk = (kk - 1) / 2;
-/*DSA*///  i == kk ? print(A[k]) : print("    " );
-/*DSA*///}; printf("\n");
-/*DSA*///}
+template <typename T>
+void heapify(T *A, const Rank n)
+{                                          //Floyd建堆算法，O(n)时间
+      for (int i = n / 2 - 1; 0 <= i; i--) //自底而上，依次
+      {
+            percolateDown(A, n, i); //下滤各内部节点
+            //for ( int k = 0; k < n; k++ ) {
+            //  int kk = k; while ( i < kk ) kk = (kk - 1) / 2;
+            //  i == kk ? print(A[k]) : print("    " );
+            //}; printf("\n");
+      }
 }

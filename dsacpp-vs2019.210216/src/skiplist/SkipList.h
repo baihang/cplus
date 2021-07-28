@@ -10,7 +10,7 @@
 
 #include "List/List.h" //引入列表
 #include "Entry/Entry.h" //引入词条
-#include "Quadlist.h" //引入Quadlist
+#include "QuadList.h" //引入Quadlist
 #include "Dictionary/Dictionary.h" //引入词典
 
 template <typename K, typename V> //key、value

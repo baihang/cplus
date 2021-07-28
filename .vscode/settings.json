@@ -72,6 +72,7 @@
         "list": "cpp",
         "regex": "cpp",
         "unordered_set": "cpp",
-        "random": "cpp"
+        "random": "cpp",
+        "__functional_03": "cpp"
     }
 }
