@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch sort",
+            "request": "launch",
+            "mainClass": "sort",
+            "projectName": "cplus_bdde0089"
+        },
+        {
+            "type": "java",
+            "name": "Launch BiggerSum",
+            "request": "launch",
+            "mainClass": "BiggerSum",
+            "projectName": "cplus_bdde0089"
+        },
+        {
+            "type": "java",
             "name": "Launch HeapSort",
             "request": "launch",
             "mainClass": "HeapSort",

@@ -68,9 +68,9 @@ public class InvokeMethodDynamic {
          * @param newStr 目标字符串
          * @return 修改后的字节码数组
          */
-        private byte[] modifyUTF8Constant(String old, String newStr){
+        // private byte[] modifyUTF8Constant(String old, String newStr){
 
-        }
+        // }
     }
 
     

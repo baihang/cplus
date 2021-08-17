@@ -1,9 +1,7 @@
-package hang_java;
 
 import java.lang.Iterable;
 import java.util.Iterator;
 
-import jdk.javadoc.internal.doclets.formats.html.resources.standard;
 
 /**
  * java 泛型
