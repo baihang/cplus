@@ -67,4 +67,4 @@ public:
    void traverse ( VST& ); //遍历，依次实施visit操作（函数对象，可全局性修改）
 }; //List
 
-#include "List_implementation.h"
+#include "list_implementation.h"

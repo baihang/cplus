@@ -8,6 +8,8 @@
 
 #pragma once
 
+#include <string.h>
+
 using Rank = int; //秩
 template <typename T> struct ListNode;
 template <typename T> using ListNodePosi = ListNode<T>*; //列表节点位置

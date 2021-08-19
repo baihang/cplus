@@ -6,6 +6,27 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch InvokeSuper",
+            "request": "launch",
+            "mainClass": "InvokeSuper",
+            "projectName": "cplus_bdde0089"
+        },
+        {
+            "type": "java",
+            "name": "Launch TestClass",
+            "request": "launch",
+            "mainClass": "TestClass",
+            "projectName": "cplus_bdde0089"
+        },
+        {
+            "type": "java",
+            "name": "Launch ThreadTest",
+            "request": "launch",
+            "mainClass": "ThreadTest",
+            "projectName": "cplus_bdde0089"
+        },
+        {
+            "type": "java",
             "name": "Launch sort",
             "request": "launch",
             "mainClass": "sort",
