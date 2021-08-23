@@ -13,6 +13,9 @@
  * 效果等同于将这些实现直接汇入BinNode.h
  * 在export尚未被编译器支持前，如此可将定义与实现分离，以便课程讲解
  ******************************************************************************************/
+
+#include "../stack/stack.h"
+
 #include "BinNode_macro.h"
 #include "BinNode_size.h" //后代数目
 #include "BinNode_insert.h" //插入

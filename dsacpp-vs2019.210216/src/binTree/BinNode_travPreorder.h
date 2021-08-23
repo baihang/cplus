@@ -8,8 +8,8 @@
 
 #pragma once
 
-/*DSA*/#include "stack/Stack.h" //引入栈模板类
-/*DSA*/#include "BinNode_TravPreorder_R.h"
+// /*DSA*/#include "../stack/stack.h" //引入栈模板类
+/*DSA*/#include "BinNode_travPreorder_R.h"
 /*DSA*/#include "BinNode_TravPreorder_I1.h"
 /*DSA*/#include "BinNode_TravPreorder_I2.h"
 template <typename T> template <typename VST> //元素类型、操作器

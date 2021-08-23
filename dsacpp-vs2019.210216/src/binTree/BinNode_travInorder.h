@@ -8,7 +8,7 @@
 
 #pragma once
 
-/*DSA*/#include "stack/Stack.h" //引入栈模板类
+// /*DSA*/#include "../stack/stack.h" //引入栈模板类
 /*DSA*/#include "BinNode_TravInorder_R.h"
 /*DSA*/#include "BinNode_TravInorder_I1.h"
 /*DSA*/#include "BinNode_TravInorder_I2.h"
