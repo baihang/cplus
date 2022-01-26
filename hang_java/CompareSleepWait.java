@@ -8,6 +8,10 @@ import java.util.concurrent.locks.ReentrantLock;
  * wait会释放锁，sleep不会。所以sleep可以用在同步块内和同步快外，wait只能用于同步块内
  * 
  * await 相比 wait来说更加灵活
+ * 
+ * LockSupport的 park unpark 也可以用来阻塞/唤醒线程
+ * 
+ * Thread.join 也可以阻塞线程
  */
 
 class CompareSlppeWait {

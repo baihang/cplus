@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch encrypt",
+            "request": "launch",
+            "mainClass": "encrypt",
+            "projectName": "cplus_bdde0089"
+        },
+        {
+            "type": "java",
+            "name": "Launch MethodOverload",
+            "request": "launch",
+            "mainClass": "MethodOverload",
+            "projectName": "cplus_bdde0089"
+        },
+        {
+            "type": "java",
             "name": "Launch InvokeSuper",
             "request": "launch",
             "mainClass": "InvokeSuper",
